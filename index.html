@@ -1,33 +1,109 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OlhaKOB</title>
+  <meta name="theme-color" content="#f7f0e6">
+  <title>Yasmin dura</title>
   <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
       display: grid;
       place-items: center;
-      background: #f4f0e8;
-      color: #202020;
-      font-family: Arial, sans-serif;
+      overflow: hidden;
+      background: #f7f0e6;
+      color: #2b1d17;
+      font-family: Georgia, "Times New Roman", serif;
     }
-    main {
-      padding: 40px;
-      text-align: center;
+    .cover {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 100%;
+      min-height: 100vh;
+      padding: 2rem;
+      isolation: isolate;
+      background:
+        radial-gradient(ellipse at center, rgba(255,253,247,.94), rgba(247,240,230,.72) 68%),
+        #f7f0e6;
     }
+    .shape {
+      position: absolute;
+      z-index: -1;
+      width: 32vw;
+      height: 26vw;
+      min-width: 220px;
+      min-height: 180px;
+      background: #e8d8c7;
+      opacity: .8;
+      border-radius: 62% 38% 67% 33% / 43% 47% 53% 57%;
+    }
+    .shape.top { top: -13vw; left: -9vw; transform: rotate(-20deg); }
+    .shape.bottom { right: -10vw; bottom: -14vw; transform: rotate(155deg); }
+    .plant {
+      position: absolute;
+      width: clamp(100px, 19vw, 280px);
+      color: #b19477;
+      opacity: .9;
+    }
+    .plant.top { top: 2%; right: 1%; }
+    .plant.bottom { bottom: 2%; left: 1%; transform: rotate(180deg); }
+    .content { width: 100%; text-align: center; padding: 1rem; }
     h1 {
-      font-size: clamp(3rem, 10vw, 6rem);
+      margin: 0;
+      font-size: clamp(3.2rem, 10vw, 8.8rem);
+      line-height: 1.08;
+      font-weight: 500;
+      letter-spacing: -.045em;
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      margin: clamp(1.6rem, 4vw, 3rem) auto 0;
+      color: #3b241b;
+    }
+    .divider::before, .divider::after {
+      content: "";
+      display: block;
+      width: clamp(50px, 14vw, 190px);
+      height: 1px;
+      background: currentColor;
+    }
+    .heart { font-size: 1.5rem; line-height: 1; }
+    @media (max-width: 520px) {
+      .plant { width: 120px; }
+      .plant.top { top: 4%; right: -5%; }
+      .plant.bottom { bottom: 3%; left: -5%; }
     }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Hello, world.</h1>
-    <p>Welcome to my website.</p>
+  <main class="cover" aria-label="Title page for Yasmin dura">
+    <div class="shape top" aria-hidden="true"></div>
+    <div class="shape bottom" aria-hidden="true"></div>
+    <svg class="plant top" viewBox="0 0 220 260" fill="none" aria-hidden="true">
+      <path d="M110 260 C105 190 125 105 185 18" stroke="currentColor" stroke-width="2"/>
+      <path d="M128 150 C70 148 50 116 40 83 C81 83 116 105 128 150Z" stroke="currentColor" stroke-width="2"/>
+      <path d="M146 115 C146 72 160 43 190 20 C202 59 181 93 146 115Z" stroke="currentColor" stroke-width="2"/>
+      <path d="M111 205 C64 197 35 173 22 142 C65 145 97 170 111 205Z" stroke="currentColor" stroke-width="2"/>
+      <path d="M119 177 C158 172 190 147 204 118 C165 122 136 146 119 177Z" stroke="currentColor" stroke-width="2"/>
+    </svg>
+    <svg class="plant bottom" viewBox="0 0 220 260" fill="none" aria-hidden="true">
+      <path d="M110 260 C105 190 125 105 185 18" stroke="currentColor" stroke-width="2"/>
+      <path d="M128 150 C70 148 50 116 40 83 C81 83 116 105 128 150Z" stroke="currentColor" stroke-width="2"/>
+      <path d="M146 115 C146 72 160 43 190 20 C202 59 181 93 146 115Z" stroke="currentColor" stroke-width="2"/>
+      <path d="M111 205 C64 197 35 173 22 142 C65 145 97 170 111 205Z" stroke="currentColor" stroke-width="2"/>
+      <path d="M119 177 C158 172 190 147 204 118 C165 122 136 146 119 177Z" stroke="currentColor" stroke-width="2"/>
+    </svg>
+    <section class="content">
+      <h1>Yasmin dura</h1>
+      <div class="divider" aria-hidden="true"><span class="heart">♥</span></div>
+    </section>
   </main>
 </body>
 </html>
