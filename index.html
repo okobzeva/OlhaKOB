@@ -44,6 +44,74 @@ footer{padding:26px 0 0;color:#aaa49b;font-size:10px;display:flex;justify-conten
 @media(max-width:1050px){.cas-traits{left:7px;grid-template-columns:repeat(3,25px)}.trait-hex{width:25px;height:29px}.cas-category{right:8px}.cas-category button{width:30px;height:30px}.avatar-stage .avatar-figure{height:340px}.app{grid-template-columns:180px minmax(0,1fr)}.studio{grid-template-columns:1fr}.avatar-stage{min-height:340px}.avatar-figure{height:315px}.stylist-panel{min-height:0}.outfit-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.outfit-visual{height:165px}}
 @media(max-width:760px){.avatar-stage{min-height:370px}.avatar-stage .avatar-figure{height:310px;width:58%}.cas-traits{top:56px;grid-template-columns:repeat(2,25px)}.cas-category{top:68px;gap:5px}.cas-category button{width:28px;height:28px;font-size:15px}.cas-greeting{font-size:8px;padding:7px 12px}.cas-arrows{bottom:18px}.app{display:block}.sidebar{position:fixed;z-index:15;bottom:0;left:0;right:0;height:65px;padding:5px 8px;border-right:0;border-top:1px solid var(--line);display:block;background:#f7fbfd}.brand,.nav-label,.side-note{display:none}.nav{height:100%;display:flex;justify-content:space-around;align-items:center;gap:2px}.nav button{flex:1;justify-content:center;display:grid;gap:1px;text-align:center;padding:6px 2px;font-size:9px;border-radius:8px}.nav button .ico{width:auto;font-size:17px}.topbar{height:60px;padding:0 18px}.content{padding:25px 16px 90px}.welcome{align-items:start}.welcome h1{font-size:32px}.date-pill{display:none}.weather{padding:10px}.weather .weather-spacer{flex-basis:10px}.weather select{max-width:120px}.studio{gap:13px}.avatar-stage{min-height:310px;margin:13px 12px 0}.avatar-figure{height:285px}.panel-head{padding:17px 16px 0}.avatar-controls{padding:12px 14px 16px;align-items:start;flex-direction:column}.stylist-panel .panel-head{padding-bottom:16px}.form-body{padding:0 16px 18px}.occasion-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.outfit-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.outfit-card:last-child{display:block}.outfit-visual{height:155px}.outfit-visual svg{height:145px}.outfit-info{padding:12px}.outfit-info h3{font-size:15px}.match{font-size:8px}.bottom-grid{grid-template-columns:1fr}.section-heading h2{font-size:23px}.section-heading p{max-width:130px;text-align:right;line-height:1.5}.mini-panel{padding:17px}footer{padding-top:24px;flex-wrap:wrap}}
 @media(max-width:390px){.outfit-grid{grid-template-columns:1fr}.outfit-visual{height:185px}.outfit-visual svg{height:170px}.option{padding:9px 10px}.profile span{display:none}}
+
+/* SIMS-INSPIRED GAME UI: unified across the whole app */
+:root{--paper:#dceaf0;--white:#f8fbfc;--ink:#234158;--muted:#66849a;--line:#b5d1df;--olive:#2c9bba;--olive-dark:#236c9c;--blush:#f5dce5;--sand:#e7f1f4;--serif:'DM Sans',Arial,sans-serif;--sans:'DM Sans',Arial,sans-serif}
+body{background:linear-gradient(135deg,#d4e5f1,#e0f3ed 65%,#b8e2d8);color:#234158}
+.app{grid-template-columns:205px minmax(0,1fr);gap:0}
+.sidebar{background:linear-gradient(180deg,#eff8fb,#d8e9f2);border-right:1px solid #a6cadb;padding:22px 13px;gap:24px}
+.brand-name{font-family:var(--sans);font-weight:800;letter-spacing:3px;color:#2476a5;text-shadow:0 2px white}
+.brand-sub{letter-spacing:1.4px;color:#4d829d}
+.nav-label,.field-label{color:#4b829c;font-weight:800}
+.nav button{border:1px solid transparent;border-radius:10px;color:#426f89;background:rgba(255,255,255,.35);box-shadow:0 1px 0 #fff8}
+.nav button.active{background:linear-gradient(180deg,#fff,#d7effa);border-color:#8bbdd6;box-shadow:inset 0 -3px #76b9d7,0 2px 5px #5489a522;color:#236c9c}
+.side-note{background:linear-gradient(145deg,#f5fbff,#cce7f3);border:1px solid #acd0e2;border-radius:13px;box-shadow:0 3px 0 #a8cbd9;color:#52788d}
+.side-note button{border-color:#80b4cf;background:#fff;color:#286c93}
+.topbar{background:linear-gradient(90deg,#f7fcffed,#e2f3f0ed);border-bottom:1px solid #a6cadb}
+.avatar-small{background:linear-gradient(145deg,#ffe5c5,#d7b1a4);border:2px solid white;box-shadow:0 1px 4px #527a8b44}
+.content{max-width:1600px;padding-top:27px}
+.eyebrow{color:#247ba8;letter-spacing:1.4px}
+.welcome h1,.panel-head h2,.section-heading h2,.outfit-info h3,.mini-title h3,.modal h2{font-family:var(--sans);font-weight:800;letter-spacing:-.6px}
+.welcome h1{color:#245b7c}
+.date-pill,.weather,.panel,.mini-panel{border:1px solid #a9cadb;box-shadow:0 3px 0 rgba(91,144,168,.17),0 8px 20px rgba(63,112,141,.08)}
+.date-pill{background:#f7fcff;color:#39738f}
+.weather{background:linear-gradient(110deg,#fff,#edf9fb);border-radius:13px}
+.weather select{background:#e1f0f7;border:1px solid #c1dce8;color:#315d77;border-radius:8px}
+.panel{border-radius:15px;background:linear-gradient(180deg,#fff,#f5fafc);overflow:hidden}
+.panel-head{padding-top:19px}
+.panel-head h2{font-size:21px;color:#245c7d}
+.panel-head p{color:#6e8da0}
+.avatar-stage{border:2px solid #fff;outline:1px solid #a6cfdf;border-radius:10px;background:radial-gradient(ellipse at 52% 44%,#c9f1df 0%,#83d4ce 31%,#579fce 68%,#3977b6 100%);box-shadow:inset 0 0 40px #fff4,0 4px 0 #b9d7e2}
+.avatar-stage .avatar-figure{filter:drop-shadow(0 15px 12px rgba(19,43,64,.32)) saturate(1.07)}
+.cas-category button,.cas-arrows button,.cas-bottom-tools button{border:1px solid #ffffffc9;box-shadow:0 2px 5px #174a6b30}
+.cas-category button{background:linear-gradient(145deg,#ffffffb8,#d8edf5a8);color:#3d7898}
+.cas-category button.active,.cas-category button:hover{background:#fff;color:#2378a5;box-shadow:0 0 0 2px #75bfdc,0 2px 7px #164a6b44}
+.cas-traits{filter:drop-shadow(0 2px 2px #164b6c35)}
+.stage-label{background:#ffffffc9!important;color:#367b9c!important;border-color:#fff!important}
+.stage-tag{background:#ffffffb9;color:#34718d!important;padding:5px 10px;border-radius:20px}
+.avatar-controls{background:#eaf5f9}
+.chip,.secondary,.option,.occasion,.text-btn{border:1px solid #b7d4e1;background:linear-gradient(180deg,#fff,#e9f4f8);color:#4a7388;box-shadow:0 2px 0 #d0e4ec}
+.chip.selected,.option.selected{background:linear-gradient(180deg,#e6f9ff,#c2e8f6);border-color:#6db4d4;color:#206d98;box-shadow:inset 0 -2px #6cb8d6}
+.primary{background:linear-gradient(180deg,#70c7e7,#3193c2);border:1px solid #2a83b1;box-shadow:0 3px 0 #2676a4,0 4px 10px #4e9cbd24;border-radius:9px}
+.primary:hover{background:linear-gradient(180deg,#8bd8ef,#4ca8d0)}
+.occasion.selected{background:linear-gradient(180deg,#fff3f8,#f5dbe7);border-color:#e2a8c0;color:#9d5475;box-shadow:inset 0 -2px #dca4bc}
+.outfit-card{border:1px solid #b4d2e0;box-shadow:0 3px 0 #c3dce6;background:linear-gradient(180deg,#fff,#f6fbfd);border-radius:13px}
+.outfit-visual{background:linear-gradient(145deg,#f0f9fc,#cde8f3)}
+.outfit-card:nth-child(2) .outfit-visual{background:linear-gradient(145deg,#eaf9f4,#bfe8de)}
+.outfit-card:nth-child(3) .outfit-visual{background:linear-gradient(145deg,#fff2f7,#f1d6e3)}
+.save-look{background:#ffffffd9;border:1px solid #fff;box-shadow:0 2px 4px #355e7322}
+.save-look.saved{background:#56a7c7}
+.match{background:#d9f4e9;color:#287f6b;font-weight:800}
+.tag{background:#e5f1f6;color:#54768a;border:1px solid #d6e7ee}
+.stat{background:linear-gradient(145deg,#f4fbff,#dcedf5);border:1px solid #d0e5ed}
+.stat strong{color:#2d7fa5;font-weight:800}
+.progress{background:#d7e8ef}.progress span{background:linear-gradient(90deg,#53c8e1,#53c9a5)}
+.saved-item{background:#e4f2f8!important;color:#456f85;border:1px solid #d2e6ef}
+.saved-item:nth-child(2){background:#ddf3e9!important}.saved-item:nth-child(3){background:#f8e7ef!important}
+.modal{border:1px solid #a9cfe0;box-shadow:0 8px 0 #8cb9cf,0 25px 80px #1a486755}
+.upload-zone{border:2px dashed #a7ccdc;background:#eef8fc;border-radius:12px}
+.toast{background:linear-gradient(100deg,#2d6e95,#287f91);border:1px solid #ffffff55;box-shadow:0 4px 0 #1e5878}
+footer{color:#56819a}
+@media(max-width:1050px){.app{grid-template-columns:180px minmax(0,1fr)}}
+@media(max-width:760px){.app{display:block}.sidebar{background:linear-gradient(90deg,#eaf6fb,#d6f0e7);border-top:1px solid #a6cadb}.nav button.active{box-shadow:inset 0 -2px #76b9d7}.content{padding-top:20px}.avatar-stage .avatar-figure{height:310px}}
+
+.sim-tool-strip{padding:12px;border:1px solid #bdd9e5;background:linear-gradient(135deg,#f7fcff,#e7f5f8);border-radius:11px;box-shadow:0 2px 0 #d2e5ec}
+.sim-tool-title{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tool-live{font-size:8px;color:#3a9c85;font-weight:800;letter-spacing:.7px}
+.sim-tool-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.sim-tool{padding:9px 8px;border:1px solid #c0dbe6;border-radius:8px;background:linear-gradient(#fff,#eaf5f9);color:#47758c;font-size:10px;text-align:left;box-shadow:0 2px 0 #d2e6ee}
+.sim-tool.active{background:linear-gradient(#e8faff,#c6eaf7);border-color:#70b7d5;color:#236d95;box-shadow:inset 0 -2px #6db8d7}
+.tool-description{font-size:10px;color:#66869a;line-height:1.5;margin:9px 0 0}
 </style>
 </head>
 <body>
@@ -96,6 +164,7 @@ footer{padding:26px 0 0;color:#aaa49b;font-size:10px;display:flex;justify-conten
       <article class="panel stylist-panel">
         <div class="panel-head"><div><div class="eyebrow">YOUR AI STYLIST</div><h2>What are we dressing for?</h2><p>Tell me the vibe. I'll style what you own.</p></div><span style="font-size:25px;color:var(--olive)">✳</span></div>
         <div class="form-body">
+          <div class="sim-tool-strip"><div class="sim-tool-title"><span class="field-label">SIM TOOLKIT</span><span class="tool-live">● LIVE EDIT</span></div><div class="sim-tool-buttons"><button type="button" class="sim-tool active" data-tool="outfit">✦ Outfit creator</button><button type="button" class="sim-tool" data-tool="closet">▦ Digital closet</button><button type="button" class="sim-tool" data-tool="planner">☼ Day planner</button><button type="button" class="sim-tool" data-tool="mood">♡ Mood board</button></div><p class="tool-description" id="toolDescription">Build a look for your Sim-self from your real wardrobe.</p></div>
           <div><span class="field-label">THE OCCASION</span><div class="occasion-grid" id="occasionOptions">
             <button class="occasion selected" data-occasion="everyday"><span>☕</span><span>Everyday</span></button><button class="occasion" data-occasion="work"><span>▤</span><span>Work</span></button><button class="occasion" data-occasion="date"><span>♡</span><span>Date night</span></button><button class="occasion" data-occasion="event"><span>✧</span><span>Event</span></button>
           </div></div>
@@ -134,6 +203,9 @@ $$('[data-mood]').forEach(b=>b.addEventListener('click',()=>{state.mood=b.datase
 $$('[data-style]').forEach(b=>b.addEventListener('click',()=>{state.style=b.dataset.style;selectOne('#styleOptions','data-style',state.style)}));
 $('#weather').addEventListener('change',e=>{state.weather=e.target.value;const data={sun:['☀️','Mild & sunny','A light layer will do nicely'],cloud:['☁️','Cloudy & mild','Try a soft knit or an extra layer'],rain:['☂️','Rain is in the forecast','Water-resistant layers and practical shoes'],cold:['❄️','A little chilly','Think warm layers and a great coat'],hot:['☼','A warm one','Breathable fabrics and lighter colours']};$('#weatherIcon').textContent=data[state.weather][0];$('#weatherTitle').textContent=data[state.weather][1];$('#weatherCopy').textContent=data[state.weather][2]});
 $('#dressCode').addEventListener('change',e=>state.dressCode=e.target.value);
+const toolCopy={outfit:'Build a look for your Sim-self from your real wardrobe.',closet:'Add photos of clothes you own and keep your digital wardrobe organised.',planner:'Choose the weather and occasion to plan what to wear today.',mood:'Choose a style direction and mood before generating your outfit edit.'};
+$('[data-tool]').forEach(b=>b.addEventListener('click',()=>{ $('[data-tool]').forEach(x=>x.classList.toggle('active',x===b));$('#toolDescription').textContent=toolCopy[b.dataset.tool];if(b.dataset.tool==='closet')openModal();if(b.dataset.tool==='planner')$('#weather').focus();if(b.dataset.tool==='mood')$('#moodOptions').scrollIntoView({behavior:'smooth',block:'center'});if(b.dataset.tool==='outfit')$('#occasionOptions').scrollIntoView({behavior:'smooth',block:'center'});}));
+
 const looks={
   everyday:{minimal:[['Soft structure','Clean lines, relaxed tailoring, an easy kind of polish.',['Cream knit','Wide-leg trousers','Loafers']],['Earth & ease','Natural textures with a little softness and movement.',['Sage shirt','Linen pants','Gold hoops']],['After hours','A romantic accent, balanced with pieces you already love.',['Blush blouse','Dark trousers','Statement bag']]],trendy:[['The new uniform','A current silhouette, grounded in everyday staples.',['Boxy jacket','Straight denim','Sleek trainers']],['Colour story','One considered colour makes the whole look feel fresh.',['Colour-pop top','Relaxed trousers','Small bag']],['Off-duty muse','Sporty details meet polished proportions.',['Zip knit','Wide-leg pants','Retro sneakers']]],eclectic:[['Artful ease','Unexpected texture, balanced with a calm base.',['Printed shirt','Tailored pants','Silver jewellery']],['Soft contrast','A playful pairing that still feels effortless.',['Vintage knit','Straight denim','Colourful flats']],['Collected pieces','Personal details make the outfit your own.',['Statement layer','Neutral base','Favourite bag']]]},
   work:{minimal:[['Quiet authority','A tailored layer and considered details do the talking.',['Structured blazer','Straight trousers','Loafers']],['Desk to dinner','A refined base that can shift with your day.',['Fine knit','Tailored pants','Gold jewellery']],['Modern classic','Polished, comfortable, and never overworked.',['Crisp shirt','Wide-leg pants','Leather belt']]],trendy:[['Creative office','A strong silhouette with a little fashion edge.',['Oversized blazer','Dark denim','Pointed flats']],['The new tailoring','Relaxed proportions make workwear feel current.',['Long vest','Pleated trousers','Sleek bag']],['Colour confidence','A subtle colour story brings energy to the workday.',['Accent blouse','Neutral suit pants','Minimal jewellery']]],eclectic:[['Studio energy','A confident mix of structure and personality.',['Printed layer','Tailored trousers','Sculptural earrings']],['Creative classic','Familiar staples with one unexpected detail.',['Textured knit','Wide-leg pants','Colourful shoes']],['Personal uniform','A repeatable formula that still feels individual.',['Favourite shirt','Smart trousers','Statement bag']]]},
