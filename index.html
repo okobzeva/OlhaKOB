@@ -1,109 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f7f0e6">
-  <title>Yasmin dura</title>
-  <style>
-    :root { color-scheme: light; }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      background: #f7f0e6;
-      color: #2b1d17;
-      font-family: Georgia, "Times New Roman", serif;
-    }
-    .cover {
-      position: relative;
-      display: grid;
-      place-items: center;
-      width: 100%;
-      min-height: 100vh;
-      padding: 2rem;
-      isolation: isolate;
-      background:
-        radial-gradient(ellipse at center, rgba(255,253,247,.94), rgba(247,240,230,.72) 68%),
-        #f7f0e6;
-    }
-    .shape {
-      position: absolute;
-      z-index: -1;
-      width: 32vw;
-      height: 26vw;
-      min-width: 220px;
-      min-height: 180px;
-      background: #e8d8c7;
-      opacity: .8;
-      border-radius: 62% 38% 67% 33% / 43% 47% 53% 57%;
-    }
-    .shape.top { top: -13vw; left: -9vw; transform: rotate(-20deg); }
-    .shape.bottom { right: -10vw; bottom: -14vw; transform: rotate(155deg); }
-    .plant {
-      position: absolute;
-      width: clamp(100px, 19vw, 280px);
-      color: #b19477;
-      opacity: .9;
-    }
-    .plant.top { top: 2%; right: 1%; }
-    .plant.bottom { bottom: 2%; left: 1%; transform: rotate(180deg); }
-    .content { width: 100%; text-align: center; padding: 1rem; }
-    h1 {
-      margin: 0;
-      font-size: clamp(3.2rem, 10vw, 8.8rem);
-      line-height: 1.08;
-      font-weight: 500;
-      letter-spacing: -.045em;
-    }
-    .divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1.2rem;
-      margin: clamp(1.6rem, 4vw, 3rem) auto 0;
-      color: #3b241b;
-    }
-    .divider::before, .divider::after {
-      content: "";
-      display: block;
-      width: clamp(50px, 14vw, 190px);
-      height: 1px;
-      background: currentColor;
-    }
-    .heart { font-size: 1.5rem; line-height: 1; }
-    @media (max-width: 520px) {
-      .plant { width: 120px; }
-      .plant.top { top: 4%; right: -5%; }
-      .plant.bottom { bottom: 3%; left: -5%; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f1eb">
+<meta name="description" content="MUSE — your personal AI fashion stylist. Build your digital self, style your real wardrobe, and shop your closet first.">
+<title>MUSE — Your personal style, reimagined</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap');
+:root{--paper:#f5f1eb;--white:#fffdf9;--ink:#252522;--muted:#85837d;--line:#e6e0d7;--olive:#72795c;--olive-dark:#4d563e;--blush:#e9d6cf;--sand:#e7dfd2;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--olive);outline-offset:3px}
+.app{min-height:100vh;display:grid;grid-template-columns:220px minmax(0,1fr)}.sidebar{padding:28px 18px 22px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:30px;background:#f7f4ee}.brand{padding:0 12px}.brand-name{font-family:var(--serif);font-size:29px;letter-spacing:4px}.brand-sub{font-size:9px;letter-spacing:2.4px;color:var(--muted);margin-top:4px}.nav-label{font-size:9px;letter-spacing:1.8px;color:#aaa49b;padding:0 12px;margin:0 0 10px}.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;text-align:left;padding:12px;border-radius:10px;color:#77766f;display:flex;align-items:center;gap:12px}.nav button .ico{font-size:17px;width:19px;text-align:center}.nav button.active{background:#e7e8de;color:var(--olive-dark);font-weight:600}.side-note{margin-top:auto;background:#e9e5da;border-radius:14px;padding:16px;color:#69695d;font-size:12px;line-height:1.6}.side-note strong{display:block;color:var(--ink);font-size:12px;margin-bottom:5px}.side-note button{margin-top:12px;border:1px solid #c8c8b8;border-radius:30px;background:transparent;padding:8px 12px;font-size:11px}
+main{min-width:0}.topbar{height:74px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,54px);background:rgba(255,253,249,.56)}.crumb{font-size:11px;color:var(--muted);letter-spacing:.4px}.crumb b{color:var(--ink);font-weight:500}.profile{display:flex;align-items:center;gap:10px;font-size:12px}.avatar-small{width:34px;height:34px;border-radius:50%;background:#d9c6b6;display:grid;place-items:center;font-family:var(--serif);font-size:16px}.content{max-width:1480px;margin:auto;padding:34px clamp(20px,4vw,54px) 50px}.eyebrow{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--olive);font-weight:700}.welcome{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px}.welcome h1{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3vw,43px);letter-spacing:-1.1px;margin:8px 0 8px}.welcome p{margin:0;color:var(--muted);font-size:13px}.date-pill{white-space:nowrap;border:1px solid var(--line);border-radius:30px;padding:10px 14px;color:#77756d;font-size:11px;background:var(--white)}
+.weather{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;background:var(--white);padding:10px 14px;margin-bottom:24px;flex-wrap:wrap}.weather-icon{font-size:25px}.weather strong{font-size:12px}.weather small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.weather .weather-spacer{flex:1}.weather label{font-size:10px;color:var(--muted)}.weather select{border:0;background:#f2efe8;padding:8px 10px;border-radius:8px;color:var(--ink);max-width:150px}
+.studio{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:18px;align-items:stretch}.panel{background:var(--white);border:1px solid var(--line);border-radius:17px;overflow:hidden}.panel-head{padding:20px 22px 0;display:flex;align-items:center;justify-content:space-between;gap:10px}.panel-head h2{font-family:var(--serif);font-weight:500;font-size:21px;margin:0}.panel-head p{margin:5px 0 0;color:var(--muted);font-size:11px}.tiny-link{border:0;background:transparent;color:var(--olive-dark);font-size:11px;text-decoration:underline;text-underline-offset:3px}
+.avatar-stage{position:relative;min-height:365px;margin:16px 18px 0;border-radius:13px;overflow:hidden;background:radial-gradient(ellipse at 50% 44%,#f4e8dc 0%,#e9d9cc 46%,#d9c4b3 100%);display:flex;align-items:center;justify-content:center}.stage-label{position:absolute;top:15px;left:15px;border:1px solid rgba(255,255,255,.65);background:rgba(255,253,249,.6);backdrop-filter:blur(8px);padding:7px 10px;border-radius:30px;font-size:9px;letter-spacing:1px;text-transform:uppercase}.stage-tag{position:absolute;bottom:15px;left:15px;font-size:10px;color:#6e5a4e}.avatar-figure{width:min(250px,68%);height:330px;filter:drop-shadow(0 14px 10px rgba(88,65,49,.12));transition:transform .3s}.avatar-figure:hover{transform:translateY(-3px)}.avatar-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 22px 19px}.look-controls{display:flex;gap:7px}.chip{border:1px solid var(--line);background:transparent;border-radius:30px;padding:8px 12px;font-size:10px;color:#77756d}.chip.selected{background:#e6e7dc;border-color:#d6d9c8;color:var(--olive-dark)}.primary{border:0;background:var(--olive-dark);color:#fffdf8;padding:11px 16px;border-radius:30px;font-size:11px;font-weight:600;transition:background .2s,transform .2s}.primary:hover{background:#39422e;transform:translateY(-1px)}.secondary{border:1px solid var(--line);background:var(--white);padding:10px 14px;border-radius:30px;font-size:11px;color:var(--ink)}
+.stylist-panel{display:flex;flex-direction:column}.stylist-panel .panel-head{padding-bottom:18px}.form-body{padding:0 22px 22px;display:grid;gap:17px}.field-label{display:block;font-size:10px;letter-spacing:1.1px;text-transform:uppercase;color:#8a877f;margin-bottom:9px}.option-row{display:flex;gap:7px;flex-wrap:wrap}.option{border:1px solid var(--line);background:#fffdf9;border-radius:9px;padding:10px 12px;font-size:11px;color:#77756d;transition:all .18s}.option:hover{border-color:#b6bba6}.option.selected{background:#e8e9df;border-color:#c5cbb7;color:var(--olive-dark);font-weight:600}.occasion-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.occasion{border:1px solid var(--line);background:transparent;border-radius:10px;padding:12px 4px 10px;font-size:10px;color:#77756d;display:grid;gap:7px;justify-items:center}.occasion span:first-child{font-size:18px}.occasion.selected{background:#f0e5df;border-color:#dfc9bf;color:#5f4035}.recommend{width:100%;padding:13px}.microcopy{text-align:center;color:#aaa49b;font-size:10px;margin:0}
+.outfit-results{margin-top:24px}.section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:14px}.section-heading h2{font-family:var(--serif);font-size:26px;font-weight:400;margin:6px 0 0}.section-heading p{margin:0;color:var(--muted);font-size:11px}.outfit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.outfit-card{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:var(--white);min-width:0;transition:transform .2s,box-shadow .2s}.outfit-card:hover{transform:translateY(-3px);box-shadow:0 12px 24px #4b3a2810}.outfit-visual{height:195px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#ece5dc}.outfit-card:nth-child(2) .outfit-visual{background:#e5e7dd}.outfit-card:nth-child(3) .outfit-visual{background:#eee0dc}.outfit-visual svg{height:174px;width:155px}.look-number{position:absolute;top:12px;left:13px;font-size:9px;letter-spacing:1px;color:#746e63}.save-look{position:absolute;top:9px;right:10px;width:29px;height:29px;border:0;border-radius:50%;background:#fffdf9c9;font-size:17px;color:#827c72}.save-look.saved{background:#72795c;color:white}.outfit-info{padding:15px}.outfit-title-row{display:flex;justify-content:space-between;gap:8px;align-items:start}.outfit-info h3{font-family:var(--serif);font-weight:500;font-size:17px;margin:0}.match{font-size:9px;background:#e9eadf;color:#5a6448;padding:5px 7px;border-radius:30px;white-space:nowrap}.outfit-info p{font-size:10px;line-height:1.5;color:var(--muted);margin:7px 0 12px}.tags{display:flex;gap:5px;flex-wrap:wrap}.tag{font-size:9px;color:#7c786f;background:#f3f0e9;padding:5px 7px;border-radius:5px}.outfit-actions{display:flex;gap:8px;margin-top:14px}.outfit-actions button{flex:1}.text-btn{border:1px solid var(--line);border-radius:30px;background:transparent;font-size:10px;padding:9px;color:#6f6b63}
+.bottom-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-top:22px}.mini-panel{padding:19px 21px;background:var(--white);border:1px solid var(--line);border-radius:15px}.mini-title{display:flex;align-items:center;justify-content:space-between;gap:10px}.mini-title h3{font-family:var(--serif);font-size:19px;font-weight:500;margin:0}.mini-title span{font-size:10px;color:var(--muted)}.wardrobe-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:16px}.stat{background:#f4f1ea;border-radius:10px;padding:12px}.stat strong{display:block;font-family:var(--serif);font-size:23px;font-weight:400}.stat small{font-size:9px;color:var(--muted)}.progress{height:4px;background:#e7e2d9;border-radius:10px;margin-top:14px;overflow:hidden}.progress span{display:block;width:68%;height:100%;background:var(--olive)}.insight{margin-top:9px;color:#8c887e;font-size:10px;line-height:1.5}.saved-list{display:flex;gap:9px;margin-top:15px}.saved-item{flex:1;min-width:0;border-radius:9px;background:#f0e6de;padding:10px;font-size:10px;color:#65564a}.saved-item:nth-child(2){background:#e8e9df}.saved-item:nth-child(3){background:#e9e1d7}.saved-item b{display:block;font-size:20px;margin-bottom:8px}
+footer{padding:26px 0 0;color:#aaa49b;font-size:10px;display:flex;justify-content:space-between;gap:10px}.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#292b24;color:#fffdf8;border-radius:30px;padding:12px 18px;font-size:12px;box-shadow:0 8px 25px #0002;transition:all .25s;z-index:10}.toast.show{opacity:1;transform:translate(-50%,0)}.mobile-menu{display:none}
+.modal-backdrop{position:fixed;inset:0;background:#211e1ac0;display:none;place-items:center;padding:18px;z-index:20}.modal-backdrop.open{display:grid}.modal{width:min(520px,100%);background:var(--white);border-radius:18px;padding:25px;box-shadow:0 25px 80px #0003}.modal-top{display:flex;justify-content:space-between;align-items:start}.modal h2{font-family:var(--serif);font-size:27px;font-weight:400;margin:5px 0}.modal p{font-size:12px;line-height:1.6;color:var(--muted)}.close{border:0;background:#f0ece5;border-radius:50%;width:32px;height:32px}.upload-zone{border:1px dashed #c7c2b7;border-radius:12px;padding:25px;text-align:center;margin:18px 0;background:#f8f5ef}.upload-zone b{display:block;margin:9px 0 4px}.upload-zone small{color:var(--muted);font-size:10px}.upload-zone input{display:block;width:100%;margin-top:15px;font-size:11px}.upload-preview{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}.preview-item{width:70px}.preview-item img{width:70px;height:75px;object-fit:cover;border-radius:8px;background:#eee}.preview-item span{font-size:9px;display:block;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.modal-footer{display:flex;justify-content:space-between;align-items:center;gap:12px}.modal-footer small{font-size:10px;color:var(--muted)}
+@media(max-width:1050px){.app{grid-template-columns:180px minmax(0,1fr)}.studio{grid-template-columns:1fr}.avatar-stage{min-height:340px}.avatar-figure{height:315px}.stylist-panel{min-height:0}.outfit-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.outfit-visual{height:165px}}
+@media(max-width:760px){.app{display:block}.sidebar{position:fixed;z-index:15;bottom:0;left:0;right:0;height:65px;padding:5px 8px;border-right:0;border-top:1px solid var(--line);display:block;background:#f9f6f0}.brand,.nav-label,.side-note{display:none}.nav{height:100%;display:flex;justify-content:space-around;align-items:center;gap:2px}.nav button{flex:1;justify-content:center;display:grid;gap:1px;text-align:center;padding:6px 2px;font-size:9px;border-radius:8px}.nav button .ico{width:auto;font-size:17px}.topbar{height:60px;padding:0 18px}.content{padding:25px 16px 90px}.welcome{align-items:start}.welcome h1{font-size:32px}.date-pill{display:none}.weather{padding:10px}.weather .weather-spacer{flex-basis:10px}.weather select{max-width:120px}.studio{gap:13px}.avatar-stage{min-height:310px;margin:13px 12px 0}.avatar-figure{height:285px}.panel-head{padding:17px 16px 0}.avatar-controls{padding:12px 14px 16px;align-items:start;flex-direction:column}.stylist-panel .panel-head{padding-bottom:16px}.form-body{padding:0 16px 18px}.occasion-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.outfit-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.outfit-card:last-child{display:block}.outfit-visual{height:155px}.outfit-visual svg{height:145px}.outfit-info{padding:12px}.outfit-info h3{font-size:15px}.match{font-size:8px}.bottom-grid{grid-template-columns:1fr}.section-heading h2{font-size:23px}.section-heading p{max-width:130px;text-align:right;line-height:1.5}.mini-panel{padding:17px}footer{padding-top:24px;flex-wrap:wrap}}
+@media(max-width:390px){.outfit-grid{grid-template-columns:1fr}.outfit-visual{height:185px}.outfit-visual svg{height:170px}.option{padding:9px 10px}.profile span{display:none}}
+</style>
 </head>
 <body>
-  <main class="cover" aria-label="Title page for Yasmin dura">
-    <div class="shape top" aria-hidden="true"></div>
-    <div class="shape bottom" aria-hidden="true"></div>
-    <svg class="plant top" viewBox="0 0 220 260" fill="none" aria-hidden="true">
-      <path d="M110 260 C105 190 125 105 185 18" stroke="currentColor" stroke-width="2"/>
-      <path d="M128 150 C70 148 50 116 40 83 C81 83 116 105 128 150Z" stroke="currentColor" stroke-width="2"/>
-      <path d="M146 115 C146 72 160 43 190 20 C202 59 181 93 146 115Z" stroke="currentColor" stroke-width="2"/>
-      <path d="M111 205 C64 197 35 173 22 142 C65 145 97 170 111 205Z" stroke="currentColor" stroke-width="2"/>
-      <path d="M119 177 C158 172 190 147 204 118 C165 122 136 146 119 177Z" stroke="currentColor" stroke-width="2"/>
-    </svg>
-    <svg class="plant bottom" viewBox="0 0 220 260" fill="none" aria-hidden="true">
-      <path d="M110 260 C105 190 125 105 185 18" stroke="currentColor" stroke-width="2"/>
-      <path d="M128 150 C70 148 50 116 40 83 C81 83 116 105 128 150Z" stroke="currentColor" stroke-width="2"/>
-      <path d="M146 115 C146 72 160 43 190 20 C202 59 181 93 146 115Z" stroke="currentColor" stroke-width="2"/>
-      <path d="M111 205 C64 197 35 173 22 142 C65 145 97 170 111 205Z" stroke="currentColor" stroke-width="2"/>
-      <path d="M119 177 C158 172 190 147 204 118 C165 122 136 146 119 177Z" stroke="currentColor" stroke-width="2"/>
-    </svg>
-    <section class="content">
-      <h1>Yasmin dura</h1>
-      <div class="divider" aria-hidden="true"><span class="heart">♥</span></div>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brand-name">MUSE</div><div class="brand-sub">YOUR PERSONAL STYLIST</div></div>
+  <div><p class="nav-label">YOUR SPACE</p><nav class="nav" aria-label="Main navigation">
+    <button class="active" data-nav="studio"><span class="ico">✳</span><span>Style studio</span></button>
+    <button data-nav="wardrobe"><span class="ico">▦</span><span>My wardrobe</span></button>
+    <button data-nav="saved"><span class="ico">♡</span><span>Saved looks</span></button>
+    <button data-nav="avatar"><span class="ico">◉</span><span>My digital self</span></button>
+  </nav></div>
+  <div class="side-note"><strong>Style more. Buy less.</strong>Your wardrobe already has more possibilities than you think.<br><button id="openCloset">＋ Add wardrobe pieces</button></div>
+</aside>
+<main>
+  <header class="topbar"><div class="crumb">Your space <span> / </span> <b id="crumbCurrent">Style studio</b></div><div class="profile"><div class="avatar-small">O</div><span>Olha's style space</span><span style="color:#aaa">⌄</span></div></header>
+  <div class="content">
+    <section class="welcome"><div><div class="eyebrow">WEDNESDAY, YOUR WAY</div><h1>Good morning, Olha<span style="color:var(--olive)">.</span></h1><p>Let's make getting dressed feel like the best part of your day.</p></div><div class="date-pill">✧ &nbsp; Your style, your rules</div></section>
+    <section class="weather" aria-label="Weather and location">
+      <div class="weather-icon" id="weatherIcon">☀️</div><div><strong id="weatherTitle">Mild & sunny</strong><small id="weatherCopy">A light layer will do nicely</small></div><div class="weather-spacer"></div>
+      <label for="weather">WEATHER</label><select id="weather"><option value="sun">☀ Sunny · 22°C</option><option value="cloud">☁ Cloudy · 17°C</option><option value="rain">☂ Rainy · 13°C</option><option value="cold">❄ Cold · 6°C</option><option value="hot">☼ Hot · 30°C</option></select>
+      <label for="dressCode">DRESS CODE</label><select id="dressCode"><option value="casual">Everyday</option><option value="smart">Smart casual</option><option value="formal">Formal</option><option value="creative">Creative</option></select>
     </section>
-  </main>
+    <section class="studio" id="studio">
+      <article class="panel avatar-panel">
+        <div class="panel-head"><div><div class="eyebrow">CREATE-A-SELF</div><h2>Your digital self</h2><p>A little world where every outfit starts with you.</p></div><button class="tiny-link" id="customize">Customize ↗</button></div>
+        <div class="avatar-stage"><div class="stage-label">✦ &nbsp; YOUR STYLE AVATAR</div>
+          <svg class="avatar-figure" id="avatarFigure" viewBox="0 0 240 340" role="img" aria-label="Stylized 3D-inspired fashion avatar wearing a cream top and wide-leg trousers">
+            <defs><linearGradient id="skin" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f2c6a8"/><stop offset=".6" stop-color="#dca586"/><stop offset="1" stop-color="#b97f66"/></linearGradient><linearGradient id="hair" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#514037"/><stop offset=".6" stop-color="#2c2522"/><stop offset="1" stop-color="#171716"/></linearGradient><linearGradient id="topFabric" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffaf0"/><stop offset="1" stop-color="#d8cdbb"/></linearGradient><linearGradient id="pants" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8a8a78"/><stop offset="1" stop-color="#5f6554"/></linearGradient></defs>
+            <ellipse cx="120" cy="326" rx="58" ry="8" fill="#a88f7b" opacity=".24"/>
+            <path d="M98 235 L91 301 Q89 310 96 311 L109 311 L119 249 L127 311 L143 311 Q150 309 147 300 L140 233Z" fill="#d6a184"/>
+            <path d="M90 295 L110 295 L109 319 L81 319 Q77 317 82 310Z" fill="#f4eee5"/><path d="M127 295 L148 295 L159 312 Q161 318 154 319 L127 319Z" fill="#f4eee5"/>
+            <path d="M87 169 Q120 158 153 170 L151 241 Q121 254 88 241Z" fill="url(#pants)"/><path d="M119 177 L119 244" stroke="#a8a994" stroke-width="2" opacity=".7"/><path d="M94 184 L100 235 M145 184 L138 235" stroke="#6d7261" stroke-width="1.4"/>
+            <path d="M91 93 Q81 110 84 148 L89 182 Q119 192 154 182 L157 137 Q160 109 143 94Z" fill="url(#topFabric)"/><path d="M92 106 L75 139 Q71 146 78 151 L91 153 L102 124Z" fill="#e4d8c7"/><path d="M143 105 L160 138 Q164 145 158 150 L146 153 L134 124Z" fill="#d9cbb8"/><path d="M105 93 Q120 104 136 93 L142 111 Q120 128 99 111Z" fill="#cbb9a4"/><path d="M107 95 L106 109 M134 95 L135 109" stroke="#f8f0e5" stroke-width="2"/>
+            <path d="M105 75 L106 96 Q119 109 134 96 L135 74Z" fill="url(#skin)"/><ellipse cx="120" cy="56" rx="31" ry="39" fill="url(#skin)"/>
+            <path d="M88 65 Q76 34 96 17 Q119 -2 145 15 Q165 30 151 69 L145 47 Q131 43 123 28 Q112 47 91 48Z" fill="url(#hair)"/><path d="M89 49 Q83 82 91 108 Q82 117 78 98 Q68 59 80 33 Q89 9 112 9 Q139 2 154 23 Q172 50 157 91 L151 105 Q147 80 149 50 Q133 45 122 27 Q109 45 89 49Z" fill="url(#hair)"/><path d="M97 56 Q105 51 111 56 M130 56 Q137 51 143 56" stroke="#4b3029" stroke-width="2.3" stroke-linecap="round" fill="none"/><ellipse cx="105" cy="61" rx="2.4" ry="3" fill="#302523"/><ellipse cx="136" cy="61" rx="2.4" ry="3" fill="#302523"/><path d="M116 69 Q120 72 123 69 M113 81 Q120 86 128 80" stroke="#a35f58" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="88" cy="70" r="5" fill="#e7aa95" opacity=".65"/><circle cx="151" cy="70" r="5" fill="#e7aa95" opacity=".65"/>
+            <path d="M90 132 Q119 145 151 132" stroke="#c8b9a7" stroke-width="1.4" fill="none"/><path d="M94 171 Q119 178 147 171" stroke="#c9bba9" stroke-width="1.2" fill="none"/><path d="M89 181 L151 181" stroke="#b7a992" stroke-width="1.4"/>
+            <path d="M83 143 Q76 165 83 182" stroke="#d6a184" stroke-width="12" stroke-linecap="round"/><path d="M158 143 Q165 165 158 182" stroke="#d6a184" stroke-width="12" stroke-linecap="round"/><ellipse cx="82" cy="186" rx="6" ry="9" fill="url(#skin)"/><ellipse cx="159" cy="186" rx="6" ry="9" fill="url(#skin)"/>
+            <circle cx="120" cy="99" r="2.2" fill="#c6a15c"/><path d="M120 101 L120 117" stroke="#c6a15c" stroke-width="1.3"/>
+          </svg>
+          <div class="stage-tag">OLHA · STYLE PROFILE 01</div>
+        </div>
+        <div class="avatar-controls"><div class="look-controls"><button class="chip selected" data-avatar="soft">Soft minimal</button><button class="chip" data-avatar="bold">Bold muse</button><button class="chip" data-avatar="classic">Classic</button></div><button class="secondary" id="avatarDetails">Edit my avatar ↗</button></div>
+      </article>
+      <article class="panel stylist-panel">
+        <div class="panel-head"><div><div class="eyebrow">YOUR AI STYLIST</div><h2>What are we dressing for?</h2><p>Tell me the vibe. I'll style what you own.</p></div><span style="font-size:25px;color:var(--olive)">✳</span></div>
+        <div class="form-body">
+          <div><span class="field-label">THE OCCASION</span><div class="occasion-grid" id="occasionOptions">
+            <button class="occasion selected" data-occasion="everyday"><span>☕</span><span>Everyday</span></button><button class="occasion" data-occasion="work"><span>▤</span><span>Work</span></button><button class="occasion" data-occasion="date"><span>♡</span><span>Date night</span></button><button class="occasion" data-occasion="event"><span>✧</span><span>Event</span></button>
+          </div></div>
+          <div><span class="field-label">YOUR MOOD TODAY</span><div class="option-row" id="moodOptions"><button class="option selected" data-mood="effortless">Effortless</button><button class="option" data-mood="confident">Confident</button><button class="option" data-mood="romantic">Romantic</button><button class="option" data-mood="playful">Playful</button></div></div>
+          <div><span class="field-label">STYLE DIRECTION</span><div class="option-row" id="styleOptions"><button class="option selected" data-style="minimal">Quiet luxury</button><button class="option" data-style="trendy">Trend-led</button><button class="option" data-style="eclectic">Eclectic</button></div></div>
+          <button class="primary recommend" id="generate">✳ &nbsp; Style my day</button>
+          <p class="microcopy">Thoughtful outfits from your own wardrobe, not another shopping list.</p>
+        </div>
+      </article>
+    </section>
+    <section class="outfit-results" id="outfits">
+      <div class="section-heading"><div><div class="eyebrow">CURATED FOR YOU</div><h2 id="resultsTitle">Your outfit edit</h2></div><p id="resultsSub">3 looks · styled around your day</p></div>
+      <div class="outfit-grid" id="outfitGrid">
+        <article class="outfit-card"><div class="outfit-visual"><span class="look-number">LOOK 01</span><button class="save-look" aria-label="Save look">♡</button><svg viewBox="0 0 160 190" aria-hidden="true"><path d="M48 42 L35 67 L48 77 L57 61 L57 106 L103 106 L103 61 L113 77 L125 67 L112 42 L94 34 L66 34Z" fill="#eee7da" stroke="#c6bba9" stroke-width="1.5"/><path d="M64 34 Q80 48 96 34" fill="#c9b59f"/><path d="M59 106 L101 106 L107 163 L83 164 L80 119 L74 164 L51 163Z" fill="#737966" stroke="#606651" stroke-width="1.5"/><path d="M58 112 L101 112" stroke="#a8ae98" stroke-width="2"/><path d="M51 163 L76 163 L76 170 L45 170Z M83 163 L107 163 L114 170 L83 170Z" fill="#e7dfd2"/></svg></div><div class="outfit-info"><div class="outfit-title-row"><h3>Soft structure</h3><span class="match">98% match</span></div><p>Clean lines, relaxed tailoring, an easy kind of polish.</p><div class="tags"><span class="tag">Cream knit</span><span class="tag">Wide-leg trousers</span><span class="tag">Loafers</span></div><div class="outfit-actions"><button class="primary save-action">♡ Save look</button><button class="text-btn wear-action">Wear this</button></div></div></article>
+        <article class="outfit-card"><div class="outfit-visual"><span class="look-number">LOOK 02</span><button class="save-look" aria-label="Save look">♡</button><svg viewBox="0 0 160 190" aria-hidden="true"><path d="M50 40 L34 65 L46 77 L59 57 L59 91 L101 91 L101 57 L114 77 L126 65 L110 40 L94 34 L66 34Z" fill="#c6cbb9" stroke="#9ca38c" stroke-width="1.5"/><path d="M64 34 Q80 47 96 34" fill="#e8e5d9"/><path d="M59 91 L101 91 L111 163 L84 163 L80 112 L74 163 L49 163Z" fill="#b8a28d" stroke="#a28c79" stroke-width="1.5"/><path d="M49 163 L76 163 L76 170 L43 170Z M84 163 L111 163 L118 170 L84 170Z" fill="#f4eee5"/><path d="M61 98 L100 98" stroke="#e2d2c2" stroke-width="2"/></svg></div><div class="outfit-info"><div class="outfit-title-row"><h3>Earth & ease</h3><span class="match">94% match</span></div><p>Natural textures with a little softness and movement.</p><div class="tags"><span class="tag">Sage shirt</span><span class="tag">Linen pants</span><span class="tag">Gold hoops</span></div><div class="outfit-actions"><button class="primary save-action">♡ Save look</button><button class="text-btn wear-action">Wear this</button></div></div></article>
+        <article class="outfit-card"><div class="outfit-visual"><span class="look-number">LOOK 03</span><button class="save-look" aria-label="Save look">♡</button><svg viewBox="0 0 160 190" aria-hidden="true"><path d="M51 41 L35 67 L47 77 L59 57 L59 101 L101 101 L101 57 L113 77 L125 67 L109 41 L94 34 L66 34Z" fill="#e2c8bf" stroke="#c8a79a" stroke-width="1.5"/><path d="M64 34 Q80 47 96 34" fill="#f1e5dc"/><path d="M59 101 L101 101 L108 163 L83 163 L80 116 L74 163 L51 163Z" fill="#655f53" stroke="#504b42" stroke-width="1.5"/><path d="M51 163 L76 163 L76 170 L45 170Z M83 163 L108 163 L115 170 L83 170Z" fill="#f4eee5"/><path d="M61 109 L99 109" stroke="#938779" stroke-width="2"/></svg></div><div class="outfit-info"><div class="outfit-title-row"><h3>After hours</h3><span class="match">91% match</span></div><p>A romantic accent, balanced with pieces you already love.</p><div class="tags"><span class="tag">Blush blouse</span><span class="tag">Dark trousers</span><span class="tag">Statement bag</span></div><div class="outfit-actions"><button class="primary save-action">♡ Save look</button><button class="text-btn wear-action">Wear this</button></div></div></article>
+      </div>
+    </section>
+    <section class="bottom-grid">
+      <article class="mini-panel" id="wardrobePanel"><div class="mini-title"><h3>Your wardrobe, reimagined</h3><button class="tiny-link" id="manageWardrobe">Manage pieces ↗</button></div><div class="wardrobe-stats"><div class="stat"><strong id="pieceCount">24</strong><small>Pieces in your closet</small></div><div class="stat"><strong id="looksCount">36</strong><small>Looks discovered</small></div><div class="stat"><strong id="savedCount">03</strong><small>Saved favourites</small></div></div><div class="progress"><span></span></div><div class="insight">Your style profile is taking shape. Add a few more pieces to unlock more combinations.</div></article>
+      <article class="mini-panel" id="savedPanel"><div class="mini-title"><h3>Little things to remember</h3><span>YOUR STYLE NOTES</span></div><div class="saved-list"><div class="saved-item"><b>✧</b>Repeat outfits proudly.</div><div class="saved-item"><b>♡</b>Wear what feels like you.</div><div class="saved-item"><b>↗</b>Shop your closet first.</div></div></article>
+    </section>
+    <footer><span>MUSE © 2026 · PERSONAL STYLE, LESS NOISE.</span><span>Prototype · Your wardrobe stays yours.</span></footer>
+  </div>
+</main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="modal-backdrop" id="uploadModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><div class="modal-top"><div><div class="eyebrow">BUILD YOUR DIGITAL CLOSET</div><h2 id="modalTitle">Bring your wardrobe in.</h2></div><button class="close" id="closeModal" aria-label="Close">×</button></div><p>Upload photos of clothes you already own. This prototype keeps your selections in this browser session and uses them to personalise your closet count.</p><div class="upload-zone"><div style="font-size:27px">＋</div><b>Drop your pieces into MUSE</b><small>Choose one or more photos · JPG, PNG, WEBP</small><input type="file" id="wardrobeFiles" accept="image/*" multiple></div><div class="upload-preview" id="uploadPreview"></div><div class="modal-footer"><small id="uploadStatus">Your wardrobe is personal. Nothing is uploaded to a server.</small><button class="primary" id="addPieces">Add to my wardrobe</button></div></div></div>
+<script>
+const $=(s,root=document)=>root.querySelector(s), $$=(s,root=document)=>Array.from(root.querySelectorAll(s));
+const state={occasion:'everyday',mood:'effortless',style:'minimal',weather:'sun',dressCode:'casual',saved:new Set(),looks:36,pieces:24,avatar:'soft',files:[]};
+const toast=(msg)=>{const el=$('#toast');el.textContent=msg;el.classList.add('show');clearTimeout(window.museToastTimer);window.museToastTimer=setTimeout(()=>el.classList.remove('show'),2600)};
+function selectOne(container,attr,value){$$(`[${attr}]`,$(container)).forEach(b=>b.classList.toggle('selected',b.getAttribute(attr)===value))}
+$$('[data-occasion]').forEach(b=>b.addEventListener('click',()=>{state.occasion=b.dataset.occasion;selectOne('#occasionOptions','data-occasion',state.occasion)}));
+$$('[data-mood]').forEach(b=>b.addEventListener('click',()=>{state.mood=b.dataset.mood;selectOne('#moodOptions','data-mood',state.mood)}));
+$$('[data-style]').forEach(b=>b.addEventListener('click',()=>{state.style=b.dataset.style;selectOne('#styleOptions','data-style',state.style)}));
+$('#weather').addEventListener('change',e=>{state.weather=e.target.value;const data={sun:['☀️','Mild & sunny','A light layer will do nicely'],cloud:['☁️','Cloudy & mild','Try a soft knit or an extra layer'],rain:['☂️','Rain is in the forecast','Water-resistant layers and practical shoes'],cold:['❄️','A little chilly','Think warm layers and a great coat'],hot:['☼','A warm one','Breathable fabrics and lighter colours']};$('#weatherIcon').textContent=data[state.weather][0];$('#weatherTitle').textContent=data[state.weather][1];$('#weatherCopy').textContent=data[state.weather][2]});
+$('#dressCode').addEventListener('change',e=>state.dressCode=e.target.value);
+const looks={
+  everyday:{minimal:[['Soft structure','Clean lines, relaxed tailoring, an easy kind of polish.',['Cream knit','Wide-leg trousers','Loafers']],['Earth & ease','Natural textures with a little softness and movement.',['Sage shirt','Linen pants','Gold hoops']],['After hours','A romantic accent, balanced with pieces you already love.',['Blush blouse','Dark trousers','Statement bag']]],trendy:[['The new uniform','A current silhouette, grounded in everyday staples.',['Boxy jacket','Straight denim','Sleek trainers']],['Colour story','One considered colour makes the whole look feel fresh.',['Colour-pop top','Relaxed trousers','Small bag']],['Off-duty muse','Sporty details meet polished proportions.',['Zip knit','Wide-leg pants','Retro sneakers']]],eclectic:[['Artful ease','Unexpected texture, balanced with a calm base.',['Printed shirt','Tailored pants','Silver jewellery']],['Soft contrast','A playful pairing that still feels effortless.',['Vintage knit','Straight denim','Colourful flats']],['Collected pieces','Personal details make the outfit your own.',['Statement layer','Neutral base','Favourite bag']]]},
+  work:{minimal:[['Quiet authority','A tailored layer and considered details do the talking.',['Structured blazer','Straight trousers','Loafers']],['Desk to dinner','A refined base that can shift with your day.',['Fine knit','Tailored pants','Gold jewellery']],['Modern classic','Polished, comfortable, and never overworked.',['Crisp shirt','Wide-leg pants','Leather belt']]],trendy:[['Creative office','A strong silhouette with a little fashion edge.',['Oversized blazer','Dark denim','Pointed flats']],['The new tailoring','Relaxed proportions make workwear feel current.',['Long vest','Pleated trousers','Sleek bag']],['Colour confidence','A subtle colour story brings energy to the workday.',['Accent blouse','Neutral suit pants','Minimal jewellery']]],eclectic:[['Studio energy','A confident mix of structure and personality.',['Printed layer','Tailored trousers','Sculptural earrings']],['Creative classic','Familiar staples with one unexpected detail.',['Textured knit','Wide-leg pants','Colourful shoes']],['Personal uniform','A repeatable formula that still feels individual.',['Favourite shirt','Smart trousers','Statement bag']]]},
+  date:{minimal:[['Soft focus','Touchably soft textures and a silhouette that feels like you.',['Satin top','Dark trousers','Delicate jewellery']],['Golden hour','A warm palette and relaxed polish for an easy evening.',['Fine knit','Midi skirt','Strappy flats']],['Understated charm','Less fuss, better details, more confidence.',['Fitted top','Tailored pants','Favourite heels']]],trendy:[['A little drama','A sharper shape and a standout accessory.',['Asymmetric top','Straight trousers','Sculptural bag']],['Night out, reimagined','Modern proportions with a playful finish.',['Statement blouse','Dark denim','Pointed shoes']],['The fashion moment','One directional piece makes the look.',['Trend-led layer','Simple base','Bold earrings']]],eclectic:[['Romantic rebel','Softness with a little edge.',['Lace detail top','Leather-look pants','Silver hoops']],['Unexpected chemistry','Two favourite pieces in a new pairing.',['Vintage blouse','Wide-leg denim','Colourful bag']],['Personal magic','A look with a story, not a dress code.',['Favourite statement','Neutral base','Sentimental jewellery']]]},
+  event:{minimal:[['Modern evening','Elegant proportions with room to move.',['Sleek top','Fluid trousers','Statement earrings']],['Gallery opening','Artful restraint, elevated by texture.',['Textured jacket','Monochrome base','Minimal heels']],['The long game','A timeless formula you will wear again.',['Tailored set','Silk accent','Classic bag']]],trendy:[['Main character','A directional silhouette that still feels wearable.',['Architectural top','Long skirt','Bold accessories']],['Fashion after dark','High-impact styling with pieces you already own.',['Statement layer','Clean base','Metallic accent']],['Modern muse','A contemporary shape and one playful detail.',['Sculptural blouse','Tailored trousers','Sleek heels']]],eclectic:[['Artful entrance','Unexpected colour and texture, brought into balance.',['Printed statement','Tailored base','Sculptural jewellery']],['Collected glamour','Personal vintage energy with a polished finish.',['Vintage-inspired layer','Dark base','Favourite bag']],['Wearable art','A little expressive, a lot like you.',['Bold piece','Simple silhouette','Colourful accent']] ]}};
+const weatherNote={sun:'sunshine-friendly',cloud:'layer-ready',rain:'rain-ready',cold:'warm-layered',hot:'breathable'};
+function makeSvg(index,style){const palettes=style==='trendy'?[['#d3b8a7','#6f7663'],['#c7cdb7','#7b6256'],['#d2a9a0','#4f514a']]:style==='eclectic'?[['#c6b1c9','#71775d'],['#d7bb86','#65718a'],['#c49a8c','#5d5147']]:[['#eee7da','#737966'],['#c6cbb9','#b8a28d'],['#e2c8bf','#655f53']];const [top,pants]=palettes[index];return `<svg viewBox="0 0 160 190" aria-hidden="true"><ellipse cx="80" cy="173" rx="35" ry="4" fill="#8f7d6c" opacity=".2"/><path d="M64 30 Q80 43 96 30 L112 42 L127 67 L114 77 L101 58 L101 99 L59 99 L59 58 L46 77 L33 67 L49 42Z" fill="${top}" stroke="#796e60" stroke-opacity=".24" stroke-width="1.5"/><path d="M64 30 Q80 43 96 30" fill="#f6eee4" opacity=".8"/><path d="M59 99 L101 99 L109 163 L84 163 L80 116 L74 163 L50 163Z" fill="${pants}" stroke="#5e5a4d" stroke-opacity=".25" stroke-width="1.5"/><path d="M80 107 L80 158" stroke="#f4eee5" stroke-opacity=".35" stroke-width="1.5"/><path d="M50 163 L76 163 L76 170 L43 170Z M84 163 L109 163 L117 170 L84 170Z" fill="#f4eee5"/><circle cx="80" cy="16" r="13" fill="#d9a486"/><path d="M67 17 Q64 -2 81 0 Q98 0 94 18 L89 9 Q78 14 70 9Z" fill="#3c302a"/></svg>`}
+function currentOccasion(){return state.occasion==='everyday'?'Everyday edit':state.occasion==='work'?'Workday edit':state.occasion==='date'?'Date night edit':'Event edit'}
+function renderLooks(){const base=(looks[state.occasion]||looks.everyday)[state.style]||looks.everyday.minimal;let results=base.map((x,i)=>({title:x[0],desc:x[1],tags:x[2],index:i}));if(state.dressCode==='formal'&&state.occasion!=='event')results=results.map((x,i)=>({...x,title:['Polished presence','Elevated essentials','After-hours ready'][i],tags:[['Tailored blazer','Smart trousers','Classic shoes'],['Fine knit','Refined trousers','Minimal jewellery'],['Satin accent','Dark tailoring','Statement bag']][i]}));if(state.weather==='rain')results=results.map(x=>({...x,tags:[x.tags[0],'Water-resistant layer',x.tags[2]]}));if(state.weather==='cold')results=results.map(x=>({...x,tags:['Warm outer layer',x.tags[0],x.tags[2]]}));if(state.weather==='hot')results=results.map(x=>({...x,tags:[x.tags[0],'Breathable fabric',x.tags[2]]}));$('#resultsTitle').textContent=currentOccasion();$('#resultsSub').textContent='3 looks · '+weatherNote[state.weather]+' · built around your day';$('#outfitGrid').innerHTML=results.map((x,i)=>{const key=state.occasion+'-'+state.style+'-'+i;const saved=state.saved.has(key);return `<article class="outfit-card" data-look-key="${key}"><div class="outfit-visual"><span class="look-number">LOOK 0${i+1}</span><button class="save-look ${saved?'saved':''}" aria-label="${saved?'Unsave':'Save'} look" data-save="${key}">${saved?'♥':'♡'}</button>${makeSvg(i,state.style)}</div><div class="outfit-info"><div class="outfit-title-row"><h3>${x.title}</h3><span class="match">${98-i*3}% match</span></div><p>${x.desc}</p><div class="tags">${x.tags.map(t=>'<span class="tag">'+t+'</span>').join('')}</div><div class="outfit-actions"><button class="primary save-action" data-save="${key}">${saved?'♥ Saved':'♡ Save look'}</button><button class="text-btn wear-action" data-wear="${x.title}">Wear this</button></div></div></article>`}).join('');$$('[data-save]').forEach(b=>b.addEventListener('click',()=>toggleSave(b.dataset.save)));$$('[data-wear]').forEach(b=>b.addEventListener('click',()=>{toast('Lovely choice — “'+b.dataset.wear+'” is your look for today.');$('#resultsTitle').textContent='Today’s chosen look';}));state.looks+=3;$('#looksCount').textContent=state.looks}
+function toggleSave(key){if(state.saved.has(key)){state.saved.delete(key);toast('Removed from your saved looks.')}else{state.saved.add(key);toast('Look saved to your personal edit.')}$('#savedCount').textContent=String(state.saved.size).padStart(2,'0');renderLooks();renderSavedNotes()}
+function renderSavedNotes(){const p=$('#savedPanel');if(state.saved.size){$('.mini-title span',p).textContent=state.saved.size+' SAVED';}else{$('.mini-title span',p).textContent='YOUR STYLE NOTES';}}
+$('#generate').addEventListener('click',()=>{renderLooks();toast('Your personal outfit edit is ready ✳');$('#outfits').scrollIntoView({behavior:'smooth',block:'start'})});
+function openModal(){ $('#uploadModal').classList.add('open');$('#wardrobeFiles').focus()}
+function closeModal(){ $('#uploadModal').classList.remove('open')}
+$('#openCloset').addEventListener('click',openModal);$('#manageWardrobe').addEventListener('click',openModal);$('#closeModal').addEventListener('click',closeModal);$('#uploadModal').addEventListener('click',e=>{if(e.target===$('#uploadModal'))closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+$('#wardrobeFiles').addEventListener('change',e=>{state.files=Array.from(e.target.files||[]);$('#uploadPreview').innerHTML=state.files.map((f,i)=>'<div class="preview-item"><img alt="" src="'+URL.createObjectURL(f)+'"><span>'+f.name.replace(/</g,'&lt;')+'</span></div>').join('');$('#uploadStatus').textContent=state.files.length?state.files.length+' photo'+(state.files.length===1?'':'s')+' selected. Ready to add.':'Your wardrobe is personal. Nothing is uploaded to a server.'});
+$('#addPieces').addEventListener('click',()=>{if(!state.files.length){toast('Choose a few wardrobe photos first.');return}state.pieces+=state.files.length;$('#pieceCount').textContent=state.pieces;toast(state.files.length+' wardrobe piece'+(state.files.length===1?'':'s')+' added to this prototype session.');state.files=[];$('#wardrobeFiles').value='';$('#uploadPreview').innerHTML='';$('#uploadStatus').textContent='Added for this session. Photos stay in your browser.';closeModal()});
+function setNav(which){$$('[data-nav]').forEach(b=>b.classList.toggle('active',b.dataset.nav===which));const names={studio:'Style studio',wardrobe:'My wardrobe',saved:'Saved looks',avatar:'My digital self'};$('#crumbCurrent').textContent=names[which]||'Style studio';if(which==='wardrobe')openModal();else if(which==='saved'){if(!state.saved.size)toast('Save a look to start your favourites edit.');else{$('#outfits').scrollIntoView({behavior:'smooth'});toast(state.saved.size+' looks in your saved edit.')}}else if(which==='avatar'){toast('Your digital self is ready to customise.');$('#avatarFigure').scrollIntoView({behavior:'smooth',block:'center'})}else $('#studio').scrollIntoView({behavior:'smooth',block:'start'})}
+$$('[data-nav]').forEach(b=>b.addEventListener('click',()=>setNav(b.dataset.nav)));
+function setAvatar(v){state.avatar=v;$$('[data-avatar]').forEach(b=>b.classList.toggle('selected',b.dataset.avatar===v));const svg=$('#avatarFigure');svg.style.filter=v==='bold'?'drop-shadow(0 14px 10px rgba(88,65,49,.18)) saturate(1.15)':v==='classic'?'drop-shadow(0 14px 10px rgba(88,65,49,.12)) sepia(.08)':'drop-shadow(0 14px 10px rgba(88,65,49,.12))';toast(({soft:'Soft minimal',bold:'Bold muse',classic:'Classic'})[v]+' avatar style selected.')}
+$$('[data-avatar]').forEach(b=>b.addEventListener('click',()=>setAvatar(b.dataset.avatar)));$('#customize').addEventListener('click',()=>toast('Choose an avatar style below to change your look.'));$('#avatarDetails').addEventListener('click',()=>toast('Avatar editor preview: face, hair, body and style controls are next on the roadmap.'));
+renderSavedNotes();
+</script>
 </body>
 </html>
