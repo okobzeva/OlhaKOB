@@ -95,6 +95,65 @@ body{background:#b9dff2;color:#244d70}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 
 .drop.dragging{border-color:#43b7c8;background:linear-gradient(135deg,#e0fff4,#e0f5ff);box-shadow:inset 0 0 0 2px #9ce5dc}.drop{transition:background .2s,border-color .2s,box-shadow .2s}
+
+/* Immersive CAS composition: viewport-first, avatar-led, floating navigation */
+html,body{min-height:100%;background:#6fc5d6}
+body{overflow-x:hidden}
+.game{display:block;min-height:100vh;background:linear-gradient(112deg,#4f9fd0 0%,#62c9d0 47%,#8bdbb2 100%);position:relative;isolation:isolate}
+.game:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 51% 43%,#e3fff0a8 0%,#b3f3df45 22%,transparent 49%),radial-gradient(ellipse at 12% 12%,#b4e7ff55,transparent 43%),linear-gradient(90deg,#2675b51a,transparent 47%,#d4ffdd20)}
+.sidebar{position:fixed;z-index:30;left:50%;bottom:16px;transform:translateX(-50%);width:max-content;max-width:calc(100vw - 24px);padding:7px;border:1px solid #ffffffa8;border-radius:22px;background:#eaffffb8;backdrop-filter:blur(18px);box-shadow:0 8px 28px #165f8033;display:block}
+.logo,.nav-title,.side-card{display:none!important}
+.nav{display:flex;align-items:center;justify-content:center;gap:5px}
+.nav button{min-width:76px;padding:7px 11px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:1px solid transparent;border-radius:15px;background:transparent;box-shadow:none;font-size:9px;white-space:nowrap}
+.nav button .ico{display:grid;place-items:center;width:28px;height:28px;margin:0;border-radius:50%;background:#ffffffb8;color:#367fa6;font-size:15px;box-shadow:inset 0 1px #fff}
+.nav button.active{background:linear-gradient(145deg,#ffffff,#c9f8f0);border-color:#fff;box-shadow:0 3px 0 #72c7d1,0 5px 13px #236b8030}
+.nav button.active .ico{background:linear-gradient(145deg,#75e0c2,#5abbe2);color:#fff}
+main{min-width:0}
+.topbar{position:absolute;z-index:20;top:0;left:0;right:0;height:52px;padding:0 23px;background:linear-gradient(180deg,#effeffc7,#effeff55);border:0;box-shadow:none;backdrop-filter:blur(10px)}
+.crumb{color:#397da0;font-size:9px;letter-spacing:1.2px}
+.top-actions{gap:8px}
+.profile{padding:4px 9px 4px 4px;border:1px solid #ffffffad;border-radius:99px;background:#efffffb0}
+.content{max-width:none;width:100%;padding:64px clamp(14px,2.6vw,38px) 105px;margin:0}
+#page-creator .intro{max-width:1250px;margin:0 auto 9px;align-items:center}
+#page-creator .intro h1{font-size:clamp(20px,2vw,28px);font-weight:800;color:#205f87;text-shadow:0 1px 0 #ffffffa8}
+#page-creator .intro p{font-size:11px;color:#235e7b}
+#page-creator .eyebrow{color:#eaffff;font-size:8px;letter-spacing:2px;text-shadow:0 1px 5px #236f9270}
+#page-creator .level{padding:7px 12px;border:1px solid #ffffffb8;border-radius:99px;background:#f0ffff80;box-shadow:0 3px 12px #216b8330;color:#226b87}
+.weatherbar{max-width:1250px;margin:0 auto 12px;border:1px solid #ffffffb8;border-radius:16px;background:#efffff80;backdrop-filter:blur(14px);box-shadow:0 5px 18px #276c7e18}
+.cas-layout{display:block;max-width:1450px;margin:0 auto}
+.game-panel{overflow:visible;border:0;border-radius:0;background:transparent;box-shadow:none}
+.game-panel>.panel-top{display:none}
+.cas-stage{height:min(69vh,760px)!important;min-height:440px;margin:0 auto!important;max-width:1380px;width:100%;border:1px solid #ffffffb8!important;outline:0!important;border-radius:24px!important;background:radial-gradient(ellipse at 50% 34%,#e1fff1 0%,#a7eedb 18%,#68c9d1 42%,#438fc6 72%,#3477b2 100%)!important;box-shadow:inset 0 0 90px #135d8a3b,0 10px 35px #216f8b26!important}
+.cas-stage:before{background:radial-gradient(ellipse at 50% 42%,#fff8,transparent 40%),linear-gradient(110deg,#ffffff12,transparent 45%,#0b648222)!important}
+.cas-stage:after{height:88px;opacity:.68}
+.sim-wrap{inset:35px 100px 26px!important;filter:drop-shadow(0 19px 15px #16496640)!important}
+.sim{max-height:min(62vh,690px)!important;filter:saturate(1.07) contrast(1.035) drop-shadow(0 8px 10px #17445c22)!important}
+.plumbob{width:31px;height:47px;top:13px}
+.trait-cloud{left:clamp(12px,2vw,28px)!important;top:70px!important}
+.cas-categories{right:clamp(12px,2vw,28px)!important;top:70px!important;gap:10px!important}
+.cas-categories button{width:46px!important;height:46px!important;border-radius:50%!important;background:#f1ffffb8!important;backdrop-filter:blur(9px);border:1px solid #ffffffed!important;box-shadow:0 5px 13px #205b7d35,inset 0 1px #fff!important;color:#286f96!important}
+.cas-categories button.active{background:linear-gradient(145deg,#8be6ca,#51b9df)!important;color:#fff!important;box-shadow:0 0 0 3px #ffffff70,0 6px 15px #205b7d3b!important}
+.turn{bottom:50%;transform:translateY(50%);width:42px;height:42px;border:1px solid #ffffffa8;border-radius:50%;background:#edffff8a;color:#fff;box-shadow:0 4px 12px #205b7d30}
+.turn.left{left:clamp(12px,2vw,28px)}
+.turn.right{right:clamp(12px,2vw,28px)}
+.turn:hover{background:#fff;color:#277ba0}
+.stage-caption{left:50%;transform:translateX(-50%);bottom:15px;padding:7px 14px;background:#efffffc7!important;border:1px solid #ffffffd9;border-radius:99px;color:#347d9c!important;white-space:nowrap}
+.cas-footer-tools{bottom:15px;left:auto;right:15px;transform:none;gap:7px}
+.cas-footer-tools button{width:34px;height:34px;border:1px solid #ffffffd9;background:#eaffff8c;color:#277ba0;border-radius:50%;box-shadow:0 3px 10px #1a62832a;font-size:16px}
+.cas-footer-tools button:hover{background:#fff;transform:translateY(-2px)}
+.avatar-customizer{max-width:1380px;margin:12px auto 0;border:1px solid #ffffffb8;border-radius:18px;background:#f0ffffa8;backdrop-filter:blur(14px);box-shadow:0 5px 16px #276c7e15}
+.tools-panel{max-width:1380px;margin:14px auto 0;display:grid;grid-template-columns:1fr;overflow:hidden;border:1px solid #ffffffc7;border-radius:20px;background:#f2ffffb8;backdrop-filter:blur(14px);box-shadow:0 8px 22px #276c7e1b}
+.tools-panel>.panel-top{padding:13px 17px 9px}
+.tool-tabs{grid-template-columns:repeat(4,minmax(0,1fr));padding-bottom:10px}
+.tool-content{grid-template-columns:repeat(2,minmax(0,1fr));padding-bottom:15px}
+.avatar-options{max-width:1380px;margin:0 auto}
+#page-creator .game-panel .avatar-options{padding-left:2px;padding-right:2px}
+.page-view:not(#page-creator) .section-head h2,.page-view:not(#page-creator) .section-head p{color:#225d7e}
+.page-view:not(#page-creator) .subcard,.page-view:not(#page-creator) .look-card,.page-view:not(#page-creator) .mini{background:#f4ffffe8;border-color:#ffffffd4}
+@media(min-width:1200px){#page-creator .cas-stage{height:min(71vh,800px)!important}.sim-wrap{inset:30px 120px 26px!important}.sim{max-height:min(65vh,730px)!important}}
+@media(max-width:800px){.content{padding:60px 12px 100px}.topbar{padding:0 12px}.crumb{font-size:8px}.profile span{display:none}.sidebar{bottom:8px;padding:5px;max-width:calc(100vw - 12px);border-radius:18px}.nav{gap:1px}.nav button{min-width:0;flex:1;padding:5px 7px;font-size:8px}.nav button .ico{width:25px;height:25px}.cas-stage{height:61vh!important;min-height:390px;margin:0!important;border-radius:20px!important}.sim-wrap{inset:42px 46px 36px!important}.sim{max-height:54vh!important;max-width:100%}.trait-cloud{left:8px!important;top:48px!important;gap:2px!important}.hex{width:29px!important;height:32px!important;font-size:11px!important}.cas-categories{right:8px!important;top:50px!important;gap:6px!important}.cas-categories button{width:32px!important;height:32px!important;font-size:14px!important}.turn{width:31px;height:31px;font-size:22px;bottom:47%}.turn.left{left:7px}.turn.right{right:7px}.plumbob{width:22px;height:34px}.stage-caption{bottom:12px;font-size:8px}.cas-footer-tools{right:8px;bottom:8px}.cas-footer-tools button{width:28px;height:28px;font-size:13px}.tool-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.tool-content{grid-template-columns:1fr}.weatherbar{flex-wrap:wrap}.weatherbar label{font-size:8px}#page-creator .intro h1{font-size:21px}#page-creator .intro p{max-width:270px;font-size:10px}}
+@media(max-width:390px){.nav button{padding:4px 4px;font-size:7px}.nav button .ico{width:22px;height:22px}.cas-stage{min-height:365px;height:57vh!important}.sim-wrap{inset:40px 39px 37px!important}.sim{max-height:50vh!important}.trait-cloud{left:5px!important}.cas-categories{right:5px!important}.cas-categories button{width:29px!important;height:29px!important}.level{display:none}}
+
 </style>
 </head>
 <body>
@@ -143,7 +202,7 @@ body{background:#b9dff2;color:#244d70}
        <path d="M106 29 Q116 18 126 29 M128 29 Q140 18 149 29" stroke="#fff" stroke-width="3" opacity=".7" fill="none"/><path d="M108 28 Q116 25 123 29 M130 29 Q138 25 146 29" stroke="#8e9aa0" stroke-width="1.5" fill="none"/><path d="M112 29 L108 38 M141 29 L145 38" stroke="#4c5558" stroke-width="1.2"/><circle cx="96" cy="73" r="3.5" fill="#f2d16d"/><circle cx="154" cy="73" r="3.5" fill="#f2d16d"/>
        <path d="M111 113 L125 127 L139 113" stroke="#d1dce0" stroke-width="2" fill="none"/><path d="M125 127 L125 233" stroke="#dbe5e8" stroke-width="1" opacity=".6"/><path d="M101 243 Q125 250 151 243" stroke="#fff" stroke-width="2" opacity=".65" fill="none"/><path d="M111 257 L111 265 M139 257 L139 265" stroke="#8ca5c2" stroke-width="1.4"/>
       </svg></div>
-      <div class="cas-categories" aria-label="Character categories"><button class="active" data-cat="face" title="Face">♙</button><button data-cat="hair" title="Hair">✂</button><button data-cat="tops" title="Tops">♧</button><button data-cat="outfits" title="Full outfits">♙</button><button data-cat="bottoms" title="Bottoms">▤</button><button data-cat="shoes" title="Shoes">⌁</button><button data-cat="accessories" title="Accessories">✧</button></div>
+      <div class="cas-categories" aria-label="Character categories"><button class="active" data-cat="face" title="Skin tone" aria-label="Skin tone">◉</button><button data-cat="hair" title="Hair colour" aria-label="Hair colour">♧</button><button data-cat="tops" title="Tops" aria-label="Tops">▱</button><button data-cat="outfits" title="Full outfits" aria-label="Full outfits">◇</button><button data-cat="bottoms" title="Trousers and skirts" aria-label="Trousers and skirts">▤</button><button data-cat="shoes" title="Shoes" aria-label="Shoes">⌁</button><button data-cat="accessories" title="Accessories" aria-label="Accessories">✧</button></div>
       <button class="turn left" id="turnLeft" aria-label="Rotate character left">❮</button><button class="turn right" id="turnRight" aria-label="Rotate character right">❯</button>
       <div class="stage-caption" id="stageCaption">EVERYDAY · YOUR SIM</div>
       <div class="cas-footer-tools"><button id="randomize" title="Randomize character">⚄</button><button id="undo" title="Reset character">↶</button><button id="rotateReset" title="Front view">♙</button><button id="favoriteSim" title="Favorite character">♡</button></div>
