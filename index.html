@@ -410,7 +410,7 @@ $('#favoriteSim').addEventListener('click',()=>{state.favorite=!state.favorite;$
 $('#editName').addEventListener('click',()=>{const name=prompt('What is your Sim called?',state.name);if(name&&name.trim()){state.name=name.trim().slice(0,24);$('#stageCaption').textContent=state.look.toUpperCase()+' · '+state.name.toUpperCase();$('.profile span').textContent=state.name.toUpperCase();toast('Bonjour, '+state.name+'!')}});
 function outfitSvg(i){const colors=[['#f7f7f2','#2e4568','#d3a18a'],['#d7eee7','#283d5d','#b97958'],['#e7c6d5','#45354d','#d8a68c']][i%3];return '<svg viewBox="0 0 160 165" aria-hidden="true"><ellipse cx="80" cy="155" rx="36" ry="5" fill="#547e8f" opacity=".2"/><circle cx="80" cy="26" r="13" fill="'+colors[2]+'"/><path d="M67 22 Q65 6 80 8 Q96 7 94 25 L90 16 Q80 19 70 15Z" fill="#bd935b"/><path d="M66 43 Q80 35 94 43 L104 88 L93 95 L90 68 L90 110 L70 110 L70 68 L66 94 L55 88Z" fill="'+colors[0]+'" stroke="#fff" stroke-opacity=".6"/><path d="M70 106 L90 106 L94 146 L83 146 L80 119 L76 146 L65 146Z" fill="'+colors[1]+'"/><path d="M65 145 L83 145 L83 152 L61 152Z M84 145 L94 145 L101 152 L84 152Z" fill="#8b928d"/><path d="M64 46 L52 82 L58 86 L70 62 M95 46 L108 80 L102 85 L91 62" fill="'+colors[2]+'"/></svg>'}
 function renderLooks(){const container=$('#lookResults');container.innerHTML='';looks.forEach((look,i)=>{const card=document.createElement('article');card.className='look-card';card.innerHTML='<div class="look-art"><span class="look-num">LOOK 0'+(i+1)+'</span>'+outfitSvg(i)+'<button class="save '+(state.saved.some(x=>x.id===look.id)?'saved':'')+'" data-save="'+look.id+'" aria-label="Save '+look.name+'">'+(state.saved.some(x=>x.id===look.id)?'♥':'♡')+'</button></div><div class="look-info"><div class="look-title"><h3>'+look.name+'</h3><span class="score">'+(92-i*4)+'% MATCH</span></div><p>'+look.desc+'</p><div class="tags">'+look.tags.map(t=>'<span class="tag">'+t+'</span>').join('')+'</div><div class="look-actions"><button class="secondary" data-details="'+look.id+'">View pieces</button><button class="secondary" data-wear="'+look.id+'">Wear this</button></div></div>';container.appendChild(card)});$$('[data-save]').forEach(b=>b.addEventListener('click',()=>toggleSave(b.dataset.save)));$$('[data-details]').forEach(b=>b.addEventListener('click',()=>{const l=looks.find(x=>x.id===b.dataset.details);toast(l.pieces.join(' · '))}));$$('[data-wear]').forEach(b=>b.addEventListener('click',()=>{const l=looks.find(x=>x.id===b.dataset.wear);$('#stageCaption').textContent=l.name.toUpperCase()+' · '+state.name.toUpperCase();toast(l.name+' selected for your Sim')}))}
-function toggleSave(id){const look=looks.find(x=>x.id===id);const idx=state.saved.findIndex(x=>x.id===id);if(idx>=0){state.saved.splice(idx,1);toast('Look removed from favourites')}else{state.saved.push(look);toast(look.name+' saved to My Looks ♡')}renderLooks();renderSaved();updateStats()}
+function toggleSave(id){const look=looks.find(x=>x.id===id);if(!look)return;const idx=state.saved.findIndex(x=>x.id===id);if(idx>=0){state.saved.splice(idx,1);toast('Look removed from favourites')}else{state.saved.push({...look});toast(look.name+' saved to My Looks ♡')}persistState();renderLooks();renderSaved();updateStats()}
 function renderSaved(){const grid=$('#savedGrid');if(!grid)return;if(!state.saved.length){grid.innerHTML='<div class="empty" style="grid-column:1/-1">No saved looks yet. Tap a heart on any outfit to add it here.</div>'}else{grid.innerHTML=state.saved.map((l,i)=>'<article class="look-card"><div class="look-art">'+outfitSvg(looks.findIndex(x=>x.id===l.id))+'</div><div class="look-info"><h3>'+l.name+'</h3><p>'+l.desc+'</p><button class="secondary" data-remove="'+l.id+'">Remove from My Looks</button></div></article>').join('');$$('[data-remove]').forEach(b=>b.addEventListener('click',()=>toggleSave(b.dataset.remove)))}$('#savedPreview').innerHTML=state.saved.length?state.saved.slice(0,3).map(l=>'<span class="saved-chip">♡ '+l.name+'</span>').join(''):'<span class="saved-chip">Your saved looks will appear here.</span>'}
 function renderOutfitPage(){const dest=$('#outfitPageResults');dest.innerHTML=$('#lookResults').innerHTML;dest.querySelectorAll('[data-save]').forEach(b=>b.addEventListener('click',()=>toggleSave(b.dataset.save)));dest.querySelectorAll('[data-details]').forEach(b=>b.addEventListener('click',()=>{const l=looks.find(x=>x.id===b.dataset.details);toast(l.pieces.join(' · '))}));dest.querySelectorAll('[data-wear]').forEach(b=>b.addEventListener('click',()=>toast('Look selected for your Sim')))}
 function renderPlanner(){if(!$('#plannerWeather'))return;$('#plannerWeather').textContent=weatherInfo[state.weather][2];$('#plannerMood').textContent=state.occasion+' · '+state.mood+' · '+state.style;$('#plannerSuggestion').textContent=state.weather==='rain'?'Try a light waterproof layer and shoes with grip.':state.weather==='cold'?'Build a warm base with a coat and closed shoes.':state.weather==='hot'?'Choose breathable fabrics and light layers.':state.weather==='cloud'?'Try a flexible layer for changing temperatures.':'Keep it light and comfortable for a sunny day.'}
@@ -418,21 +418,32 @@ function updateStats(){$('#itemCount').textContent=state.closet.length;$('#saved
 function buildRecommendations(){
  const owned=state.closet;
  const weatherPiece={sun:'breathable layers and sunglasses',cloud:'a light layer for changing temperatures',rain:'a water-resistant layer and shoes with grip',cold:'a warm base, coat and closed shoes',hot:'lightweight, breathable pieces'};
- const occasionPiece={'Everyday':'easy pieces for everyday plans','Work':'polished separates for a workday','Date night':'a statement piece with considered accessories','Party':'a confident focal piece','Travel':'comfortable layers for moving around','Formal':'tailored pieces and refined details'};
  const moodPiece={'Comfy':'soft textures and relaxed silhouettes','Confident':'strong shapes and a standout detail','Romantic':'soft shapes and delicate details','Playful':'one unexpected colour or accessory','Minimal':'clean lines and a restrained palette'};
- const categories=[...new Set(owned.map(x=>String(x.category||'wardrobe').toLowerCase()))];
+ const categoryNames={tops:'top',shirts:'shirt',knitwear:'knitwear',bottoms:'bottom',trousers:'trousers',jeans:'jeans',skirts:'skirt',dresses:'dress',outerwear:'outer layer',jackets:'jacket',coats:'coat',shoes:'shoes',bags:'bag',accessories:'accessory'};
  const ownedNames=owned.map(x=>x.name).filter(Boolean);
- const piecesFor=(fallback)=>ownedNames.length?ownedNames.slice(0,3):fallback;
+ const ownByCategory={};
+ owned.forEach(x=>{const c=String(x.category||'').toLowerCase();(ownByCategory[c]||(ownByCategory[c]=[])).push(x.name)});
  const base=[
-  {id:'look1',name:'The Everyday Edit',color:'#d8e9ee',fallback:['Relaxed top','Straight-leg trousers','Everyday shoes']},
-  {id:'look2',name:'The City Formula',color:'#bde4d6',fallback:['Statement layer','Wide-leg bottoms','Crossbody bag']},
-  {id:'look3',name:'The Occasion Look',color:'#f0d4e0',fallback:['Polished top','Tailored bottoms','Favourite accessories']}
+  {id:'look1',name:'The Everyday Edit',color:'#d8e9ee',fallback:['Relaxed top','Straight-leg trousers','Everyday shoes'],cats:['tops','bottoms','shoes']},
+  {id:'look2',name:'The City Formula',color:'#bde4d6',fallback:['Statement layer','Wide-leg bottoms','Crossbody bag'],cats:['outerwear','bottoms','bags']},
+  {id:'look3',name:'The Occasion Look',color:'#f0d4e0',fallback:['Polished top','Tailored bottoms','Favourite accessories'],cats:['tops','bottoms','accessories']}
  ];
  return base.map((b,i)=>{
-  const ownedText=ownedNames.length?('Built from your wardrobe: '+ownedNames.slice(0,i+1).join(', ')+'.'):'Start with pieces you already own; your wardrobe photos will appear here after you add them.';
-  const pieces=piecesFor(b.fallback);
-  const tags=[state.occasion,state.mood,state.weather==='rain'?'Rain-ready':state.weather==='cold'?'Warm layers':state.weather==='hot'?'Breathable':'Weather-aware'];
-  return {id:b.id,name:b.name,desc:ownedText+' For '+state.occasion.toLowerCase()+', try '+weatherPiece[state.weather]+', with '+moodPiece[state.mood].toLowerCase()+'.',tags,pieces,color:b.color};
+  let pieces;
+  if(state.rule==='own'&&owned.length){
+   const available=owned.map(x=>x.name).filter(Boolean);
+   pieces=b.cats.map((cat,j)=>{
+    const match=owned.find(x=>String(x.category||'').toLowerCase().includes(cat));
+    return match?.name||available[(i+j)%available.length];
+   }).filter(Boolean);
+   pieces=[...new Set(pieces)].slice(0,3);
+  }else{
+   pieces=[...b.fallback];
+   if(ownedNames.length) pieces[0]=ownedNames[i%ownedNames.length];
+  }
+  const ownedText=state.rule==='own'?(ownedNames.length?'Prioritising pieces in your wardrobe: '+pieces.join(', ')+'.':'Add wardrobe photos to personalise this look with clothes you own.'):(ownedNames.length?'Starting with '+ownedNames[i%ownedNames.length]+' and adding styling inspiration.':'An inspiration look — add wardrobe photos to make it more personal.');
+  const tags=[state.occasion,state.mood,state.weather==='rain'?'Rain-ready':state.weather==='cold'?'Warm layers':state.weather==='hot'?'Breathable':'Weather-aware',state.style];
+  return {id:b.id,name:b.name,desc:ownedText+' For '+state.occasion.toLowerCase()+', consider '+weatherPiece[state.weather]+', styled with '+moodPiece[state.mood].toLowerCase()+'.',tags,pieces,color:b.color};
  });
 }
 function generateOutfits(){
