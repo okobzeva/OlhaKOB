@@ -2,6 +2,10 @@
 
 MUSE is a responsive front-end prototype for a personal styling app inspired by the character-creation feel of The Sims and the calm polish of a luxury fashion product.
 
+## Live demo
+
+[Open MUSE](https://olhakob.mamindurbeluk.workers.dev)
+
 ## Prototype features
 
 - A stylized SVG digital-self illustration with interactive hair, skin, top, bottom, shoe, accessory, and full-look color controls.
@@ -10,6 +14,7 @@ MUSE is a responsive front-end prototype for a personal styling app inspired by 
 - Save/unsave looks and a saved-favourites counter.
 - Wardrobe photo picker and drag-and-drop image intake with local previews, category labels, and an item counter.
 - Responsive desktop and mobile layout.
+- Refreshed blue-to-turquoise-to-green studio gradient, softer glass-style panels, and clearer hover/focus interactions.
 
 ## Run locally
 
