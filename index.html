@@ -87,6 +87,54 @@ main{max-width:1240px;padding-top:34px}.eyebrow{font-size:11px;letter-spacing:1.
 .avatar[data-outfit="shoes"] #outfitShoes{opacity:1}
 .avatar[data-outfit="accessories"] #outfitAccessories{opacity:1}
 .avatar[data-outfit="dress"] #outfitTop{stroke-width:1.6}
+
+/* Full-screen Create-a-Sim inspired layout */
+body:has(#styleView.active){background:#68b9c8}
+body:has(#styleView.active) header{position:absolute;z-index:20;top:14px;left:16px;right:16px;background:transparent;border:0;box-shadow:none;padding:0}
+body:has(#styleView.active) header .brand{background:#fff;border-radius:999px;padding:9px 18px;box-shadow:0 2px 12px #194d7220}
+body:has(#styleView.active) header .nav{background:#ffffff4a;border:1px solid #ffffff52;border-radius:999px;padding:4px}
+body:has(#styleView.active) main{max-width:none;padding:0;margin:0}
+body:has(#styleView.active) .intro{display:none}
+#styleView.active{position:relative;min-height:calc(100vh - 8px);padding:0 0 20px;overflow:hidden;background:linear-gradient(110deg,#3379c7 0%,#62b9d7 43%,#48c4a1 100%)}
+#styleView.active .layout{display:block;min-height:calc(100vh - 8px);margin:0;max-width:none}
+#styleView.active .layout>.card:first-child{position:static;padding:0;margin:0;min-height:calc(100vh - 8px)}
+#styleView.active .layout>.card:first-child .card-head{position:absolute;top:74px;left:50%;transform:translateX(-50%);z-index:4;padding:0;text-align:center}
+#styleView.active .layout>.card:first-child .card-head h2{display:none}
+#styleView.active .layout>.card:first-child .card-head .sub{display:none}
+#styleView.active .avatar-stage{position:absolute;inset:0 0 0 0;height:100%;min-height:100vh;margin:0;background:radial-gradient(ellipse at 51% 49%,#a8e9e5 0%,#78cbd8 36%,#4188c9 100%);display:flex;align-items:center;justify-content:center}
+#styleView.active .avatar-stage:before{width:390px;height:390px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#d6fff0 0%,#9be2dd 54%,#8bc9df 100%);opacity:.5}
+#styleView.active .avatar-stage:after{bottom:8.5%;left:50%;transform:translateX(-50%);width:220px;height:22px;background:#174a655c;filter:blur(8px);z-index:1}
+#styleView.active .avatar{height:min(78vh,690px);width:auto;max-width:30vw;transform:translate(-8%,2vh);z-index:3;filter:drop-shadow(0 8px 5px #174a6530)}
+#styleView.active .plumbob{top:8%;left:calc(50% - 24px);width:48px;height:72px;z-index:5}
+#styleView.active .avatar-stage .label{display:none}
+#styleView.active .outfit-picker{position:absolute;z-index:8;left:calc(50% + 125px);top:13%;width:205px;margin:0;padding:0;border:0}
+#styleView.active .picker-title{display:none}
+#styleView.active .category-rail{display:flex;flex-direction:column;gap:7px}
+#styleView.active .category{display:grid;grid-template-columns:48px 1fr;align-items:center;text-align:left;gap:9px;min-height:55px;padding:4px 8px;border:0;border-radius:999px;background:transparent;color:#fff;box-shadow:none;font-size:12px;text-shadow:0 1px 3px #2c779a55}
+#styleView.active .category span{width:44px;height:44px;border:1px solid #ffffff66;background:#ffffff4d;color:#337eb1;font-size:21px;box-shadow:0 2px 8px #1c72941c}
+#styleView.active .category.active{background:transparent;color:#fff;box-shadow:none}
+#styleView.active .category.active span{background:#3e9fe9;border:2px solid #fff;box-shadow:0 0 0 4px #ffffff28,0 0 16px #a9f5ff}
+#styleView.active .avatar-controls{position:absolute;z-index:9;right:2.8%;top:21%;width:220px;margin:0;padding:0;background:transparent;border:0;display:flex;flex-direction:column;gap:9px}
+#styleView.active .avatar-controls .field{padding:12px 14px;border:1px solid #ffffff2c;border-radius:17px;background:#ffffff58;backdrop-filter:blur(10px)}
+#styleView.active .avatar-controls .field label{font-family:'Nunito',sans-serif;font-size:12px;font-weight:900;color:#286c92;margin-bottom:8px}
+#styleView.active .color-row{gap:8px}
+#styleView.active .color{width:34px;height:34px;border:2px solid #ffffffb8;box-shadow:0 2px 6px #286d8b25}
+#styleView.active .color.active{outline:2px solid #fff;outline-offset:2px}
+#styleView.active .layout>.card:nth-child(2){display:none}
+#styleView.active .outfit-hint{display:none}
+@media(max-width:850px){
+ body:has(#styleView.active) header{top:8px;left:8px;right:8px}
+ body:has(#styleView.active) header .brand small{display:none}
+ body:has(#styleView.active) header .nav button{font-size:11px;padding:7px}
+ #styleView.active .avatar{height:58vh;max-width:44vw;transform:translate(-23%,4vh)}
+ #styleView.active .outfit-picker{left:auto;right:2%;top:17%;width:135px}
+ #styleView.active .category{grid-template-columns:38px 1fr;font-size:10px;min-height:43px;padding:2px}
+ #styleView.active .category span{width:34px;height:34px;font-size:17px}
+ #styleView.active .avatar-controls{top:auto;right:2%;bottom:4%;width:150px;gap:5px}
+ #styleView.active .avatar-controls .field{padding:7px}
+ #styleView.active .avatar-controls .field label{font-size:10px;margin-bottom:4px}
+ #styleView.active .color{width:23px;height:23px}
+}
 </style>
 </head>
 <body>
