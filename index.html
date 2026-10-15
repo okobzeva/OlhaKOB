@@ -51,6 +51,34 @@ main{max-width:1240px;padding-top:34px}.eyebrow{font-size:11px;letter-spacing:1.
 .avatar-controls .field label{color:#6d95a7;font-family:'Fredoka',sans-serif;font-size:11px}
 .color{width:28px;height:28px;transition:transform .15s,box-shadow .15s}.color:hover{transform:scale(1.1)}
 @media(max-width:760px){.avatar-stage{height:320px;min-height:320px}.avatar{height:250px}.plumbob{top:10px}}
+
+/* Outfit selection stage and category rail */
+#styleView .layout{grid-template-columns:minmax(300px,.9fr) minmax(0,1.1fr);align-items:start}
+#styleView .layout>.card:first-child{background:transparent;border:0;box-shadow:none;overflow:visible}
+#styleView .layout>.card:first-child .card-head{padding:8px 8px 0}
+#styleView .avatar-stage{height:min(62vh,560px);min-height:430px;margin:14px 0 0;border:0;border-radius:0;box-shadow:none;background:radial-gradient(ellipse at 50% 40%,#b7edee 0%,#83cce4 43%,#4d91c6 100%);overflow:hidden}
+#styleView .avatar-stage:before{width:280px;height:280px;top:60px;background:radial-gradient(circle,#d9fff1 0%,#9ce4df 60%,#75c9d9 100%);opacity:.62}
+#styleView .avatar-stage:after{content:"";position:absolute;bottom:36px;width:125px;height:18px;border-radius:50%;background:#174d7350;filter:blur(7px)}
+#styleView .avatar{height:min(53vh,470px);width:220px;transform:translateY(12px);z-index:2;filter:drop-shadow(0 9px 7px #164d6c30)}
+#styleView .avatar-stage .label{bottom:12px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#ffffffb8;color:#236b91}
+.outfit-picker{margin:14px 0 0;padding:14px 0 0;border-top:1px solid #ffffffad}
+.picker-title{display:flex;justify-content:space-between;align-items:center;font:700 11px 'Fredoka',sans-serif;letter-spacing:1px;color:#377b9b;margin-bottom:10px}
+.picker-title span{font:700 11px 'Nunito',sans-serif;letter-spacing:0;color:#6e9eb1}
+.category-rail{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.category{display:flex;min-width:0;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:10px 4px;border:1px solid #ffffff;background:#ffffffa6;color:#5c91a8;border-radius:16px;font-size:10px;font-weight:900;box-shadow:0 3px 0 #5ba9c51a;transition:.16s}
+.category span{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:linear-gradient(145deg,#e1f8ff,#dff8ec);font-size:18px;color:#348eaf}
+.category:hover{transform:translateY(-2px);background:#fff}
+.category.active{background:linear-gradient(145deg,#48b8df,#65d5bb);color:#fff;border-color:transparent;box-shadow:0 4px 0 #3099b5}
+.category.active span{background:#ffffff35;color:#fff}
+.outfit-hint{font-size:11px;line-height:1.5;color:#6e98ac;margin:10px 0 0}
+.avatar-controls{margin-top:16px;padding:15px;border-radius:18px;background:#ffffffbd;border:1px solid #ffffff}
+#styleView .layout>.card:nth-child(2){border-radius:26px}
+#outfitTop,#outfitBottom{transition:fill .18s}
+#styleView .avatar[data-outfit="skirt"] #outfitBottom{d:path("M70 179 L110 179 L126 258 L54 258Z")}
+#styleView .avatar[data-outfit="dress"] #outfitTop{d:path("M76 84 Q90 94 104 84 L117 92 Q124 96 121 110 L131 226 L119 246 L61 246 L49 226 L59 110 Q56 96 64 92Z")}
+#styleView .avatar[data-outfit="dress"] #outfitBottom{opacity:0}
+#styleView .avatar[data-outfit="outerwear"] #outfitTop{d:path("M76 84 Q90 94 104 84 L121 89 L130 118 L119 126 L115 180 L65 180 L61 126 L50 118 L59 89Z")}
+@media(max-width:760px){#styleView .layout{grid-template-columns:1fr}#styleView .avatar-stage{height:430px;min-height:430px}#styleView .avatar{height:370px;width:205px}.category-rail{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style>
 </head>
 <body>
@@ -70,7 +98,7 @@ main{max-width:1240px;padding-top:34px}.eyebrow{font-size:11px;letter-spacing:1.
 <!-- long hair silhouette -->
 <path d="M58 55 Q48 18 72 8 Q96 -2 115 14 Q136 29 122 75 L127 118 Q128 145 113 155 L103 111 L68 113 L59 153 Q44 136 49 106Z" fill="url(#hairShade)"/>
 <!-- legs and shoes -->
-<path d="M70 179 L110 179 L113 258 Q106 264 96 260 L89 211 L82 260 L67 260Z" fill="var(--bottom,#393a3b)"/>
+<path id="outfitBottom" d="M70 179 L110 179 L113 258 Q106 264 96 260 L89 211 L82 260 L67 260Z" fill="var(--bottom,#393a3b)"/>
 <path d="M67 253 L82 253 L82 265 L58 269 Q53 267 59 261Z M97 253 L113 253 L122 265 Q122 269 115 268 L97 266Z" fill="#fdfdff" stroke="#c6e4ee" stroke-width="1.4"/>
 <path d="M60 267 L81 265 M99 266 L120 266" stroke="#8ab9cc" stroke-width="2" stroke-linecap="round"/>
 <!-- arms -->
@@ -79,7 +107,7 @@ main{max-width:1240px;padding-top:34px}.eyebrow{font-size:11px;letter-spacing:1.
 <!-- neck -->
 <path d="M80 68 L80 91 Q90 101 100 91 L100 68Z" fill="url(#skinShade)"/>
 <!-- clothing silhouette -->
-<path d="M76 84 Q90 94 104 84 L117 92 Q124 96 121 110 L115 180 L65 180 L59 110 Q56 96 64 92Z" fill="url(#fabricShade)" stroke="#ffffff" stroke-opacity=".7" stroke-width="1.2"/>
+<path id="outfitTop" d="M76 84 Q90 94 104 84 L117 92 Q124 96 121 110 L115 180 L65 180 L59 110 Q56 96 64 92Z" fill="url(#fabricShade)" stroke="#ffffff" stroke-opacity=".7" stroke-width="1.2"/>
 <path d="M64 94 L78 88 L90 105 L102 88 L116 94 L109 117 L71 117Z" fill="var(--top,#f5f1e9)" opacity=".92"/>
 <path d="M90 105 L90 177" stroke="#ffffff" stroke-opacity=".52" stroke-width="1.5"/>
 <path d="M68 124 Q90 132 112 124" stroke="#ffffff" stroke-opacity=".45" fill="none" stroke-width="1.5"/>
@@ -107,7 +135,20 @@ main{max-width:1240px;padding-top:34px}.eyebrow{font-size:11px;letter-spacing:1.
 <path d="M76 85 L90 104 L104 85" fill="none" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
 <circle cx="90" cy="114" r="2.2" fill="#ffffff" opacity=".9"/>
 </svg><svg class="plumbob" viewBox="0 0 50 74" aria-hidden="true"><defs><linearGradient id="plumbobGlow" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#faffff"/><stop offset=".42" stop-color="#70e6c2"/><stop offset="1" stop-color="#24a6c8"/></linearGradient></defs><path d="M25 1 L47 37 L25 73 L3 37Z" fill="url(#plumbobGlow)" stroke="#fff" stroke-width="2.5"/><path d="M25 4 L25 70 L4 37Z" fill="#fff" opacity=".38"/><path d="M25 10 L38 37 L25 61 L12 37Z" fill="none" stroke="#fff" stroke-width="1.5" opacity=".9"/></svg><span class="label">MUSE / YOUR LOOK</span></div>
-<div class="avatar-controls"><div class="field"><label>TOP</label><div class="color-row"><button class="color active" style="background:#f5f1e9" data-top="#f5f1e9" aria-label="Ivory top"></button><button class="color" style="background:#242321" data-top="#242321" aria-label="Black top"></button><button class="color" style="background:#b8c1b5" data-top="#b8c1b5" aria-label="Sage top"></button><button class="color" style="background:#b58b83" data-top="#b58b83" aria-label="Rose top"></button></div></div><div class="field"><label>BOTTOM</label><div class="color-row"><button class="color active" style="background:#393a3b" data-bottom="#393a3b" aria-label="Charcoal bottoms"></button><button class="color" style="background:#b9a58b" data-bottom="#b9a58b" aria-label="Taupe bottoms"></button><button class="color" style="background:#d7d1c6" data-bottom="#d7d1c6" aria-label="Cream bottoms"></button><button class="color" style="background:#424f63" data-bottom="#424f63" aria-label="Navy bottoms"></button></div></div><div class="field"><label>HAIR</label><div class="color-row"><button class="color active" style="background:#4b4037" data-hair="#4b4037" aria-label="Brown hair"></button><button class="color" style="background:#b99762" data-hair="#b99762" aria-label="Blonde hair"></button><button class="color" style="background:#242321" data-hair="#242321" aria-label="Black hair"></button><button class="color" style="background:#8b5d50" data-hair="#8b5d50" aria-label="Auburn hair"></button></div></div></div></article>
+<div class="outfit-picker" aria-label="Choose outfit category">
+<div class="picker-title">OUTFIT CATEGORIES <span id="outfitName">Everyday</span></div>
+<div class="category-rail">
+<button class="category active" data-outfit="everyday" aria-pressed="true"><span>◉</span>Everyday</button>
+<button class="category" data-outfit="top" aria-pressed="false"><span>♧</span>Tops</button>
+<button class="category" data-outfit="trousers" aria-pressed="false"><span>▥</span>Trousers</button>
+<button class="category" data-outfit="skirt" aria-pressed="false"><span>◒</span>Skirts</button>
+<button class="category" data-outfit="dress" aria-pressed="false"><span>♙</span>Dresses</button>
+<button class="category" data-outfit="outerwear" aria-pressed="false"><span>▤</span>Outerwear</button>
+<button class="category" data-outfit="shoes" aria-pressed="false"><span>⌁</span>Shoes</button>
+<button class="category" data-outfit="accessories" aria-pressed="false"><span>✧</span>Accessories</button>
+</div>
+<p class="outfit-hint">Choose a category to preview a silhouette on the same character. Colour controls stay available below.</p>
+</div><div class="avatar-controls"><div class="field"><label>TOP</label><div class="color-row"><button class="color active" style="background:#f5f1e9" data-top="#f5f1e9" aria-label="Ivory top"></button><button class="color" style="background:#242321" data-top="#242321" aria-label="Black top"></button><button class="color" style="background:#b8c1b5" data-top="#b8c1b5" aria-label="Sage top"></button><button class="color" style="background:#b58b83" data-top="#b58b83" aria-label="Rose top"></button></div></div><div class="field"><label>BOTTOM</label><div class="color-row"><button class="color active" style="background:#393a3b" data-bottom="#393a3b" aria-label="Charcoal bottoms"></button><button class="color" style="background:#b9a58b" data-bottom="#b9a58b" aria-label="Taupe bottoms"></button><button class="color" style="background:#d7d1c6" data-bottom="#d7d1c6" aria-label="Cream bottoms"></button><button class="color" style="background:#424f63" data-bottom="#424f63" aria-label="Navy bottoms"></button></div></div><div class="field"><label>HAIR</label><div class="color-row"><button class="color active" style="background:#4b4037" data-hair="#4b4037" aria-label="Brown hair"></button><button class="color" style="background:#b99762" data-hair="#b99762" aria-label="Blonde hair"></button><button class="color" style="background:#242321" data-hair="#242321" aria-label="Black hair"></button><button class="color" style="background:#8b5d50" data-hair="#8b5d50" aria-label="Auburn hair"></button></div></div></div></article>
 <article class="card"><div class="card-head"><div><h2>What do you need today?</h2><div class="sub">Just three choices, then let MUSE help.</div></div></div><div class="preferences">
 <div class="field"><label>OCCASION</label><div class="choices" data-group="occasion"><button class="choice active" data-value="Everyday">Everyday</button><button class="choice" data-value="Work">Work</button><button class="choice" data-value="Date">Date</button><button class="choice" data-value="Going out">Going out</button></div></div>
 <div class="field"><label>MOOD</label><div class="choices" data-group="mood"><button class="choice active" data-value="Comfortable">Comfortable</button><button class="choice" data-value="Confident">Confident</button><button class="choice" data-value="Relaxed">Relaxed</button><button class="choice" data-value="Elegant">Elegant</button></div></div>
@@ -149,6 +190,25 @@ function counts(){$('#closetCount').textContent=state.closet.length;$('#savedCou
 function restoreChoices(){['occasion','mood','source'].forEach(g=>pick(g,state[g]));}
 restoreChoices();counts();if(!state.looks.length)createLooks();else renderLooks();renderCloset();renderSaved();
 $('#generate').addEventListener('click',createLooks);$('#refresh').addEventListener('click',createLooks);
+
+const outfitLabels={everyday:'Everyday',top:'Tops',trousers:'Trousers',skirt:'Skirts',dress:'Dresses',outerwear:'Outerwear',shoes:'Shoes',accessories:'Accessories'};
+document.querySelectorAll('[data-outfit]').forEach(button=>button.addEventListener('click',()=>{
+ const kind=button.dataset.outfit;
+ document.querySelectorAll('[data-outfit]').forEach(b=>{b.classList.toggle('active',b===button);b.setAttribute('aria-pressed',String(b===button))});
+ const avatar=document.querySelector('.avatar');
+ avatar.dataset.outfit=kind;
+ document.getElementById('outfitName').textContent=outfitLabels[kind];
+ const top=document.getElementById('outfitTop'), bottom=document.getElementById('outfitBottom');
+ top.style.opacity=(kind==='shoes'||kind==='trousers')?'.82':'1';
+ bottom.style.opacity=kind==='dress'?'0':'1';
+ if(kind==='top'||kind==='everyday'){top.setAttribute('d','M76 84 Q90 94 104 84 L117 92 Q124 96 121 110 L115 180 L65 180 L59 110 Q56 96 64 92Z');}
+ if(kind==='trousers'||kind==='shoes'||kind==='accessories'){bottom.setAttribute('d','M70 179 L110 179 L113 258 Q106 264 96 260 L89 211 L82 260 L67 260Z');}
+ if(kind==='skirt'){bottom.setAttribute('d','M70 179 L110 179 L126 258 L54 258Z');}
+ if(kind==='dress'){top.setAttribute('d','M76 84 Q90 94 104 84 L117 92 Q124 96 121 110 L131 226 L119 246 L61 246 L49 226 L59 110 Q56 96 64 92Z');bottom.style.opacity='0';}
+ else {top.style.opacity='1';}
+ if(kind==='outerwear'){top.setAttribute('d','M76 84 Q90 94 104 84 L121 89 L130 118 L119 126 L115 180 L65 180 L61 126 L50 118 L59 89Z');}
+ if(kind==='top'||kind==='everyday'){bottom.style.opacity='1';}
+}));
 </script>
 </body>
 </html>
