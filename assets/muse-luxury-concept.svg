@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100" role="img" aria-labelledby="title desc">
+<title id="title">MUSE — Luxury Fashion Stylist Concept</title>
+<desc id="desc">An editorial design concept for MUSE, a minimal luxury wardrobe and personal styling app, shown on a warm ivory canvas with a fashion portrait, outfit cards and a digital wardrobe phone interface.</desc>
+<defs>
+ <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7f3ec"/><stop offset="1" stop-color="#e9e1d5"/></linearGradient>
+ <linearGradient id="coat" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d9cbb8"/><stop offset="1" stop-color="#9d8a74"/></linearGradient>
+ <linearGradient id="dress" x1="0" y1="0" x2="0.8" y2="1"><stop stop-color="#f0e7d9"/><stop offset="1" stop-color="#c8b8a4"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#43382f" flood-opacity=".13"/></filter>
+ <clipPath id="photo"><rect x="88" y="235" width="530" height="660" rx="2"/></clipPath>
+ <style>
+ .serif{font-family:Georgia,'Times New Roman',serif}.sans{font-family:Arial,Helvetica,sans-serif}.ink{fill:#282621}.muted{fill:#82796e}.line{stroke:#d3c9bc;stroke-width:1}
+ </style>
+</defs>
+<rect width="1600" height="1100" fill="url(#paper)"/>
+<!-- header -->
+<text x="88" y="76" class="sans ink" font-size="15" letter-spacing="5">MUSE / PERSONAL STYLE SYSTEM</text>
+<text x="1510" y="76" text-anchor="end" class="sans muted" font-size="12" letter-spacing="2">CONCEPT 01 — AUTUMN / WINTER</text>
+<line x1="88" y1="103" x2="1512" y2="103" class="line"/>
+<text x="88" y="190" class="serif ink" font-size="76" letter-spacing="-3">Wear what</text>
+<text x="88" y="267" class="serif ink" font-size="76" font-style="italic" letter-spacing="-3">already moves you.</text>
+<text x="92" y="310" class="sans muted" font-size="15" letter-spacing="1.3">A quieter, more considered way to get dressed.</text>
+<!-- editorial fashion illustration / portrait panel -->
+<g clip-path="url(#photo)">
+ <rect x="88" y="235" width="530" height="660" fill="#d6c9b8"/>
+ <path d="M88 740 Q210 610 320 690 T618 640 V895 H88Z" fill="#b5a18a" opacity=".5"/>
+ <rect x="120" y="270" width="185" height="500" fill="#e6ddd0" opacity=".58"/>
+ <path d="M120 270V770 M305 270V770" stroke="#c3b4a2" stroke-width="2"/>
+ <!-- hair behind -->
+ <path d="M255 363 C206 350 188 395 201 475 L219 565 L359 560 L383 440 C391 365 341 330 286 338Z" fill="#40342c"/>
+ <!-- neck -->
+ <path d="M267 437 L267 495 L319 504 L329 442Z" fill="#b98263"/>
+ <!-- face -->
+ <path d="M230 355 C236 305 341 303 355 371 L345 432 C333 472 287 488 257 451 C236 428 226 391 230 355Z" fill="#d9aa8b"/>
+ <path d="M228 373 C218 324 255 291 307 301 C353 308 375 343 360 389 L345 361 C315 366 288 350 271 333 C264 355 247 367 228 373Z" fill="#40342c"/>
+ <path d="M245 393 Q258 385 270 393" fill="none" stroke="#594135" stroke-width="3" stroke-linecap="round"/>
+ <path d="M306 392 Q319 384 332 392" fill="none" stroke="#594135" stroke-width="3" stroke-linecap="round"/>
+ <path d="M286 397 L281 420 L294 423" fill="none" stroke="#b98263" stroke-width="2" stroke-linecap="round"/>
+ <path d="M275 442 Q294 451 310 439" fill="none" stroke="#8d5349" stroke-width="3" stroke-linecap="round"/>
+ <!-- tailored coat -->
+ <path d="M263 483 L223 505 Q186 540 171 627 L143 895 H445 L411 620 Q399 535 338 501 L313 483 L291 541Z" fill="url(#coat)"/>
+ <path d="M263 483 L292 541 L270 613 L238 516Z" fill="#f0e7d9"/>
+ <path d="M313 483 L292 541 L321 613 L342 515Z" fill="#e9dfd1"/>
+ <path d="M292 541 L289 895" stroke="#776654" stroke-width="2" opacity=".55"/>
+ <path d="M226 521 L266 650 L242 740 L204 595Z" fill="#b3a08b"/>
+ <path d="M339 521 L318 650 L349 740 L376 590Z" fill="#c7b6a1"/>
+ <path d="M181 690 Q292 725 407 688" fill="none" stroke="#8e7b68" stroke-width="2"/>
+ <!-- bag -->
+ <path d="M352 646 L411 646 L425 719 L340 719Z" fill="#40372f"/>
+ <path d="M363 647 C361 610 400 610 399 647" fill="none" stroke="#40372f" stroke-width="6"/>
+ <rect x="348" y="670" width="68" height="5" fill="#b5a18a"/>
+ <text x="115" y="858" class="sans" fill="#fffaf3" font-size="12" letter-spacing="3">THE EVERYDAY EDIT</text>
+</g>
+<text x="88" y="930" class="sans muted" font-size="11" letter-spacing="2">EDITORIAL DIRECTION</text>
+<text x="88" y="956" class="serif ink" font-size="23">Quiet confidence. Less, but better.</text>
+<!-- app interface panel -->
+<g filter="url(#shadow)">
+ <rect x="690" y="145" width="392" height="810" rx="28" fill="#fffdf9" stroke="#ded5c9"/>
+ <rect x="705" y="160" width="362" height="780" rx="18" fill="#faf7f1"/>
+</g>
+<text x="735" y="208" class="serif ink" font-size="29" letter-spacing="1">MUSE</text>
+<text x="1037" y="205" text-anchor="end" class="sans muted" font-size="10" letter-spacing="2">YOUR WARDROBE</text>
+<line x1="735" y1="230" x2="1037" y2="230" class="line"/>
+<text x="735" y="267" class="sans muted" font-size="10" letter-spacing="2">MONDAY, 14 OCTOBER</text>
+<text x="735" y="306" class="serif ink" font-size="30">Good morning.</text>
+<text x="735" y="332" class="sans muted" font-size="13">Let's make getting dressed simple.</text>
+<rect x="735" y="354" width="302" height="194" rx="3" fill="#e7ddd0"/>
+<!-- outfit editorial mini illustration -->
+<circle cx="883" cy="395" r="24" fill="#d5a486"/>
+<path d="M859 392 Q855 358 884 360 Q910 360 907 394 L898 382 Q878 388 867 376Z" fill="#42372f"/>
+<path d="M865 418 L844 435 L826 505 L944 505 L923 435 L902 418 L884 439Z" fill="#b6a18a"/>
+<path d="M865 418 L884 439 L875 463 L855 426Z" fill="#f5eee4"/>
+<path d="M902 418 L884 439 L896 463 L913 426Z" fill="#e5d7c5"/>
+<path d="M873 505 L867 530 L884 530 L888 505 M901 505 L900 530 L917 530 L912 505" fill="#3b342e"/>
+<text x="753" y="522" class="sans" fill="#fffaf3" font-size="9" letter-spacing="2">LOOK 01 / THE CITY EDIT</text>
+<text x="735" y="581" class="serif ink" font-size="22">Made from your closet</text>
+<text x="735" y="604" class="sans muted" font-size="12">3 pieces · 1 considered look</text>
+<g>
+ <rect x="735" y="625" width="92" height="93" fill="#e3d7c7"/>
+ <path d="M760 646 L750 657 L743 690 L818 690 L809 657 L798 646 L780 657Z" fill="#b7a48f"/>
+ <path d="M760 646 L780 657 L773 674 L756 652Z" fill="#f6f0e7"/>
+ <path d="M798 646 L780 657 L788 674 L803 652Z" fill="#d7c7b4"/>
+ <rect x="840" y="625" width="92" height="93" fill="#ded8cf"/>
+ <path d="M862 642 L851 662 L857 703 L915 703 L921 662 L909 642 L888 653Z" fill="#35322d"/>
+ <path d="M862 642 L888 653 L880 669 L858 652Z" fill="#f4eee5"/>
+ <path d="M909 642 L888 653 L896 669 L915 652Z" fill="#e0d4c5"/>
+ <rect x="945" y="625" width="92" height="93" fill="#d2c1ad"/>
+ <path d="M965 651 Q991 630 1017 651 L1024 697 L958 697Z" fill="#40382f"/>
+ <path d="M972 652 Q991 638 1010 652" fill="none" stroke="#bca88f" stroke-width="3"/>
+</g>
+<g class="sans muted" font-size="10">
+ <text x="735" y="740">SOFT KNIT</text><text x="840" y="740">TAILORED</text><text x="945" y="740">LEATHER</text>
+</g>
+<rect x="735" y="765" width="302" height="49" rx="1" fill="#282621"/>
+<text x="886" y="795" text-anchor="middle" class="sans" fill="#fffaf3" font-size="11" letter-spacing="2">GENERATE MY OUTFITS  ↗</text>
+<text x="735" y="853" class="sans muted" font-size="10" letter-spacing="1">WARDROBE FIRST</text>
+<text x="735" y="876" class="serif ink" font-size="16">Shop your own style.</text>
+<line x1="735" y1="901" x2="1037" y2="901" class="line"/>
+<text x="735" y="922" class="sans muted" font-size="9" letter-spacing="2">HOME     CLOSET     SAVED     PLAN</text>
+<!-- right-side brand story -->
+<text x="1135" y="196" class="sans muted" font-size="11" letter-spacing="3">THE MUSE PRINCIPLE</text>
+<text x="1135" y="250" class="serif ink" font-size="34">Personal style,</text>
+<text x="1135" y="289" class="serif ink" font-size="34" font-style="italic">without the noise.</text>
+<line x1="1135" y1="318" x2="1512" y2="318" class="line"/>
+<text x="1135" y="362" class="sans ink" font-size="12" letter-spacing="2">01 / EDIT</text>
+<text x="1135" y="390" class="serif ink" font-size="23">Know what you own.</text>
+<text x="1135" y="416" class="sans muted" font-size="13">A thoughtful digital wardrobe</text>
+<text x="1135" y="436" class="sans muted" font-size="13">built around your real clothes.</text>
+<line x1="1135" y1="465" x2="1512" y2="465" class="line"/>
+<text x="1135" y="509" class="sans ink" font-size="12" letter-spacing="2">02 / STYLE</text>
+<text x="1135" y="537" class="serif ink" font-size="23">Dress for your day.</text>
+<text x="1135" y="563" class="sans muted" font-size="13">Weather, mood, occasion —</text>
+<text x="1135" y="583" class="sans muted" font-size="13">one simple, considered edit.</text>
+<line x1="1135" y1="612" x2="1512" y2="612" class="line"/>
+<text x="1135" y="656" class="sans ink" font-size="12" letter-spacing="2">03 / REPEAT</text>
+<text x="1135" y="684" class="serif ink" font-size="23">Buy less. Wear more.</text>
+<text x="1135" y="710" class="sans muted" font-size="13">Make new combinations before</text>
+<text x="1135" y="730" class="sans muted" font-size="13">adding anything to your cart.</text>
+<rect x="1135" y="790" width="377" height="116" fill="#e1d7ca"/>
+<text x="1160" y="825" class="sans muted" font-size="10" letter-spacing="2">DESIGN LANGUAGE</text>
+<text x="1160" y="855" class="serif ink" font-size="21">Ivory · espresso · soft taupe</text>
+<text x="1160" y="880" class="sans muted" font-size="12">Editorial typography / quiet luxury / clarity</text>
+<!-- footer -->
+<line x1="88" y1="1010" x2="1512" y2="1010" class="line"/>
+<text x="88" y="1047" class="sans muted" font-size="11" letter-spacing="2">MUSE — A DIGITAL WARDROBE FOR REAL LIFE</text>
+<text x="1512" y="1047" text-anchor="end" class="serif ink" font-size="18" font-style="italic">Style, made personal.</text>
+</svg>
