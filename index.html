@@ -154,6 +154,48 @@ main{min-width:0}
 @media(max-width:800px){.content{padding:60px 12px 100px}.topbar{padding:0 12px}.crumb{font-size:8px}.profile span{display:none}.sidebar{bottom:8px;padding:5px;max-width:calc(100vw - 12px);border-radius:18px}.nav{gap:1px}.nav button{min-width:0;flex:1;padding:5px 7px;font-size:8px}.nav button .ico{width:25px;height:25px}.cas-stage{height:61vh!important;min-height:390px;margin:0!important;border-radius:20px!important}.sim-wrap{inset:42px 46px 36px!important}.sim{max-height:54vh!important;max-width:100%}.trait-cloud{left:8px!important;top:48px!important;gap:2px!important}.hex{width:29px!important;height:32px!important;font-size:11px!important}.cas-categories{right:8px!important;top:50px!important;gap:6px!important}.cas-categories button{width:32px!important;height:32px!important;font-size:14px!important}.turn{width:31px;height:31px;font-size:22px;bottom:47%}.turn.left{left:7px}.turn.right{right:7px}.plumbob{width:22px;height:34px}.stage-caption{bottom:12px;font-size:8px}.cas-footer-tools{right:8px;bottom:8px}.cas-footer-tools button{width:28px;height:28px;font-size:13px}.tool-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.tool-content{grid-template-columns:1fr}.weatherbar{flex-wrap:wrap}.weatherbar label{font-size:8px}#page-creator .intro h1{font-size:21px}#page-creator .intro p{max-width:270px;font-size:10px}}
 @media(max-width:390px){.nav button{padding:4px 4px;font-size:7px}.nav button .ico{width:22px;height:22px}.cas-stage{min-height:365px;height:57vh!important}.sim-wrap{inset:40px 39px 37px!important}.sim{max-height:50vh!important}.trait-cloud{left:5px!important}.cas-categories{right:5px!important}.cas-categories button{width:29px!important;height:29px!important}.level{display:none}}
 
+
+/* Reference-inspired Create-a-Sim screen: airy blue/teal studio, edge controls */
+@media(min-width:701px){
+  .game{grid-template-columns:1fr!important;min-height:100vh;background:linear-gradient(110deg,#4c8fc5 0%,#70c9d0 58%,#72d7b0 100%)!important}
+  .sidebar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:25;width:max-content;max-width:calc(100vw - 32px);height:auto;padding:7px 10px;border:1px solid #ffffffb8;border-radius:24px;background:#e8fbf2c9;backdrop-filter:blur(16px);box-shadow:0 6px 24px #174b6b33}
+  .sidebar .logo,.sidebar .nav-title,.sidebar .side-card{display:none!important}
+  .nav{display:flex;gap:6px}
+  .nav button{display:flex;gap:6px;align-items:center;padding:6px 10px;border-radius:18px;font-size:10px;background:#ffffff9c}
+  .nav button .ico{width:25px;height:25px}
+  main{min-height:100vh}
+  .topbar{position:absolute;top:10px;left:16px;right:16px;z-index:15;height:38px;padding:0 14px;border:1px solid #ffffff99;border-radius:22px;background:#eaf9f2b8;backdrop-filter:blur(12px);box-shadow:0 4px 16px #225a7620}
+  .crumb{color:#397a9b}
+  .content{max-width:1480px;padding:58px 22px 88px}
+  .intro{margin:0 0 10px}
+  .intro h1{color:#fff;text-shadow:0 2px 5px #255f844d}
+  .intro p,.eyebrow{color:#e7fbff}
+  .weatherbar{max-width:760px;margin:0 auto 12px;background:#eafff2ba;border-color:#ffffffa6;box-shadow:0 4px 18px #174d6a20;backdrop-filter:blur(10px)}
+  .cas-layout{grid-template-columns:minmax(0,1fr) 300px;gap:12px;align-items:start}
+  .game-panel{background:#e9fbf3bd;border-color:#ffffffa8;box-shadow:0 8px 28px #174d6a20;backdrop-filter:blur(10px)}
+  .panel-top{background:#eafff5a8}
+  .cas-stage{height:min(70vh,680px)!important;min-height:480px;margin:8px 10px 0;border-radius:8px!important;background:radial-gradient(ellipse at 52% 42%,#d9f5e7 0%,#a6e4d5 22%,#6dc7cd 48%,#4e9bc9 76%,#3c7eb8 100%)!important;outline:0!important;border:1px solid #ffffffa8!important;box-shadow:inset 0 0 50px #245d7d1a!important}
+  .cas-stage:after{display:none}
+  .sim-wrap{inset:24px 72px 24px!important}
+  .sim{max-height:calc(min(70vh,680px) - 95px)!important}
+  .trait-cloud{left:14px!important;top:64px!important;gap:4px!important}
+  .hex{width:38px!important;height:42px!important}
+  .cas-categories{right:14px!important;top:64px!important;gap:7px!important}
+  .cas-categories button{width:38px!important;height:38px!important;border-radius:50%!important}
+  .avatar-customizer{margin:8px 10px 0}
+  .avatar-options{padding-bottom:12px}
+  .tools-panel .panel-top{padding-bottom:10px}
+  .tool-content{gap:12px}
+}
+@media(max-width:700px){
+  .game{background:linear-gradient(135deg,#4d91c5,#69c8d0 58%,#7bd5b1)!important}
+  .content{padding-top:58px}
+  .intro h1{color:#fff;text-shadow:0 2px 5px #255f844d}
+  .intro p,.eyebrow{color:#e7fbff}
+  .cas-stage{background:radial-gradient(ellipse at 52% 42%,#d9f5e7 0%,#a6e4d5 22%,#6dc7cd 48%,#4e9bc9 76%,#3c7eb8 100%)!important}
+  .cas-stage:after{display:none}
+}
+
 </style>
 </head>
 <body>
