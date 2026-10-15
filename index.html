@@ -135,6 +135,22 @@ body:has(#styleView.active) .intro{display:none}
  #styleView.active .avatar-controls .field label{font-size:10px;margin-bottom:4px}
  #styleView.active .color{width:23px;height:23px}
 }
+
+/* More lifelike, consistent avatar silhouette; still a lightweight SVG prototype, not a true 3D model */
+#styleView.active .avatar{height:min(78vh,690px);width:auto;max-width:30vw;aspect-ratio:180/300;transform:translate(0,2vh);overflow:visible;filter:drop-shadow(0 10px 7px #16435b30)}
+#styleView.active .avatar-stage:after{bottom:7.5%;width:210px;height:24px;background:#143f5a70;filter:blur(9px)}
+#styleView.active .avatar-stage:before{width:340px;height:430px;top:52%;background:radial-gradient(ellipse,#d7fff0a8 0%,#9ce2e07a 48%,#8bc9df00 75%);opacity:1}
+#styleView.active .outfit-picker{left:calc(50% + min(15vw,190px));top:16%;width:190px}
+#styleView.active .avatar-controls{right:2.8%;top:23%;width:205px}
+#styleView.active .avatar-controls .field{background:#eaffff35;border-color:#ffffff45;box-shadow:0 6px 18px #145c7930}
+#styleView.active .category span{transition:box-shadow .18s,transform .18s}
+#styleView.active .category.active span{transform:scale(1.06);box-shadow:0 0 0 4px #ffffff38,0 0 20px #b8ffff}
+@media(max-width:850px){
+ #styleView.active .avatar{height:56vh;max-width:42vw;transform:translate(-20%,4vh)}
+ #styleView.active .outfit-picker{left:auto;right:2%;top:17%;width:130px}
+ #styleView.active .avatar-controls{right:2%;bottom:3%;top:auto;width:140px}
+}
+
 </style>
 </head>
 <body>
@@ -144,7 +160,7 @@ body:has(#styleView.active) .intro{display:none}
 <section id="styleView">
 <div class="layout">
 <article class="card"><div class="card-head"><div><h2>Create-a-Sim</h2><div class="sub">Build your character · customise your look</div></div></div>
-<div class="avatar-stage"><svg class="avatar" viewBox="0 0 180 300" role="img" aria-label="Customisable illustrated fashion character with detailed hair, face and outfit">
+<div class="avatar-stage"><svg class="avatar" viewBox="0 0 180 300" role="img" aria-label="Stylised full-body character with persistent identity and selectable outfit silhouettes">
 <defs>
  <linearGradient id="skinShade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f2c9a8"/><stop offset=".55" stop-color="#d9a27f"/><stop offset="1" stop-color="#bf8567"/></linearGradient>
  <linearGradient id="hairShade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff" stop-opacity=".24"/><stop offset=".38" stop-color="var(--hair,#4b4037)"/><stop offset="1" stop-color="var(--hair,#4b4037)"/></linearGradient>
@@ -203,14 +219,14 @@ body:has(#styleView.active) .intro{display:none}
 <button class="category" data-outfit="shoes" aria-pressed="false"><span>⌁</span>Shoes</button>
 <button class="category" data-outfit="accessories" aria-pressed="false"><span>✧</span>Accessories</button>
 </div>
-<p class="outfit-hint">Choose a category to preview a silhouette on the same character. Colour controls stay available below.</p>
+<p class="outfit-hint">Choose a category to preview a clothing silhouette on the same character. Hair and garment colours stay available in the swatch panels.</p>
 </div><div class="avatar-controls"><div class="field"><label>TOP</label><div class="color-row"><button class="color active" style="background:#f5f1e9" data-top="#f5f1e9" aria-label="Ivory top"></button><button class="color" style="background:#242321" data-top="#242321" aria-label="Black top"></button><button class="color" style="background:#b8c1b5" data-top="#b8c1b5" aria-label="Sage top"></button><button class="color" style="background:#b58b83" data-top="#b58b83" aria-label="Rose top"></button></div></div><div class="field"><label>BOTTOM</label><div class="color-row"><button class="color active" style="background:#393a3b" data-bottom="#393a3b" aria-label="Charcoal bottoms"></button><button class="color" style="background:#b9a58b" data-bottom="#b9a58b" aria-label="Taupe bottoms"></button><button class="color" style="background:#d7d1c6" data-bottom="#d7d1c6" aria-label="Cream bottoms"></button><button class="color" style="background:#424f63" data-bottom="#424f63" aria-label="Navy bottoms"></button></div></div><div class="field"><label>HAIR</label><div class="color-row"><button class="color active" style="background:#4b4037" data-hair="#4b4037" aria-label="Brown hair"></button><button class="color" style="background:#b99762" data-hair="#b99762" aria-label="Blonde hair"></button><button class="color" style="background:#242321" data-hair="#242321" aria-label="Black hair"></button><button class="color" style="background:#8b5d50" data-hair="#8b5d50" aria-label="Auburn hair"></button></div></div></div></article>
 <article class="card"><div class="card-head"><div><h2>What do you need today?</h2><div class="sub">Just three choices, then let MUSE help.</div></div></div><div class="preferences">
 <div class="field"><label>OCCASION</label><div class="choices" data-group="occasion"><button class="choice active" data-value="Everyday">Everyday</button><button class="choice" data-value="Work">Work</button><button class="choice" data-value="Date">Date</button><button class="choice" data-value="Going out">Going out</button></div></div>
 <div class="field"><label>MOOD</label><div class="choices" data-group="mood"><button class="choice active" data-value="Comfortable">Comfortable</button><button class="choice" data-value="Confident">Confident</button><button class="choice" data-value="Relaxed">Relaxed</button><button class="choice" data-value="Elegant">Elegant</button></div></div>
 <div class="field"><label>WEATHER</label><select class="select" id="weather"><option value="Mild">Mild / changeable</option><option value="Warm">Warm</option><option value="Hot">Hot</option><option value="Cold">Cold</option><option value="Rainy">Rainy</option></select></div>
 <div class="field"><label>USE MY WARDROBE</label><div class="choices" data-group="source"><button class="choice active" data-value="own">Mostly clothes I own</button><button class="choice" data-value="ideas">Give me new ideas</button></div></div>
-<button class="primary" id="generate">CREATE MY OUTFITS</button><p class="note">MUSE is a simple styling prototype. Suggestions use your choices and clothing names, not AI image recognition.</p></div></article>
+<button class="primary" id="generate">CREATE MY OUTFITS</button><p class="note">MUSE is a styling prototype. Outfit categories change SVG clothing silhouettes on one persistent character; this is not a rigged 3D avatar and does not yet use real garment assets.</p></div></article>
 </div>
 <section class="section"><div class="section-head"><div><h2>Today's outfit ideas</h2><p>Simple combinations to get you moving.</p></div><button class="secondary" id="refresh">Refresh ideas ↻</button></div><div class="looks" id="looks"></div></section>
 </section>
