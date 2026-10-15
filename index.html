@@ -79,6 +79,14 @@ main{max-width:1240px;padding-top:34px}.eyebrow{font-size:11px;letter-spacing:1.
 #styleView .avatar[data-outfit="dress"] #outfitBottom{opacity:0}
 #styleView .avatar[data-outfit="outerwear"] #outfitTop{d:path("M76 84 Q90 94 104 84 L121 89 L130 118 L119 126 L115 180 L65 180 L61 126 L50 118 L59 89Z")}
 @media(max-width:760px){#styleView .layout{grid-template-columns:1fr}#styleView .avatar-stage{height:430px;min-height:430px}#styleView .avatar{height:370px;width:205px}.category-rail{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+.category-rail{grid-template-columns:repeat(4,minmax(0,1fr))}
+.category{min-height:76px;cursor:pointer}
+.category:focus-visible{outline:3px solid #287fa5;outline-offset:2px}
+#outfitShoes,#outfitAccessories{transition:opacity .2s}
+.avatar[data-outfit="shoes"] #outfitShoes{opacity:1}
+.avatar[data-outfit="accessories"] #outfitAccessories{opacity:1}
+.avatar[data-outfit="dress"] #outfitTop{stroke-width:1.6}
 </style>
 </head>
 <body>
@@ -99,7 +107,7 @@ main{max-width:1240px;padding-top:34px}.eyebrow{font-size:11px;letter-spacing:1.
 <path d="M58 55 Q48 18 72 8 Q96 -2 115 14 Q136 29 122 75 L127 118 Q128 145 113 155 L103 111 L68 113 L59 153 Q44 136 49 106Z" fill="url(#hairShade)"/>
 <!-- legs and shoes -->
 <path id="outfitBottom" d="M70 179 L110 179 L113 258 Q106 264 96 260 L89 211 L82 260 L67 260Z" fill="var(--bottom,#393a3b)"/>
-<path d="M67 253 L82 253 L82 265 L58 269 Q53 267 59 261Z M97 253 L113 253 L122 265 Q122 269 115 268 L97 266Z" fill="#fdfdff" stroke="#c6e4ee" stroke-width="1.4"/>
+<g id="outfitShoes"><path d="M67 253 L82 253 L82 265 L58 269 Q53 267 59 261Z M97 253 L113 253 L122 265 Q122 269 115 268 L97 266Z" fill="#fdfdff" stroke="#c6e4ee" stroke-width="1.4"/></g>
 <path d="M60 267 L81 265 M99 266 L120 266" stroke="#8ab9cc" stroke-width="2" stroke-linecap="round"/>
 <!-- arms -->
 <path d="M65 91 Q54 95 54 116 L47 151 Q46 160 53 161 Q60 161 62 151 L73 119Z" fill="url(#skinShade)"/>
@@ -133,7 +141,7 @@ main{max-width:1240px;padding-top:34px}.eyebrow{font-size:11px;letter-spacing:1.
 <path d="M61 65 Q59 91 66 112 M119 65 Q124 91 115 113" stroke="var(--hair,#4b4037)" stroke-width="8" fill="none" stroke-linecap="round"/>
 <!-- collar and little styling detail -->
 <path d="M76 85 L90 104 L104 85" fill="none" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="90" cy="114" r="2.2" fill="#ffffff" opacity=".9"/>
+<circle cx="90" cy="114" r="2.2" fill="#ffffff" opacity=".9"/><g id="outfitAccessories" opacity="0"><path d="M120 115 Q136 115 136 132 L136 163 Q136 168 131 168 L119 168 Q115 168 115 163 L115 132 Q115 119 120 115Z" fill="#e5a8c6" stroke="#fff" stroke-width="2"/><path d="M120 117 Q120 106 127 106 Q134 106 134 117" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="126" cy="139" r="3" fill="#fff" opacity=".8"/></g>
 </svg><svg class="plumbob" viewBox="0 0 50 74" aria-hidden="true"><defs><linearGradient id="plumbobGlow" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#faffff"/><stop offset=".42" stop-color="#70e6c2"/><stop offset="1" stop-color="#24a6c8"/></linearGradient></defs><path d="M25 1 L47 37 L25 73 L3 37Z" fill="url(#plumbobGlow)" stroke="#fff" stroke-width="2.5"/><path d="M25 4 L25 70 L4 37Z" fill="#fff" opacity=".38"/><path d="M25 10 L38 37 L25 61 L12 37Z" fill="none" stroke="#fff" stroke-width="1.5" opacity=".9"/></svg><span class="label">MUSE / YOUR LOOK</span></div>
 <div class="outfit-picker" aria-label="Choose outfit category">
 <div class="picker-title">OUTFIT CATEGORIES <span id="outfitName">Everyday</span></div>
@@ -192,22 +200,34 @@ restoreChoices();counts();if(!state.looks.length)createLooks();else renderLooks(
 $('#generate').addEventListener('click',createLooks);$('#refresh').addEventListener('click',createLooks);
 
 const outfitLabels={everyday:'Everyday',top:'Tops',trousers:'Trousers',skirt:'Skirts',dress:'Dresses',outerwear:'Outerwear',shoes:'Shoes',accessories:'Accessories'};
+const avatar=document.querySelector('.avatar');
+const topShape=document.getElementById('outfitTop');
+const bottomShape=document.getElementById('outfitBottom');
+const shoes=document.getElementById('outfitShoes');
+const accessories=document.getElementById('outfitAccessories');
+const baseTop='M76 84 Q90 94 104 84 L117 92 Q124 96 121 110 L115 180 L65 180 L59 110 Q56 96 64 92Z';
+const baseBottom='M70 179 L110 179 L113 258 Q106 264 96 260 L89 211 L82 260 L67 260Z';
+const silhouettes={
+ everyday:{top:baseTop,bottom:baseBottom},
+ top:{top:baseTop,bottom:baseBottom},
+ trousers:{top:baseTop,bottom:'M70 179 L89 179 L88 258 L70 260 L67 211Z M91 179 L110 179 L113 258 L96 260 L91 211Z'},
+ skirt:{top:baseTop,bottom:'M70 179 L110 179 L126 258 L54 258Z'},
+ dress:{top:'M76 84 Q90 94 104 84 L117 92 Q124 96 121 110 L131 226 L119 246 L61 246 L49 226 L59 110 Q56 96 64 92Z',bottom:'',hideBottom:true},
+ outerwear:{top:'M76 84 Q90 94 104 84 L121 89 L130 118 L119 126 L115 180 L65 180 L61 126 L50 118 L59 89Z',bottom:baseBottom},
+ shoes:{top:baseTop,bottom:baseBottom},
+ accessories:{top:baseTop,bottom:baseBottom}
+};
 document.querySelectorAll('[data-outfit]').forEach(button=>button.addEventListener('click',()=>{
- const kind=button.dataset.outfit;
- document.querySelectorAll('[data-outfit]').forEach(b=>{b.classList.toggle('active',b===button);b.setAttribute('aria-pressed',String(b===button))});
- const avatar=document.querySelector('.avatar');
+ const kind=button.dataset.outfit, shape=silhouettes[kind];
+ document.querySelectorAll('[data-outfit]').forEach(b=>{const active=b===button;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
  avatar.dataset.outfit=kind;
  document.getElementById('outfitName').textContent=outfitLabels[kind];
- const top=document.getElementById('outfitTop'), bottom=document.getElementById('outfitBottom');
- top.style.opacity=(kind==='shoes'||kind==='trousers')?'.82':'1';
- bottom.style.opacity=kind==='dress'?'0':'1';
- if(kind==='top'||kind==='everyday'){top.setAttribute('d','M76 84 Q90 94 104 84 L117 92 Q124 96 121 110 L115 180 L65 180 L59 110 Q56 96 64 92Z');}
- if(kind==='trousers'||kind==='shoes'||kind==='accessories'){bottom.setAttribute('d','M70 179 L110 179 L113 258 Q106 264 96 260 L89 211 L82 260 L67 260Z');}
- if(kind==='skirt'){bottom.setAttribute('d','M70 179 L110 179 L126 258 L54 258Z');}
- if(kind==='dress'){top.setAttribute('d','M76 84 Q90 94 104 84 L117 92 Q124 96 121 110 L131 226 L119 246 L61 246 L49 226 L59 110 Q56 96 64 92Z');bottom.style.opacity='0';}
- else {top.style.opacity='1';}
- if(kind==='outerwear'){top.setAttribute('d','M76 84 Q90 94 104 84 L121 89 L130 118 L119 126 L115 180 L65 180 L61 126 L50 118 L59 89Z');}
- if(kind==='top'||kind==='everyday'){bottom.style.opacity='1';}
+ topShape.setAttribute('d',shape.top);
+ if(shape.bottom) bottomShape.setAttribute('d',shape.bottom);
+ bottomShape.style.opacity=shape.hideBottom?'0':'1';
+ topShape.style.opacity='1';
+ shoes.style.opacity=kind==='shoes'?'1':'.0';
+ accessories.style.opacity=kind==='accessories'?'1':'0';
 }));
 </script>
 </body>
