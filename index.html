@@ -226,7 +226,7 @@ body:has(#styleView.active) .intro{display:none}
 <div class="field"><label>MOOD</label><div class="choices" data-group="mood"><button class="choice active" data-value="Comfortable">Comfortable</button><button class="choice" data-value="Confident">Confident</button><button class="choice" data-value="Relaxed">Relaxed</button><button class="choice" data-value="Elegant">Elegant</button></div></div>
 <div class="field"><label>WEATHER</label><select class="select" id="weather"><option value="Mild">Mild / changeable</option><option value="Warm">Warm</option><option value="Hot">Hot</option><option value="Cold">Cold</option><option value="Rainy">Rainy</option></select></div>
 <div class="field"><label>USE MY WARDROBE</label><div class="choices" data-group="source"><button class="choice active" data-value="own">Mostly clothes I own</button><button class="choice" data-value="ideas">Give me new ideas</button></div></div>
-<button class="primary" id="generate">CREATE MY OUTFITS</button><p class="note">MUSE is a styling prototype. Outfit categories change SVG clothing silhouettes on one persistent character; this is not a rigged 3D avatar and does not yet use real garment assets.</p></div></article>
+<button class="primary" id="generate">CREATE MY OUTFIT</button><p class="note">MUSE is a styling prototype. Outfit categories change SVG clothing silhouettes on one persistent character; this is not a rigged 3D avatar and does not yet use real garment assets.</p></div></article>
 </div>
 <section class="section"><div class="section-head"><div><h2>Today's outfit ideas</h2><p>Simple combinations to get you moving.</p></div><button class="secondary" id="refresh">Refresh ideas ↻</button></div><div class="looks" id="looks"></div></section>
 </section>
@@ -261,7 +261,32 @@ function resize(file){return new Promise(resolve=>{const reader=new FileReader()
 function counts(){$('#closetCount').textContent=state.closet.length;$('#savedCount').textContent=state.saved.length}
 function restoreChoices(){['occasion','mood','source'].forEach(g=>pick(g,state[g]));}
 restoreChoices();counts();if(!state.looks.length)createLooks();else renderLooks();renderCloset();renderSaved();
+
 $('#generate').addEventListener('click',createLooks);$('#refresh').addEventListener('click',createLooks);
+/* The main CTA now styles the persistent avatar as well as creating outfit idea cards. */
+let generatedAvatarLook = 0;
+const avatarLooks = [
+ {kind:'dress',top:'#e8a8c0',bottom:'#343c58',hair:'#30252b'},
+ {kind:'trousers',top:'#f2eee6',bottom:'#536e91',hair:'#30252b'},
+ {kind:'skirt',top:'#7ecfc5',bottom:'#b96f87',hair:'#30252b'},
+ {kind:'outerwear',top:'#d8b27e',bottom:'#394d60',hair:'#30252b'},
+ {kind:'everyday',top:'#c7b5ed',bottom:'#39404c',hair:'#30252b'},
+ {kind:'dress',top:'#e4d9b8',bottom:'#6c8f85',hair:'#30252b'}
+];
+$('#generate').addEventListener('click',()=>{
+ const look=avatarLooks[generatedAvatarLook % avatarLooks.length];
+ generatedAvatarLook++;
+ const categoryButton=document.querySelector('[data-outfit="'+look.kind+'"]');
+ if(categoryButton) categoryButton.click();
+ avatar.style.setProperty('--top',look.top);
+ avatar.style.setProperty('--bottom',look.bottom);
+ avatar.style.setProperty('--hair',look.hair);
+ document.querySelectorAll('[data-top]').forEach(b=>b.classList.toggle('active',b.dataset.top===look.top));
+ document.querySelectorAll('[data-bottom]').forEach(b=>b.classList.toggle('active',b.dataset.bottom===look.bottom));
+ document.querySelectorAll('[data-hair]').forEach(b=>b.classList.toggle('active',b.dataset.hair===look.hair));
+ notify('New outfit applied to your character!');
+});
+
 
 const outfitLabels={everyday:'Everyday',top:'Tops',trousers:'Trousers',skirt:'Skirts',dress:'Dresses',outerwear:'Outerwear',shoes:'Shoes',accessories:'Accessories'};
 const avatar=document.querySelector('.avatar');
