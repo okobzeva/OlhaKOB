@@ -1,87 +1,49 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#75c9ce">
-<title>MUSE — Your personal AI stylist</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MUSE — Create Your Look</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
-:root{--ink:#f9ffff;--muted:#e0f7f5;--glass:rgba(255,255,255,.16);--edge:rgba(255,255,255,.3);--glow:#a4fff2;--accent:#d9ff70}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--ink);font-family:'DM Sans',sans-serif;background:radial-gradient(ellipse at 78% 36%,#91d8bc 0%,transparent 43%),radial-gradient(ellipse at 20% 24%,#73b7e8 0%,transparent 48%),linear-gradient(125deg,#367bb9,#50b5c6 55%,#82d6b4);overflow-x:hidden}
-button,select{font:inherit}button{cursor:pointer}.app{max-width:1500px;margin:auto;min-height:100vh;padding:24px 32px 28px;display:flex;flex-direction:column}
-header{display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;z-index:2}.brand{font-size:14px;font-weight:700;letter-spacing:.28em}.brand span{font-weight:400;opacity:.7}.top-note{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
-main{display:grid;grid-template-columns:minmax(220px,260px) minmax(320px,1fr) minmax(220px,260px);gap:24px;align-items:center;flex:1;padding-top:20px}
-.panel{background:var(--glass);border:1px solid var(--edge);border-radius:22px;box-shadow:0 12px 40px #145c7b12;backdrop-filter:blur(18px);padding:20px}.panel h2{font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin:0 0 20px;font-weight:700}.field{margin-bottom:18px}.field label{display:block;font-size:13px;margin-bottom:8px;color:#f4ffff}.field select{width:100%;border:1px solid #ffffff70;border-radius:12px;background:#ffffff20;color:#fff;padding:12px 34px 12px 12px;outline:none;appearance:auto}.field select option{color:#263f4a;background:#effbf8}.field select:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.hint{font-size:11px;line-height:1.5;color:#e4f9f6;opacity:.8}
-.center-stage{position:relative;min-height:680px;display:flex;align-items:center;justify-content:center;isolation:isolate}.stage-aura{position:absolute;width:min(72%,420px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#c6fff54a 0%,#b7fff31c 45%,transparent 72%);z-index:-1}.plumbob{position:absolute;top:2px;left:50%;transform:translateX(-50%);width:42px;height:70px;filter:drop-shadow(0 5px 10px #2b6b5938)}.plumbob svg{width:100%;height:100%}.character{height:min(76vh,670px);width:auto;max-width:100%;overflow:visible;filter:drop-shadow(0 16px 10px #174b6740);z-index:1}.floor-shadow{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);width:220px;height:28px;border-radius:50%;background:#1c547c55;filter:blur(8px);z-index:-1}.rotate{position:absolute;bottom:3px;display:flex;gap:16px}.rotate button{width:38px;height:38px;border:1px solid #ffffff65;background:#ffffff25;color:white;border-radius:50%;font-size:19px}.right-panel .mini-title{font-size:13px;font-weight:600;margin-bottom:12px}.swatches{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0 20px}.swatch{width:24px;height:24px;border:2px solid #ffffffb8;border-radius:50%;box-shadow:0 2px 7px #245f6a24}.swatch.active{outline:2px solid white;outline-offset:3px}.outfit-name{font-family:'Playfair Display',serif;font-size:25px;line-height:1.15;margin:6px 0 10px}.outfit-desc{font-size:12px;line-height:1.65;color:#effffb}.tag{display:inline-flex;padding:6px 10px;border:1px solid #ffffff6b;border-radius:100px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin:0 5px 7px 0}
-.generate{width:100%;border:0;border-radius:14px;padding:14px 16px;background:linear-gradient(100deg,#e2ff8a,#b4ffd7);color:#254d56;font-size:12px;font-weight:700;letter-spacing:.12em;box-shadow:0 7px 22px #184e5a24;transition:transform .2s,filter .2s}.generate:hover{transform:translateY(-2px);filter:brightness(1.04)}.status{min-height:20px;font-size:11px;margin-top:12px;color:#effff8}footer{display:flex;justify-content:space-between;gap:12px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.72;padding-top:16px}
-.character-removed{min-height:650px;background:transparent}.character-removed::before{content:"";display:block;width:100%;height:100%;min-height:inherit}.hidden{display:none!important}.clothing{transition:opacity .22s ease}.character.outfit-change{animation:pop .28s ease}@keyframes pop{0%{transform:translateY(4px) scale(.985);opacity:.75}100%{transform:translateY(0) scale(1);opacity:1}}
-@media(max-width:1000px){.app{padding:20px}main{grid-template-columns:220px minmax(260px,1fr);gap:16px}.center-stage{grid-column:2;grid-row:1 / span 2;min-height:650px}.right-panel{grid-column:1}.character{height:min(68vh,620px)}}
-@media(max-width:680px){.app{padding:16px}header{align-items:flex-start}.top-note{max-width:140px;text-align:right;font-size:10px}main{display:flex;flex-direction:column;align-items:stretch;gap:14px}.center-stage{order:0;min-height:530px;height:530px}.character{height:490px;max-width:100%}.left-panel{order:1}.right-panel{order:2}.panel{padding:17px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.field-grid .field:last-child{grid-column:1/-1}.plumbob{width:32px;height:54px}.floor-shadow{bottom:12px}footer{font-size:9px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+:root{color-scheme:dark;--ink:#f7fbff;--line:#ffffff45}*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(ellipse at 20% 28%,#70b9ec 0,transparent 42%),radial-gradient(ellipse at 82% 68%,#6ed7b3 0,transparent 40%),linear-gradient(125deg,#477bc0,#57b6bf 60%,#8bd4b1)}.app{min-height:100vh;max-width:1440px;margin:auto;padding:26px clamp(15px,3vw,44px);display:flex;flex-direction:column}header,footer{display:flex;justify-content:space-between;gap:16px;align-items:center}.brand{font-size:13px;letter-spacing:.28em;font-weight:800}.brand span{font-weight:400;opacity:.7}.top-note,.footer{font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}main{display:grid;grid-template-columns:minmax(155px,220px) minmax(250px,1fr) minmax(220px,275px);gap:clamp(14px,3vw,38px);align-items:center;flex:1;padding:18px 0}.filters{display:flex;flex-direction:column;gap:10px}.eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.75;margin:0 0 8px}.filter-button,.look-button{font:inherit;color:var(--ink);cursor:pointer;transition:transform .2s,background .2s,border-color .2s}.filter-button{display:flex;align-items:center;gap:12px;text-align:left;padding:11px 12px;border:1px solid transparent;border-radius:17px;background:#ffffff17}.filter-button:hover,.filter-button[aria-pressed=true]{background:#ffffff40;border-color:#ffffff75;transform:translateX(3px)}.round-icon{width:38px;height:38px;display:grid;place-items:center;flex:0 0 38px;border-radius:50%;background:#ffffff2b;font-size:18px}.filter-button strong{display:block;font-size:13px}.filter-button small{display:block;font-size:11px;opacity:.7;margin-top:3px}.stage{position:relative;height:min(76vh,820px);min-height:550px;display:flex;justify-content:center;align-items:flex-end;isolation:isolate}.stage:before{content:"";position:absolute;inset:7% 4% 4%;border-radius:50%;background:radial-gradient(ellipse,#ffffff38,#ffffff04 62%,transparent 72%);z-index:-2}.plumbob{position:absolute;top:2%;left:50%;transform:translateX(-50%);width:36px;height:59px;background:linear-gradient(115deg,#e6ff8d 0 24%,#8ce83b 25% 55%,#42b94d 56% 75%,#167e58 76%);clip-path:polygon(50% 0,100% 42%,50% 100%,0 42%);filter:drop-shadow(0 7px 12px #216d6680);z-index:2}.model-frame{height:100%;width:min(100%,440px);display:flex;align-items:flex-end;justify-content:center}.model{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 16px 16px #16394630);transition:opacity .18s,transform .3s}.model.is-changing{opacity:.15;transform:translateY(7px) scale(.985)}.ground-shadow{position:absolute;bottom:3.5%;width:43%;height:25px;border-radius:50%;background:#1c414d55;filter:blur(14px);z-index:-1}.stage-caption{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;opacity:.72}.panel{padding:20px;border:1px solid var(--line);border-radius:23px;background:linear-gradient(145deg,#ffffff38,#ffffff17);box-shadow:0 18px 60px #184b5814;backdrop-filter:blur(18px)}.panel h1{font-size:24px;line-height:1.08;letter-spacing:-.04em;margin:0 0 10px}.panel p{font-size:12px;line-height:1.6;opacity:.8;margin:0 0 18px}.looks{display:grid;grid-template-columns:1fr 1fr;gap:9px}.look-button{min-height:72px;padding:10px;border:1px solid #ffffff40;border-radius:14px;background:#ffffff1a;text-align:left}.look-button:hover,.look-button[aria-pressed=true]{background:#ffffff42;border-color:#fff;transform:translateY(-2px)}.dot{display:block;width:23px;height:5px;border-radius:8px;margin-bottom:9px;background:var(--tone,#fff)}.look-button strong{font-size:12px;display:block}.look-button small{font-size:10px;opacity:.72;display:block;margin-top:4px}.rule{height:1px;background:#ffffff38;margin:19px 0 14px}.detail-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.7}.look-title{font-size:15px;font-weight:700;margin:7px 0}.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.tag{font-size:10px;padding:6px 9px;border:1px solid #ffffff40;border-radius:20px;background:#ffffff12}.footer{padding-top:10px}@media(max-width:900px){main{grid-template-columns:150px minmax(230px,1fr);gap:14px}.panel{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}.panel-intro{grid-column:1}.looks{grid-column:2;grid-row:1/span 2}.panel .rule,.panel .details{grid-column:1}.stage{height:600px;min-height:520px}}@media(max-width:600px){.app{padding:19px 13px}.top-note{display:none}main{grid-template-columns:1fr;gap:14px}.stage{grid-row:1;height:65vh;min-height:450px;max-height:660px}.filters{grid-row:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.filters .eyebrow{grid-column:1/-1}.filter-button{padding:8px 3px;flex-direction:column;text-align:center;gap:5px;border-radius:12px}.round-icon{width:32px;height:32px;flex-basis:32px}.filter-button strong{font-size:10px}.filter-button small{display:none}.panel{grid-row:3;display:block;padding:16px}.panel h1{font-size:22px}.footer{font-size:8px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
-<body>
-<div class="app">
-<header><div class="brand">MUSE <span>/ YOUR DIGITAL STYLIST</span></div><div class="top-note">Create a look that feels like you</div></header>
+<body><div class="app">
+<header><div class="brand">MUSE <span>STUDIO</span></div><div class="top-note">Create a look · discover your style</div></header>
 <main>
-<section class="panel left-panel" aria-labelledby="filters-heading">
-<h2 id="filters-heading">Set the scene</h2>
-<div class="field-grid">
-<div class="field"><label for="event">Event type</label><select id="event"><option value="casual">Casual day</option><option value="party">Party</option><option value="date">Date night</option><option value="work">Work / study</option><option value="outdoors">Outdoor adventure</option></select></div>
-<div class="field"><label for="weather">Current weather</label><select id="weather"><option value="sunny">Sunny & warm</option><option value="cold">Cold</option><option value="rainy">Rainy</option><option value="mild">Mild / cloudy</option></select></div>
-<div class="field"><label for="mood">Current mood</label><select id="mood"><option value="relaxed">Relaxed</option><option value="bold">Bold</option><option value="cozy">Cozy</option><option value="romantic">Romantic</option></select></div>
-</div>
-<p class="hint">Change any filter to restyle your Sim instantly. Generate for another combination.</p>
-</section>
-<section class="center-stage character-removed" aria-label="Character preview removed"></section>
-<section class="panel right-panel" aria-live="polite">
-<h2>Today's look</h2><div class="mini-title">MUSE selection</div>
-<div id="tags"><span class="tag">Everyday</span><span class="tag">Sunny</span></div>
-<div id="outfitName" class="outfit-name">Soft essentials</div>
-<p id="outfitDesc" class="outfit-desc">A clean, easy outfit for moving through your day. Light layers and a relaxed silhouette keep it effortless.</p>
-<div class="swatches" aria-label="Outfit color options"><button class="swatch active" data-shirt="#f5f0e6" data-pants="#e9dfd0" style="background:#f5f0e6" aria-label="Cream outfit"></button><button class="swatch" data-shirt="#f2a9c7" data-pants="#9bb6cf" style="background:#f2a9c7" aria-label="Pink and blue outfit"></button><button class="swatch" data-shirt="#343b4b" data-pants="#354e64" style="background:#343b4b" aria-label="Dark outfit"></button><button class="swatch" data-shirt="#d8b7a7" data-pants="#8db4d2" style="background:#d8b7a7" aria-label="Cozy outfit"></button></div>
-<button class="generate" id="generate" type="button">✦ &nbsp; GENERATE OUTFIT</button><div id="status" class="status" role="status">Your Sim is ready to style.</div>
-</section>
-</main>
-<footer><span>Digital wardrobe · personal styling</span><span>Find your feeling. Wear your mood.</span></footer>
-</div>
+<nav class="filters" aria-label="Style filters"><p class="eyebrow">Choose your mood</p>
+<button class="filter-button" data-style="casual" aria-pressed="true"><span class="round-icon">✳</span><span><strong>Everyday</strong><small>Easy & effortless</small></span></button>
+<button class="filter-button" data-style="cozy" aria-pressed="false"><span class="round-icon">☁</span><span><strong>Cozy</strong><small>Soft layers</small></span></button>
+<button class="filter-button" data-style="street" aria-pressed="false"><span class="round-icon">◈</span><span><strong>Streetwear</strong><small>Modern & relaxed</small></span></button>
+<button class="filter-button" data-style="formal" aria-pressed="false"><span class="round-icon">✧</span><span><strong>Formal</strong><small>Polished finish</small></span></button></nav>
+<section class="stage" aria-label="Full-length model preview"><div class="plumbob" aria-hidden="true"></div><div class="model-frame"><img id="character" class="model" alt="Fashion model preview" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=90"></div><div class="ground-shadow"></div><div class="stage-caption">MUSE · Personal style preview</div></section>
+<aside class="panel"><div class="panel-intro"><p class="eyebrow">Your digital stylist</p><h1>Find your<br>next favourite look.</h1><p>Choose a style to update the model preview and explore a different outfit direction.</p></div>
+<div class="looks" aria-label="Outfit choices">
+<button class="look-button" data-style="casual" aria-pressed="true" style="--tone:#f2d8d2"><span class="dot"></span><strong>Casual</strong><small>Soft essentials</small></button>
+<button class="look-button" data-style="cozy" aria-pressed="false" style="--tone:#c4a18d"><span class="dot"></span><strong>Cozy knitwear</strong><small>Warm textures</small></button>
+<button class="look-button" data-style="street" aria-pressed="false" style="--tone:#38414c"><span class="dot"></span><strong>Streetwear</strong><small>City layers</small></button>
+<button class="look-button" data-style="formal" aria-pressed="false" style="--tone:#9b758e"><span class="dot"></span><strong>Formal</strong><small>Evening polish</small></button></div>
+<div class="rule"></div><div class="details"><div class="detail-label">Selected look</div><div class="look-title" id="look-title">Soft essentials</div><p id="look-description">An easy, polished base for everyday plans.</p><div class="tags" id="tags"><span class="tag">Everyday</span><span class="tag">Versatile</span></div></div></aside>
+</main><footer class="footer"><span>Personal style, reimagined</span><span>Build a wardrobe that feels like you</span></footer></div>
 <script>
 (() => {
-const $ = id => document.getElementById(id);
-const eventEl=$('event'), weatherEl=$('weather'), moodEl=$('mood');
 const looks={
- casual:{name:'Soft essentials',desc:'An easy everyday look with a fitted cream top and tailored shorts.',tags:['Everyday','Easy layers']},
- party:{name:'Golden hour',desc:'A playful party look for a statement moment.',tags:['Party','Statement']},
- cozy:{name:'Cloud-soft comfort',desc:'A relaxed knit look for chilly weather and maximum comfort.',tags:['Cozy','Comfort']},
- rain:{name:'City rain',desc:'A structured, weather-ready look for rainy days.',tags:['Weather-ready','Layered']}
+casual:{src:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=90",title:"Soft essentials",description:"An easy, polished base for everyday plans.",tags:["Everyday","Versatile"]},
+cozy:{src:"https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=90",title:"Cloud-soft comfort",description:"Warm, relaxed styling inspired by soft knitwear and tactile layers.",tags:["Comfort","Soft layers"]},
+street:{src:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=90",title:"Off-duty energy",description:"A contemporary streetwear direction with a confident, easy attitude.",tags:["City","Relaxed"]},
+formal:{src:"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=90",title:"Evening polish",description:"A refined fashion direction for events and special occasions.",tags:["Elevated","Occasion"]}
 };
-let current='casual';
-function chooseLook(){
- const e=eventEl.value,w=weatherEl.value,m=moodEl.value;
- if(w==='rainy') return 'rain';
- if(w==='cold'||m==='cozy') return 'cozy';
- if(e==='party'||(m==='bold'&&e!=='work')) return 'party';
- if(e==='date'&&m==='romantic') return 'party';
- if(e==='outdoors'&&w!=='sunny') return 'rain';
- return 'casual';
+const image=document.getElementById("character"),title=document.getElementById("look-title"),description=document.getElementById("look-description"),tags=document.getElementById("tags");
+let revision=0;
+function selectStyle(name){
+const look=looks[name];if(!look)return;const thisRevision=++revision;image.classList.add("is-changing");
+const preload=new Image();
+preload.onload=()=>{if(thisRevision!==revision)return;image.src=look.src;image.onload=()=>image.classList.remove("is-changing");if(image.complete)image.classList.remove("is-changing");};
+preload.onerror=()=>{if(thisRevision===revision)image.classList.remove("is-changing");};preload.src=look.src;
+title.textContent=look.title;description.textContent=look.description;
+tags.replaceChildren(...look.tags.map(text=>{const tag=document.createElement("span");tag.className="tag";tag.textContent=text;return tag;}));
+document.querySelectorAll("[data-style]").forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.style===name)));
 }
-function render(){
- current=chooseLook(); const look=looks[current];
- $('outfitName').textContent=look.name; $('outfitDesc').textContent=look.desc;
- const eventLabels={casual:'Casual',party:'Party',date:'Date night',work:'Work / study',outdoors:'Outdoors'};
- const weatherLabels={sunny:'Sunny',cold:'Cold',rainy:'Rainy',mild:'Mild'};
- const moodLabels={relaxed:'Relaxed',bold:'Bold',cozy:'Cozy',romantic:'Romantic'};
- $('tags').innerHTML='<span class="tag">'+eventLabels[eventEl.value]+'</span><span class="tag">'+weatherLabels[weatherEl.value]+'</span><span class="tag">'+moodLabels[moodEl.value]+'</span>';
- document.querySelectorAll('.swatch').forEach(b=>b.classList.remove('active'));
- $('status').textContent='Character removed. Outfit suggestions still update from your filters.';
-}
-[eventEl,weatherEl,moodEl].forEach(el=>el.addEventListener('change',render));
-$('generate').addEventListener('click',()=>{const order=['casual','party','cozy','rain'];current=order[(order.indexOf(current)+1)%order.length];const look=looks[current];$('outfitName').textContent=look.name;$('outfitDesc').textContent=look.desc;$('status').textContent='Suggested look: '+look.name+'. Character display is removed.';});
-document.querySelectorAll('.swatch').forEach(b=>b.addEventListener('click',()=>{$('status').textContent='Character display is removed; color swatches are inactive.';}));
-const prev=$('prevLook'),next=$('nextLook'); if(prev) prev.remove(); if(next) next.remove();
-render();
+document.querySelectorAll("[data-style]").forEach(button=>button.addEventListener("click",()=>selectStyle(button.dataset.style)));
+selectStyle("casual");
 })();
-</script>
-</body>
-</html>
+</script></body></html>
