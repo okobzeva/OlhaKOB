@@ -15,7 +15,7 @@ main{display:grid;grid-template-columns:minmax(220px,260px) minmax(320px,1fr) mi
 .panel{background:var(--glass);border:1px solid var(--edge);border-radius:22px;box-shadow:0 12px 40px #145c7b12;backdrop-filter:blur(18px);padding:20px}.panel h2{font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin:0 0 20px;font-weight:700}.field{margin-bottom:18px}.field label{display:block;font-size:13px;margin-bottom:8px;color:#f4ffff}.field select{width:100%;border:1px solid #ffffff70;border-radius:12px;background:#ffffff20;color:#fff;padding:12px 34px 12px 12px;outline:none;appearance:auto}.field select option{color:#263f4a;background:#effbf8}.field select:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.hint{font-size:11px;line-height:1.5;color:#e4f9f6;opacity:.8}
 .center-stage{position:relative;min-height:680px;display:flex;align-items:center;justify-content:center;isolation:isolate}.stage-aura{position:absolute;width:min(72%,420px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#c6fff54a 0%,#b7fff31c 45%,transparent 72%);z-index:-1}.plumbob{position:absolute;top:2px;left:50%;transform:translateX(-50%);width:42px;height:70px;filter:drop-shadow(0 5px 10px #2b6b5938)}.plumbob svg{width:100%;height:100%}.character{height:min(76vh,670px);width:auto;max-width:100%;overflow:visible;filter:drop-shadow(0 16px 10px #174b6740);z-index:1}.floor-shadow{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);width:220px;height:28px;border-radius:50%;background:#1c547c55;filter:blur(8px);z-index:-1}.rotate{position:absolute;bottom:3px;display:flex;gap:16px}.rotate button{width:38px;height:38px;border:1px solid #ffffff65;background:#ffffff25;color:white;border-radius:50%;font-size:19px}.right-panel .mini-title{font-size:13px;font-weight:600;margin-bottom:12px}.swatches{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0 20px}.swatch{width:24px;height:24px;border:2px solid #ffffffb8;border-radius:50%;box-shadow:0 2px 7px #245f6a24}.swatch.active{outline:2px solid white;outline-offset:3px}.outfit-name{font-family:'Playfair Display',serif;font-size:25px;line-height:1.15;margin:6px 0 10px}.outfit-desc{font-size:12px;line-height:1.65;color:#effffb}.tag{display:inline-flex;padding:6px 10px;border:1px solid #ffffff6b;border-radius:100px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin:0 5px 7px 0}
 .generate{width:100%;border:0;border-radius:14px;padding:14px 16px;background:linear-gradient(100deg,#e2ff8a,#b4ffd7);color:#254d56;font-size:12px;font-weight:700;letter-spacing:.12em;box-shadow:0 7px 22px #184e5a24;transition:transform .2s,filter .2s}.generate:hover{transform:translateY(-2px);filter:brightness(1.04)}.status{min-height:20px;font-size:11px;margin-top:12px;color:#effff8}footer{display:flex;justify-content:space-between;gap:12px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.72;padding-top:16px}
-.hidden{display:none!important}.clothing{transition:opacity .22s ease}.character.outfit-change{animation:pop .28s ease}@keyframes pop{0%{transform:translateY(4px) scale(.985);opacity:.75}100%{transform:translateY(0) scale(1);opacity:1}}
+.character-removed{min-height:650px;background:transparent}.character-removed::before{content:"";display:block;width:100%;height:100%;min-height:inherit}.hidden{display:none!important}.clothing{transition:opacity .22s ease}.character.outfit-change{animation:pop .28s ease}@keyframes pop{0%{transform:translateY(4px) scale(.985);opacity:.75}100%{transform:translateY(0) scale(1);opacity:1}}
 @media(max-width:1000px){.app{padding:20px}main{grid-template-columns:220px minmax(260px,1fr);gap:16px}.center-stage{grid-column:2;grid-row:1 / span 2;min-height:650px}.right-panel{grid-column:1}.character{height:min(68vh,620px)}}
 @media(max-width:680px){.app{padding:16px}header{align-items:flex-start}.top-note{max-width:140px;text-align:right;font-size:10px}main{display:flex;flex-direction:column;align-items:stretch;gap:14px}.center-stage{order:0;min-height:530px;height:530px}.character{height:490px;max-width:100%}.left-panel{order:1}.right-panel{order:2}.panel{padding:17px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.field-grid .field:last-child{grid-column:1/-1}.plumbob{width:32px;height:54px}.floor-shadow{bottom:12px}footer{font-size:9px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
@@ -34,84 +34,7 @@ main{display:grid;grid-template-columns:minmax(220px,260px) minmax(320px,1fr) mi
 </div>
 <p class="hint">Change any filter to restyle your Sim instantly. Generate for another combination.</p>
 </section>
-<section class="center-stage" aria-label="Live character preview">
-<div class="stage-aura"></div>
-<div class="plumbob" aria-hidden="true"><svg viewBox="0 0 42 70"><path d="M21 0L39 29 21 70 3 29Z" fill="#80d923"/><path d="M21 0L21 70 3 29Z" fill="#baff48"/><path d="M21 0L39 29 21 37 3 29Z" fill="#d4ff55"/><path d="M21 37L39 29 21 70Z" fill="#45a81f"/></svg></div>
-<div class="floor-shadow"></div>
-<svg id="character" class="character" viewBox="0 0 240 620" role="img" aria-label="Full-body stylized brunette woman wearing the current outfit" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<linearGradient id="skin" x1="0" y1="0" x2="1" y2=".1"><stop stop-color="#75452f"/><stop offset=".24" stop-color="#b97852"/><stop offset=".52" stop-color="#d99b70"/><stop offset=".78" stop-color="#b97852"/><stop offset="1" stop-color="#74432e"/></linearGradient>
-<linearGradient id="skinFace" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e8b18a"/><stop offset=".55" stop-color="#c98b64"/><stop offset="1" stop-color="#9d6046"/></linearGradient>
-<linearGradient id="hair" x1="0" y1="0" x2="1" y2=".1"><stop stop-color="#201719"/><stop offset=".2" stop-color="#56352d"/><stop offset=".43" stop-color="#2b1d20"/><stop offset=".62" stop-color="#704536"/><stop offset=".83" stop-color="#302023"/><stop offset="1" stop-color="#171316"/></linearGradient>
-<linearGradient id="cream" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf5"/><stop offset=".55" stop-color="var(--shirt,#f5f0e6)"/><stop offset="1" stop-color="#bdb5a9"/></linearGradient>
-<linearGradient id="denim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8db4d2"/><stop offset=".5" stop-color="var(--pants,#e9dfd0)"/><stop offset="1" stop-color="#4b748f"/></linearGradient>
-<linearGradient id="pink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffc5dc"/><stop offset="1" stop-color="#b84f87"/></linearGradient>
-<linearGradient id="black" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#55545b"/><stop offset="1" stop-color="#171c28"/></linearGradient>
-<linearGradient id="shoe" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#c9d7df"/></linearGradient>
-</defs>
-<!-- New character: dark wavy bob silhouette, distinct olive-brown complexion and facial structure -->
-<path d="M76 104Q48 78 57 47Q62 22 91 14Q121 4 150 17Q181 29 181 62Q186 83 165 115L170 161 150 196 83 193 63 155Z" fill="url(#hair)"/>
-<path d="M104 98L103 129 137 129 136 96Z" fill="url(#skinFace)"/>
-<ellipse cx="81" cy="85" rx="8" ry="12" fill="#bb7d57"/><ellipse cx="159" cy="85" rx="8" ry="12" fill="#bb7d57"/>
-<path d="M79 56Q88 31 119 30Q151 31 161 56L155 94Q148 121 120 132Q92 121 85 94Z" fill="url(#skinFace)"/>
-<!-- arched brows, almond dark-brown eyes, wider nose and confident smile -->
-<path d="M89 69Q101 59 114 67M127 67Q140 58 151 69" fill="none" stroke="#35201d" stroke-width="4.2" stroke-linecap="round"/>
-<path d="M87 76L81 70Q99 66 115 75Q104 86 92 81Z M125 75Q141 66 159 70L153 76 147 81Q136 86 125 75Z" fill="#251b1b"/>
-<path d="M92 76Q103 71 112 76Q104 82 94 80ZM129 76Q139 71 148 76Q139 82 131 80Z" fill="#f7eee0"/>
-<ellipse cx="103" cy="77" rx="4.3" ry="4.7" fill="#513b2b"/><ellipse cx="139" cy="77" rx="4.3" ry="4.7" fill="#513b2b"/><circle cx="104" cy="76" r="1.4" fill="#fff"/><circle cx="140" cy="76" r="1.4" fill="#fff"/>
-<path d="M120 78L112 96Q120 101 128 95" fill="none" stroke="#9d6046" stroke-width="2.4" stroke-linecap="round"/>
-<path d="M102 108Q120 116 138 107Q131 123 120 123Q109 122 102 108Z" fill="#87434a"/><path d="M108 109Q120 113 132 108" stroke="#fbe7d9" stroke-width="2" fill="none" stroke-linecap="round"/>
-<path d="M91 96Q99 100 106 97M134 97Q141 100 149 96" stroke="#d99877" stroke-width="2" fill="none" opacity=".7"/>
-<!-- short, layered brunette waves frame the face instead of the old long blonde hair -->
-<path d="M77 58Q66 76 73 99Q68 124 79 148Q84 163 97 174Q88 142 98 119Q106 95 100 78Q111 57 120 43Q99 37 77 58Z" fill="url(#hair)"/>
-<path d="M163 58Q174 76 167 99Q172 124 161 148Q156 163 143 174Q152 142 142 119Q134 95 140 78Q129 57 120 43Q141 37 163 58Z" fill="url(#hair)"/>
-<g fill="none" stroke="#8b5a43" stroke-width="2.8" stroke-linecap="round"><path d="M78 59Q70 85 81 106T84 146Q86 158 94 166"/><path d="M91 50Q82 75 94 100T96 137Q94 151 101 160"/><path d="M162 59Q170 85 159 106T156 146Q154 158 146 166"/><path d="M149 50Q158 75 146 100T144 137Q146 151 139 160"/></g>
-<!-- athletic adult body, warm brown skin -->
-<path d="M91 139Q78 137 70 151Q62 166 58 198L46 278Q44 293 53 296Q62 297 65 283L81 211 98 175Z" fill="url(#skin)"/>
-<path d="M149 139Q162 137 170 151Q178 166 182 198L194 278Q196 293 187 296Q178 297 175 283L159 211 142 175Z" fill="url(#skin)"/>
-<path d="M95 133Q106 142 120 142Q134 142 145 133L158 160 150 226 151 265 89 265 90 226 82 160Z" fill="url(#skin)"/>
-<path d="M91 256Q105 262 119 258L118 343Q114 371 105 404L95 479Q94 495 84 500L72 494Q75 467 72 436L65 370Q62 324 71 270Z" fill="url(#skin)"/>
-<path d="M121 258Q137 262 151 256L169 270Q178 324 175 370L168 436Q165 467 168 494L156 500Q146 495 145 479L135 404Q126 371 122 343Z" fill="url(#skin)"/>
-<!-- Outfit 1: cream casual top and tailored shorts -->
-<g id="look-casual" class="clothing">
-<path d="M94 143Q106 151 120 151Q134 151 146 143L158 162 150 224Q136 237 120 237Q104 237 90 224L82 162Z" fill="url(#cream)" stroke="#d5c9b9" stroke-width="1.5"/>
-<path d="M95 146Q120 163 145 146M92 222Q120 230 148 222" fill="none" stroke="#fff" stroke-width="2" opacity=".9"/>
-<path d="M91 235Q120 244 149 235L160 294Q140 302 122 295L120 288 117 295Q99 302 80 294Z" fill="url(#cream)" stroke="#c8bba9" stroke-width="1.5"/>
-<path d="M120 245V289M92 250Q120 260 148 250M89 257L93 286M151 257L147 286" fill="none" stroke="#c6b9a7" stroke-width="1.5"/>
-</g>
-<!-- Outfit 2: knit cardigan and skirt -->
-<g id="look-party" class="clothing hidden">
-<path d="M96 141Q108 150 120 150Q132 150 144 141L158 163 150 226 120 238 90 226 82 163Z" fill="#d9b7a6" stroke="#f1d9cf" stroke-width="1.5"/>
-<path d="M105 150L111 229M135 150L129 229M96 177H144M94 185H146M94 193H146" fill="none" stroke="#f5e2d8" stroke-width="2"/>
-<path d="M89 235Q120 245 151 235L164 300Q120 316 76 300Z" fill="#8c596b" stroke="#d7aab7" stroke-width="1.5"/>
-<path d="M82 254Q120 264 158 254M79 271Q120 281 161 271M77 288Q120 298 163 288" fill="none" stroke="#c88fa0" stroke-width="1.6"/>
-</g>
-<!-- Outfit 3: white tee and blue denim -->
-<g id="look-cozy" class="clothing hidden">
-<path d="M94 143Q106 151 120 151Q134 151 146 143L158 162 150 224Q136 237 120 237Q104 237 90 224L82 162Z" fill="#f8f6ef" stroke="#d4dce0" stroke-width="1.5"/>
-<path d="M120 158V230M95 146Q120 160 145 146" fill="none" stroke="#d9dfe0" stroke-width="1.5"/>
-<path d="M88 235Q120 245 152 235L166 351 146 361 123 355 120 343 117 355 94 361 74 351Z" fill="#345b83" stroke="#91b2d0" stroke-width="1.5"/>
-<path d="M120 249V343M91 252Q120 263 149 252M91 265L98 345M149 265L142 345" fill="none" stroke="#9dbbd4" stroke-width="1.5"/>
-<circle cx="120" cy="250" r="2.5" fill="#dce7ee"/>
-</g>
-<!-- Outfit 4: dark streetwear jacket and relaxed trousers -->
-<g id="look-rain" class="clothing hidden">
-<path d="M94 143Q106 151 120 151Q134 151 146 143L158 162 150 224Q136 237 120 237Q104 237 90 224L82 162Z" fill="#e7dfd5" stroke="#fff" stroke-width="1.5"/>
-<path d="M95 145L82 162 90 231 113 240 120 158 127 240 150 231 158 162 145 145 133 156 120 151 107 156Z" fill="#30333d" stroke="#9c9ca7" stroke-width="1.5"/>
-<path d="M120 159V233M98 170L110 185M142 170L130 185" fill="none" stroke="#c7c8d0" stroke-width="2"/>
-<path d="M88 235Q120 245 152 235L166 351 146 361 123 355 120 343 117 355 94 361 74 351Z" fill="#343847" stroke="#8d93a2" stroke-width="1.5"/>
-<path d="M120 249V343M91 252Q120 263 149 252" fill="none" stroke="#777d8c" stroke-width="1.5"/>
-</g>
-<!-- socks and trainers -->
-<path d="M73 483L94 483 98 526Q98 538 86 541L57 541Q49 537 55 527Z" fill="#f7f0e6" stroke="#c4d0d6" stroke-width="1.5"/>
-<path d="M146 483L167 483 185 527Q191 537 181 541L151 541Q140 538 142 526Z" fill="#f7f0e6" stroke="#c4d0d6" stroke-width="1.5"/>
-<path d="M57 533H95M145 533H185M67 510L84 522M62 517L87 517M151 510L170 522M149 517L176 517" stroke="#b5c5ce" stroke-width="2" fill="none"/>
-<!-- sculpted bob crown -->
-<path d="M77 61Q67 31 91 17Q119 2 146 18Q171 34 163 63Q145 44 130 43Q107 39 92 49Z" fill="url(#hair)"/>
-<path d="M93 24Q82 44 90 60M111 17Q101 38 108 51M137 19Q153 39 147 54" stroke="#8b5a43" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-</svg>
-<div class="rotate" aria-label="Character controls"><button type="button" id="prevLook" aria-label="Previous outfit">↶</button><button type="button" id="nextLook" aria-label="Next outfit">↷</button></div>
-</section>
+<section class="center-stage character-removed" aria-label="Character preview removed"></section>
 <section class="panel right-panel" aria-live="polite">
 <h2>Today's look</h2><div class="mini-title">MUSE selection</div>
 <div id="tags"><span class="tag">Everyday</span><span class="tag">Sunny</span></div>
@@ -126,14 +49,14 @@ main{display:grid;grid-template-columns:minmax(220px,260px) minmax(320px,1fr) mi
 <script>
 (() => {
 const $ = id => document.getElementById(id);
-const eventEl=$('event'), weatherEl=$('weather'), moodEl=$('mood'), character=$('character');
+const eventEl=$('event'), weatherEl=$('weather'), moodEl=$('mood');
 const looks={
- casual:{id:'casual',name:'Soft essentials',desc:'An easy everyday look with a fitted cream top and tailored shorts. Simple, polished, and ready for the day.',tags:['Everyday','Easy layers'],shirt:'#f5f0e6',pants:'#e9dfd0'},
- party:{id:'party',name:'Golden hour',desc:'A playful party mini with a warm blush finish. Made for a statement moment and a little extra confidence.',tags:['Party','Statement'],shirt:'#f2a9c7',pants:'#9bb6cf'},
- cozy:{id:'cozy',name:'Cloud-soft comfort',desc:'A relaxed knit and soft joggers for a cozy mood, chilly weather, and maximum comfort.',tags:['Cozy','Comfort'],shirt:'#d8b7a7',pants:'#8db4d2'},
- rain:{id:'rain',name:'City rain',desc:'A structured weather-ready jacket and deep-toned trousers for rainy days and an on-the-go schedule.',tags:['Weather-ready','Layered'],shirt:'#343b4b',pants:'#354e64'}
+ casual:{name:'Soft essentials',desc:'An easy everyday look with a fitted cream top and tailored shorts.',tags:['Everyday','Easy layers']},
+ party:{name:'Golden hour',desc:'A playful party look for a statement moment.',tags:['Party','Statement']},
+ cozy:{name:'Cloud-soft comfort',desc:'A relaxed knit look for chilly weather and maximum comfort.',tags:['Cozy','Comfort']},
+ rain:{name:'City rain',desc:'A structured, weather-ready look for rainy days.',tags:['Weather-ready','Layered']}
 };
-let current='casual', colorOverride=null;
+let current='casual';
 function chooseLook(){
  const e=eventEl.value,w=weatherEl.value,m=moodEl.value;
  if(w==='rainy') return 'rain';
@@ -143,26 +66,21 @@ function chooseLook(){
  if(e==='outdoors'&&w!=='sunny') return 'rain';
  return 'casual';
 }
-function render(animate=true){
+function render(){
  current=chooseLook(); const look=looks[current];
- document.querySelectorAll('.clothing').forEach(el=>el.classList.toggle('hidden',el.id!=='look-'+look.id));
  $('outfitName').textContent=look.name; $('outfitDesc').textContent=look.desc;
  const eventLabels={casual:'Casual',party:'Party',date:'Date night',work:'Work / study',outdoors:'Outdoors'};
  const weatherLabels={sunny:'Sunny',cold:'Cold',rainy:'Rainy',mild:'Mild'};
  const moodLabels={relaxed:'Relaxed',bold:'Bold',cozy:'Cozy',romantic:'Romantic'};
  $('tags').innerHTML='<span class="tag">'+eventLabels[eventEl.value]+'</span><span class="tag">'+weatherLabels[weatherEl.value]+'</span><span class="tag">'+moodLabels[moodEl.value]+'</span>';
- const colors=colorOverride||{shirt:look.shirt,pants:look.pants};
- character.style.setProperty('--shirt',colors.shirt); character.style.setProperty('--pants',colors.pants);
- document.querySelectorAll('.swatch').forEach(b=>b.classList.toggle('active',b.dataset.shirt===colors.shirt&&b.dataset.pants===colors.pants));
- if(animate){character.classList.remove('outfit-change');void character.getBoundingClientRect();character.classList.add('outfit-change');}
- $('status').textContent='Applied: '+look.name+'. Character outfit updated.';
+ document.querySelectorAll('.swatch').forEach(b=>b.classList.remove('active'));
+ $('status').textContent='Character removed. Outfit suggestions still update from your filters.';
 }
-[eventEl,weatherEl,moodEl].forEach(el=>el.addEventListener('change',()=>{colorOverride=null;render();}));
-$('generate').addEventListener('click',()=>{colorOverride=null;const order=['casual','party','cozy','rain'];const preferred=chooseLook();current=order[(order.indexOf(current)+1)%order.length];if(current===preferred)current=order[(order.indexOf(current)+1)%order.length];const l=looks[current];document.querySelectorAll('.clothing').forEach(el=>el.classList.toggle('hidden',el.id!=='look-'+l.id));$('outfitName').textContent=l.name;$('outfitDesc').textContent=l.desc;character.style.setProperty('--shirt',l.shirt);character.style.setProperty('--pants',l.pants);colorOverride=null;document.querySelectorAll('.swatch').forEach(b=>b.classList.toggle('active',b.dataset.shirt===l.shirt&&b.dataset.pants===l.pants));const labels={casual:'Casual',party:'Party',cozy:'Cozy',rain:'Rain-ready'};$('status').textContent='Generated: '+l.name+'. The character has changed outfits.';character.classList.remove('outfit-change');void character.getBoundingClientRect();character.classList.add('outfit-change');$('tags').innerHTML='<span class="tag">'+labels[current]+'</span><span class="tag">'+weatherEl.options[weatherEl.selectedIndex].text+'</span><span class="tag">'+moodEl.options[moodEl.selectedIndex].text+'</span>';});
-document.querySelectorAll('.swatch').forEach(b=>b.addEventListener('click',()=>{colorOverride={shirt:b.dataset.shirt,pants:b.dataset.pants};character.style.setProperty('--shirt',colorOverride.shirt);character.style.setProperty('--pants',colorOverride.pants);document.querySelectorAll('.swatch').forEach(x=>x.classList.toggle('active',x===b));$('status').textContent='Color palette applied to the visible outfit.';}));
-$('prevLook').addEventListener('click',()=>cycle(-1));$('nextLook').addEventListener('click',()=>cycle(1));
-function cycle(direction){const order=['casual','party','cozy','rain'];const next=(order.indexOf(current)+direction+order.length)%order.length;const l=looks[order[next]];eventEl.value=order[next]==='party'?'party':order[next]==='rain'?'outdoors':order[next]==='cozy'?'work':'casual';weatherEl.value=order[next]==='rain'?'rainy':order[next]==='cozy'?'cold':'sunny';moodEl.value=order[next]==='party'?'bold':order[next]==='cozy'?'cozy':'relaxed';colorOverride=null;render();}
-render(false);
+[eventEl,weatherEl,moodEl].forEach(el=>el.addEventListener('change',render));
+$('generate').addEventListener('click',()=>{const order=['casual','party','cozy','rain'];current=order[(order.indexOf(current)+1)%order.length];const look=looks[current];$('outfitName').textContent=look.name;$('outfitDesc').textContent=look.desc;$('status').textContent='Suggested look: '+look.name+'. Character display is removed.';});
+document.querySelectorAll('.swatch').forEach(b=>b.addEventListener('click',()=>{$('status').textContent='Character display is removed; color swatches are inactive.';}));
+const prev=$('prevLook'),next=$('nextLook'); if(prev) prev.remove(); if(next) next.remove();
+render();
 })();
 </script>
 </body>
