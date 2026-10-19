@@ -1,288 +1,166 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f4efe7">
-<title>MUSE — Your personal stylist</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#75c9ce">
+<title>MUSE — Your personal AI stylist</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
-:root{--paper:#f6f2ec;--white:#fffdf9;--ink:#292722;--muted:#898378;--line:#e5ded3;--accent:#9b8067;--soft:#eee7dd}
-*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px 'DM Sans',sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-header{height:68px;padding:0 5vw;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:var(--white)}.brand{font-size:22px;font-weight:700;letter-spacing:5px}.brand small{display:block;font-size:8px;font-weight:500;letter-spacing:2px;color:var(--muted);margin-top:3px}.nav{display:flex;gap:8px}.nav button,.quiet{border:0;background:transparent;padding:10px 12px;color:var(--muted);font-size:12px}.nav button.active{color:var(--ink);border-bottom:1px solid var(--ink)}
-main{max-width:1180px;margin:auto;padding:38px 24px 70px}.intro{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:25px}.eyebrow{font-size:10px;letter-spacing:2px;color:var(--accent);font-weight:700}.intro h1{font:500 clamp(30px,4vw,48px) 'Playfair Display',serif;margin:8px 0}.intro p{color:var(--muted);margin:0;line-height:1.6}.layout{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(0,1.15fr);gap:18px}.card{background:var(--white);border:1px solid var(--line);border-radius:4px;min-width:0}.card-head{padding:20px 22px 0;display:flex;justify-content:space-between;gap:12px;align-items:center}.card h2{font:500 22px 'Playfair Display',serif;margin:0}.sub{font-size:11px;color:var(--muted);margin-top:5px}.avatar-stage{margin:18px;height:300px;background:#e9e0d5;display:grid;place-items:center;position:relative;overflow:hidden}.avatar-stage:before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:#d8c9b7;top:35px}.avatar{position:relative;height:270px;width:180px;z-index:1}.avatar-stage .label{position:absolute;bottom:12px;left:14px;font-size:9px;letter-spacing:1.5px;color:#6f6254;z-index:2}.avatar-controls{padding:0 18px 20px;display:grid;gap:15px}.field{display:grid;gap:7px}.field label{font-size:10px;letter-spacing:1.2px;color:var(--muted);font-weight:700}.choices{display:flex;flex-wrap:wrap;gap:6px}.choice{border:1px solid var(--line);background:transparent;padding:8px 11px;font-size:11px;color:var(--muted);border-radius:2px}.choice.active{background:var(--ink);color:white;border-color:var(--ink)}.color-row{display:flex;gap:8px}.color{width:24px;height:24px;border-radius:50%;border:2px solid var(--white);box-shadow:0 0 0 1px var(--line)}.color.active{box-shadow:0 0 0 2px var(--accent)}
-.preferences{padding:20px 22px;display:grid;gap:20px}.select{width:100%;border:1px solid var(--line);background:var(--white);padding:10px;color:var(--ink);border-radius:2px}.primary{background:var(--ink);color:white;border:1px solid var(--ink);padding:13px 16px;border-radius:2px;font-size:11px;letter-spacing:1px;font-weight:700}.primary:hover{background:#4a453d}.secondary{border:1px solid var(--line);background:transparent;color:var(--ink);padding:9px 12px;font-size:11px;border-radius:2px}.section{margin-top:35px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:14px}.section-head h2{font:500 28px 'Playfair Display',serif;margin:0}.section-head p{font-size:11px;color:var(--muted);margin:5px 0 0}.looks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.look{border:1px solid var(--line);background:var(--white);min-width:0}.look-visual{height:155px;display:grid;place-items:center;background:#e9e0d5;position:relative}.look:nth-child(2) .look-visual{background:#e4e7df}.look:nth-child(3) .look-visual{background:#e9dfe0}.look-visual svg{height:140px;width:120px}.look-body{padding:15px}.look-body h3{font:500 18px 'Playfair Display',serif;margin:0}.look-body p{font-size:11px;color:var(--muted);line-height:1.5;min-height:32px}.look-items{font-size:10px;line-height:1.7;color:#6e685e;min-height:45px}.look-actions{display:flex;gap:7px;margin-top:12px}.look-actions button{flex:1}.closet{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}.garment{border:1px solid var(--line);padding:8px;background:var(--white)}.garment img{width:100%;height:120px;object-fit:cover}.garment p{font-size:10px;color:var(--muted);overflow-wrap:anywhere}.empty{border:1px dashed #cfc5b7;padding:28px;text-align:center;color:var(--muted);font-size:12px;grid-column:1/-1}.hidden{display:none!important}.upload{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.upload input{font-size:11px;max-width:100%}.note{font-size:10px;color:var(--muted);line-height:1.6}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,15px);background:var(--ink);color:white;padding:11px 16px;font-size:11px;opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:760px){header{height:auto;min-height:64px;padding:12px 18px;align-items:flex-start;gap:10px}.nav{gap:0;flex-wrap:wrap;justify-content:flex-end}.nav button{padding:8px;font-size:10px}main{padding:27px 14px 50px}.intro{align-items:flex-start;flex-direction:column}.layout{grid-template-columns:1fr}.avatar-stage{height:270px}.looks{grid-template-columns:1fr}.look{display:grid;grid-template-columns:120px 1fr}.look-visual{height:100%;min-height:190px}.look-visual svg{height:160px;width:105px}.look-body{padding:13px}.look-body p,.look-items{min-height:0}.section-head h2{font-size:24px}}
-
-/* MUSE visual refresh: playful life-simulation game energy */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap');
-:root{--paper:#eaf6fc;--white:#ffffff;--ink:#29445b;--muted:#6f899b;--line:#c9e2ef;--accent:#2da8c7;--soft:#dff4f5;--mint:#75d9bc;--blue:#75c8ef;--lav:#c8c8f3;--shadow:0 5px 0 rgba(61,135,174,.12),0 12px 28px rgba(64,129,164,.10)}
-body{background:radial-gradient(ellipse at 10% 0%,#d8f2ff 0,transparent 38%),radial-gradient(ellipse at 95% 20%,#e3f8ee 0,transparent 34%),var(--paper);color:var(--ink);font-family:'Nunito',sans-serif;font-weight:600}
-header{height:78px;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);border-bottom:2px solid #fff;box-shadow:0 4px 18px #478bad16}
-.brand{font:700 25px 'Fredoka',sans-serif;letter-spacing:3px;color:#268eb6}.brand small{font:800 9px 'Nunito',sans-serif;letter-spacing:1.7px;color:#80a1b4}
-.nav button{font-weight:800;color:#7895a6;border-radius:14px;padding:11px 15px;transition:.18s}.nav button:hover{background:#e8f8fc;color:#247ea6}.nav button.active{background:linear-gradient(135deg,#d9f6ff,#e0f8ed);border:1px solid #b6e5ed;color:#247ea6;box-shadow:inset 0 -3px #8dd8df}
-main{max-width:1240px;padding-top:34px}.eyebrow{font-size:11px;letter-spacing:1.8px;color:#2598b9;font-weight:900}.intro h1{font:600 clamp(34px,4vw,50px) 'Fredoka',sans-serif;letter-spacing:-.5px;color:#294f6d}.intro p{font-weight:600;color:#718da0}
-.card{border:2px solid #fff;border-radius:22px;background:rgba(255,255,255,.88);box-shadow:var(--shadow);overflow:hidden}.card-head{padding:22px 23px 0}.card h2,.section-head h2{font:600 24px 'Fredoka',sans-serif;color:#315975}.sub,.section-head p{font-weight:600;color:#83a0b1}
-.avatar-stage{margin:18px;border:2px solid white;border-radius:20px;background:linear-gradient(145deg,#c7edff 0%,#d9f7ee 55%,#e7e2ff 100%);box-shadow:inset 0 0 0 1px #b4ddec;min-height:315px}
-.avatar-stage:before{width:230px;height:230px;top:48px;background:linear-gradient(135deg,#e8f9ff,#b8e2f5);box-shadow:0 10px 24px #4b98b51c}
-.avatar{height:285px;width:185px;filter:drop-shadow(0 7px 3px #3d6f851b)}
-.avatar-stage .label{background:#ffffffc9;border:1px solid #fff;border-radius:20px;padding:6px 10px;color:#4d879c;font-weight:900;letter-spacing:1.2px}
-.avatar-controls{gap:17px}.field label{font-size:10px;letter-spacing:1.3px;color:#7597aa;font-weight:900}
-.color{width:28px;height:28px;box-shadow:0 0 0 2px #fff,0 2px 5px #376a811e}.color.active{box-shadow:0 0 0 3px #36b4c7,0 3px 7px #376a811c}
-.choices{gap:7px}.choice{border:1.5px solid #cfe4ed;border-radius:12px;background:#f8fcfe;color:#6f8c9e;font-weight:800;padding:9px 12px;transition:.16s}.choice:hover{border-color:#80cfdd;background:#effcff}.choice.active{background:linear-gradient(135deg,#54bce0,#69d4c2);border-color:transparent;color:#fff;box-shadow:0 3px 0 #3b9fb7}
-.preferences{gap:22px}.select{border:1.5px solid #cfe4ed;border-radius:12px;background:#fafdff;padding:12px;color:#345970;font-weight:700}
-.primary{border:0;border-radius:14px;background:linear-gradient(135deg,#46b7df,#65d4bb);box-shadow:0 4px 0 #3199b5,0 8px 15px #4caac526;color:#fff;font-weight:900;letter-spacing:1px;padding:14px 16px;transition:transform .15s,box-shadow .15s}.primary:hover{background:linear-gradient(135deg,#35a9d2,#54c9ae);transform:translateY(-2px);box-shadow:0 6px 0 #3199b5,0 10px 18px #4caac52c}.primary:active{transform:translateY(2px);box-shadow:0 1px 0 #3199b5}
-.secondary{border:1.5px solid #c8e2ed;border-radius:11px;background:#f5fbfe;color:#47819b;font-weight:900;padding:9px 12px}.secondary:hover{background:#e5f8fc;border-color:#91d8e4}
-.section{margin-top:38px}.look{border:2px solid #fff;border-radius:19px;overflow:hidden;box-shadow:var(--shadow);background:#fff}.look-visual{background:linear-gradient(145deg,#d9f1fb,#e4f8ee)}.look:nth-child(2) .look-visual{background:linear-gradient(145deg,#e2e4ff,#d9f5f2)}.look:nth-child(3) .look-visual{background:linear-gradient(145deg,#ffe7ed,#e7edff)}.look-visual svg{filter:drop-shadow(0 5px 2px #416c821c)}.look-body h3{font:600 19px 'Fredoka',sans-serif;color:#315975}.look-body p,.look-items{font-weight:600;color:#7894a5}.look-actions button{border-radius:10px}
-.garment{border:2px solid #fff;border-radius:15px;box-shadow:0 5px 15px #5489a212;overflow:hidden}.garment img{border-radius:9px;background:#eaf6fc}.empty{border:2px dashed #bddde9;border-radius:18px;background:#f8fcfe;color:#7596a8}
-.note{font-weight:600;color:#8ba2b0}.toast{border-radius:14px;background:#294e67;box-shadow:0 8px 25px #244b632b;font-weight:800}
-@media(max-width:760px){header{align-items:center;gap:8px}.brand{font-size:22px}.nav button{padding:8px 9px}.avatar-stage{min-height:285px}.intro h1{line-height:1.08}}
-
-/* Create-a-Sim character stage */
-.avatar-stage{margin:18px;min-height:330px;height:330px;border-radius:22px;background:radial-gradient(ellipse at 50% 42%,#ffffff 0%,#e8f8ff 36%,#cceefa 72%,#d8f6e9 100%);box-shadow:inset 0 0 0 1px #ffffffb8,inset 0 -18px 35px #91d9e526}
-.avatar-stage:before{width:250px;height:250px;top:58px;background:linear-gradient(145deg,#e5e4ff,#d8f8ef);box-shadow:0 12px 35px #73bad51c}
-.avatar-stage:after{content:"";position:absolute;bottom:34px;left:12%;width:76%;height:24px;border-radius:50%;background:#80bdc52b;filter:blur(10px)}
-.avatar{height:258px;width:166px;transform:translateY(22px);filter:drop-shadow(0 8px 4px #426c8220)}
-.plumbob{position:absolute;z-index:3;top:9px;left:calc(50% - 22px);width:44px;height:65px;filter:drop-shadow(0 0 7px #5ce8c8a6) drop-shadow(0 5px 5px #2589a333);animation:plumbob-float 2.6s ease-in-out infinite}
-@keyframes plumbob-float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-5px) rotate(2deg)}}
-.avatar-stage .label{bottom:12px;left:14px;padding:7px 10px;border:1px solid #ffffffb8;border-radius:999px;background:#ffffffa8;color:#4c8296;font-weight:900;backdrop-filter:blur(8px)}
-.card h2{font-family:'Fredoka',sans-serif;font-weight:600;color:#315975}
-.avatar-controls{padding-top:2px}
-.avatar-controls .field{padding:12px 13px;border:1px solid #d9edf4;border-radius:15px;background:linear-gradient(120deg,#fbfeff,#f3fcf8)}
-.avatar-controls .field label{color:#6d95a7;font-family:'Fredoka',sans-serif;font-size:11px}
-.color{width:28px;height:28px;transition:transform .15s,box-shadow .15s}.color:hover{transform:scale(1.1)}
-@media(max-width:760px){.avatar-stage{height:320px;min-height:320px}.avatar{height:250px}.plumbob{top:10px}}
-
-/* Outfit selection stage and category rail */
-#styleView .layout{grid-template-columns:minmax(300px,.9fr) minmax(0,1.1fr);align-items:start}
-#styleView .layout>.card:first-child{background:transparent;border:0;box-shadow:none;overflow:visible}
-#styleView .layout>.card:first-child .card-head{padding:8px 8px 0}
-#styleView .avatar-stage{height:min(62vh,560px);min-height:430px;margin:14px 0 0;border:0;border-radius:0;box-shadow:none;background:radial-gradient(ellipse at 50% 40%,#b7edee 0%,#83cce4 43%,#4d91c6 100%);overflow:hidden}
-#styleView .avatar-stage:before{width:280px;height:280px;top:60px;background:radial-gradient(circle,#d9fff1 0%,#9ce4df 60%,#75c9d9 100%);opacity:.62}
-#styleView .avatar-stage:after{content:"";position:absolute;bottom:36px;width:125px;height:18px;border-radius:50%;background:#174d7350;filter:blur(7px)}
-#styleView .avatar{height:min(53vh,470px);width:220px;transform:translateY(12px);z-index:2;filter:drop-shadow(0 9px 7px #164d6c30)}
-#styleView .avatar-stage .label{bottom:12px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#ffffffb8;color:#236b91}
-.outfit-picker{margin:14px 0 0;padding:14px 0 0;border-top:1px solid #ffffffad}
-.picker-title{display:flex;justify-content:space-between;align-items:center;font:700 11px 'Fredoka',sans-serif;letter-spacing:1px;color:#377b9b;margin-bottom:10px}
-.picker-title span{font:700 11px 'Nunito',sans-serif;letter-spacing:0;color:#6e9eb1}
-.category-rail{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.category{display:flex;min-width:0;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:10px 4px;border:1px solid #ffffff;background:#ffffffa6;color:#5c91a8;border-radius:16px;font-size:10px;font-weight:900;box-shadow:0 3px 0 #5ba9c51a;transition:.16s}
-.category span{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:linear-gradient(145deg,#e1f8ff,#dff8ec);font-size:18px;color:#348eaf}
-.category:hover{transform:translateY(-2px);background:#fff}
-.category.active{background:linear-gradient(145deg,#48b8df,#65d5bb);color:#fff;border-color:transparent;box-shadow:0 4px 0 #3099b5}
-.category.active span{background:#ffffff35;color:#fff}
-.outfit-hint{font-size:11px;line-height:1.5;color:#6e98ac;margin:10px 0 0}
-.avatar-controls{margin-top:16px;padding:15px;border-radius:18px;background:#ffffffbd;border:1px solid #ffffff}
-#styleView .layout>.card:nth-child(2){border-radius:26px}
-#outfitTop,#outfitBottom{transition:fill .18s}
-#styleView .avatar[data-outfit="skirt"] #outfitBottom{d:path("M70 179 L110 179 L126 258 L54 258Z")}
-#styleView .avatar[data-outfit="dress"] #outfitTop{d:path("M76 84 Q90 94 104 84 L117 92 Q124 96 121 110 L131 226 L119 246 L61 246 L49 226 L59 110 Q56 96 64 92Z")}
-#styleView .avatar[data-outfit="dress"] #outfitBottom{opacity:0}
-#styleView .avatar[data-outfit="outerwear"] #outfitTop{d:path("M76 84 Q90 94 104 84 L121 89 L130 118 L119 126 L115 180 L65 180 L61 126 L50 118 L59 89Z")}
-@media(max-width:760px){#styleView .layout{grid-template-columns:1fr}#styleView .avatar-stage{height:430px;min-height:430px}#styleView .avatar{height:370px;width:205px}.category-rail{grid-template-columns:repeat(4,minmax(0,1fr))}}
-
-.category-rail{grid-template-columns:repeat(4,minmax(0,1fr))}
-.category{min-height:76px;cursor:pointer}
-.category:focus-visible{outline:3px solid #287fa5;outline-offset:2px}
-#outfitShoes,#outfitAccessories{transition:opacity .2s}
-.avatar[data-outfit="shoes"] #outfitShoes{opacity:1}
-.avatar[data-outfit="accessories"] #outfitAccessories{opacity:1}
-.avatar[data-outfit="dress"] #outfitTop{stroke-width:1.6}
-
-/* Full-screen Create-a-Sim inspired layout */
-body:has(#styleView.active){background:#68b9c8}
-body:has(#styleView.active) header{position:absolute;z-index:20;top:14px;left:16px;right:16px;background:transparent;border:0;box-shadow:none;padding:0}
-body:has(#styleView.active) header .brand{background:#fff;border-radius:999px;padding:9px 18px;box-shadow:0 2px 12px #194d7220}
-body:has(#styleView.active) header .nav{background:#ffffff4a;border:1px solid #ffffff52;border-radius:999px;padding:4px}
-body:has(#styleView.active) main{max-width:none;padding:0;margin:0}
-body:has(#styleView.active) .intro{display:none}
-#styleView.active{position:relative;min-height:calc(100vh - 8px);padding:0 0 20px;overflow:hidden;background:linear-gradient(110deg,#3379c7 0%,#62b9d7 43%,#48c4a1 100%)}
-#styleView.active .layout{display:block;min-height:calc(100vh - 8px);margin:0;max-width:none}
-#styleView.active .layout>.card:first-child{position:static;padding:0;margin:0;min-height:calc(100vh - 8px)}
-#styleView.active .layout>.card:first-child .card-head{position:absolute;top:74px;left:50%;transform:translateX(-50%);z-index:4;padding:0;text-align:center}
-#styleView.active .layout>.card:first-child .card-head h2{display:none}
-#styleView.active .layout>.card:first-child .card-head .sub{display:none}
-#styleView.active .avatar-stage{position:absolute;inset:0 0 0 0;height:100%;min-height:100vh;margin:0;background:radial-gradient(ellipse at 51% 49%,#a8e9e5 0%,#78cbd8 36%,#4188c9 100%);display:flex;align-items:center;justify-content:center}
-#styleView.active .avatar-stage:before{width:390px;height:390px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#d6fff0 0%,#9be2dd 54%,#8bc9df 100%);opacity:.5}
-#styleView.active .avatar-stage:after{bottom:8.5%;left:50%;transform:translateX(-50%);width:220px;height:22px;background:#174a655c;filter:blur(8px);z-index:1}
-#styleView.active .avatar{height:min(78vh,690px);width:auto;max-width:30vw;transform:translate(-8%,2vh);z-index:3;filter:drop-shadow(0 8px 5px #174a6530)}
-#styleView.active .plumbob{top:8%;left:calc(50% - 24px);width:48px;height:72px;z-index:5}
-#styleView.active .avatar-stage .label{display:none}
-#styleView.active .outfit-picker{position:absolute;z-index:8;left:calc(50% + 125px);top:13%;width:205px;margin:0;padding:0;border:0}
-#styleView.active .picker-title{display:none}
-#styleView.active .category-rail{display:flex;flex-direction:column;gap:7px}
-#styleView.active .category{display:grid;grid-template-columns:48px 1fr;align-items:center;text-align:left;gap:9px;min-height:55px;padding:4px 8px;border:0;border-radius:999px;background:transparent;color:#fff;box-shadow:none;font-size:12px;text-shadow:0 1px 3px #2c779a55}
-#styleView.active .category span{width:44px;height:44px;border:1px solid #ffffff66;background:#ffffff4d;color:#337eb1;font-size:21px;box-shadow:0 2px 8px #1c72941c}
-#styleView.active .category.active{background:transparent;color:#fff;box-shadow:none}
-#styleView.active .category.active span{background:#3e9fe9;border:2px solid #fff;box-shadow:0 0 0 4px #ffffff28,0 0 16px #a9f5ff}
-#styleView.active .avatar-controls{position:absolute;z-index:9;right:2.8%;top:21%;width:220px;margin:0;padding:0;background:transparent;border:0;display:flex;flex-direction:column;gap:9px}
-#styleView.active .avatar-controls .field{padding:12px 14px;border:1px solid #ffffff2c;border-radius:17px;background:#ffffff58;backdrop-filter:blur(10px)}
-#styleView.active .avatar-controls .field label{font-family:'Nunito',sans-serif;font-size:12px;font-weight:900;color:#286c92;margin-bottom:8px}
-#styleView.active .color-row{gap:8px}
-#styleView.active .color{width:34px;height:34px;border:2px solid #ffffffb8;box-shadow:0 2px 6px #286d8b25}
-#styleView.active .color.active{outline:2px solid #fff;outline-offset:2px}
-#styleView.active .layout>.card:nth-child(2){display:none}
-#styleView.active .outfit-hint{display:none}
-@media(max-width:850px){
- body:has(#styleView.active) header{top:8px;left:8px;right:8px}
- body:has(#styleView.active) header .brand small{display:none}
- body:has(#styleView.active) header .nav button{font-size:11px;padding:7px}
- #styleView.active .avatar{height:58vh;max-width:44vw;transform:translate(-23%,4vh)}
- #styleView.active .outfit-picker{left:auto;right:2%;top:17%;width:135px}
- #styleView.active .category{grid-template-columns:38px 1fr;font-size:10px;min-height:43px;padding:2px}
- #styleView.active .category span{width:34px;height:34px;font-size:17px}
- #styleView.active .avatar-controls{top:auto;right:2%;bottom:4%;width:150px;gap:5px}
- #styleView.active .avatar-controls .field{padding:7px}
- #styleView.active .avatar-controls .field label{font-size:10px;margin-bottom:4px}
- #styleView.active .color{width:23px;height:23px}
-}
-
-/* More lifelike, consistent avatar silhouette; still a lightweight SVG prototype, not a true 3D model */
-#styleView.active .avatar{height:min(78vh,690px);width:auto;max-width:30vw;aspect-ratio:180/300;transform:translate(0,2vh);overflow:visible;filter:drop-shadow(0 10px 7px #16435b30)}
-#styleView.active .avatar-stage:after{bottom:7.5%;width:210px;height:24px;background:#143f5a70;filter:blur(9px)}
-#styleView.active .avatar-stage:before{width:340px;height:430px;top:52%;background:radial-gradient(ellipse,#d7fff0a8 0%,#9ce2e07a 48%,#8bc9df00 75%);opacity:1}
-#styleView.active .outfit-picker{left:calc(50% + min(15vw,190px));top:16%;width:190px}
-#styleView.active .avatar-controls{right:2.8%;top:23%;width:205px}
-#styleView.active .avatar-controls .field{background:#eaffff35;border-color:#ffffff45;box-shadow:0 6px 18px #145c7930}
-#styleView.active .category span{transition:box-shadow .18s,transform .18s}
-#styleView.active .category.active span{transform:scale(1.06);box-shadow:0 0 0 4px #ffffff38,0 0 20px #b8ffff}
-@media(max-width:850px){
- #styleView.active .avatar{height:56vh;max-width:42vw;transform:translate(-20%,4vh)}
- #styleView.active .outfit-picker{left:auto;right:2%;top:17%;width:130px}
- #styleView.active .avatar-controls{right:2%;bottom:3%;top:auto;width:140px}
-}
-
+:root{--ink:#f9ffff;--muted:#e0f7f5;--glass:rgba(255,255,255,.16);--edge:rgba(255,255,255,.3);--glow:#a4fff2;--accent:#d9ff70}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--ink);font-family:'DM Sans',sans-serif;background:radial-gradient(ellipse at 78% 36%,#91d8bc 0%,transparent 43%),radial-gradient(ellipse at 20% 24%,#73b7e8 0%,transparent 48%),linear-gradient(125deg,#367bb9,#50b5c6 55%,#82d6b4);overflow-x:hidden}
+button,select{font:inherit}button{cursor:pointer}.app{max-width:1500px;margin:auto;min-height:100vh;padding:24px 32px 28px;display:flex;flex-direction:column}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;z-index:2}.brand{font-size:14px;font-weight:700;letter-spacing:.28em}.brand span{font-weight:400;opacity:.7}.top-note{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+main{display:grid;grid-template-columns:minmax(220px,260px) minmax(320px,1fr) minmax(220px,260px);gap:24px;align-items:center;flex:1;padding-top:20px}
+.panel{background:var(--glass);border:1px solid var(--edge);border-radius:22px;box-shadow:0 12px 40px #145c7b12;backdrop-filter:blur(18px);padding:20px}.panel h2{font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin:0 0 20px;font-weight:700}.field{margin-bottom:18px}.field label{display:block;font-size:13px;margin-bottom:8px;color:#f4ffff}.field select{width:100%;border:1px solid #ffffff70;border-radius:12px;background:#ffffff20;color:#fff;padding:12px 34px 12px 12px;outline:none;appearance:auto}.field select option{color:#263f4a;background:#effbf8}.field select:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.hint{font-size:11px;line-height:1.5;color:#e4f9f6;opacity:.8}
+.center-stage{position:relative;min-height:680px;display:flex;align-items:center;justify-content:center;isolation:isolate}.stage-aura{position:absolute;width:min(72%,420px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#c6fff54a 0%,#b7fff31c 45%,transparent 72%);z-index:-1}.plumbob{position:absolute;top:2px;left:50%;transform:translateX(-50%);width:42px;height:70px;filter:drop-shadow(0 5px 10px #2b6b5938)}.plumbob svg{width:100%;height:100%}.character{height:min(76vh,670px);width:auto;max-width:100%;overflow:visible;filter:drop-shadow(0 16px 10px #174b6740);z-index:1}.floor-shadow{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);width:220px;height:28px;border-radius:50%;background:#1c547c55;filter:blur(8px);z-index:-1}.rotate{position:absolute;bottom:3px;display:flex;gap:16px}.rotate button{width:38px;height:38px;border:1px solid #ffffff65;background:#ffffff25;color:white;border-radius:50%;font-size:19px}.right-panel .mini-title{font-size:13px;font-weight:600;margin-bottom:12px}.swatches{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0 20px}.swatch{width:24px;height:24px;border:2px solid #ffffffb8;border-radius:50%;box-shadow:0 2px 7px #245f6a24}.swatch.active{outline:2px solid white;outline-offset:3px}.outfit-name{font-family:'Playfair Display',serif;font-size:25px;line-height:1.15;margin:6px 0 10px}.outfit-desc{font-size:12px;line-height:1.65;color:#effffb}.tag{display:inline-flex;padding:6px 10px;border:1px solid #ffffff6b;border-radius:100px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin:0 5px 7px 0}
+.generate{width:100%;border:0;border-radius:14px;padding:14px 16px;background:linear-gradient(100deg,#e2ff8a,#b4ffd7);color:#254d56;font-size:12px;font-weight:700;letter-spacing:.12em;box-shadow:0 7px 22px #184e5a24;transition:transform .2s,filter .2s}.generate:hover{transform:translateY(-2px);filter:brightness(1.04)}.status{min-height:20px;font-size:11px;margin-top:12px;color:#effff8}footer{display:flex;justify-content:space-between;gap:12px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.72;padding-top:16px}
+.hidden{display:none!important}.clothing{transition:opacity .22s ease}.character.outfit-change{animation:pop .28s ease}@keyframes pop{0%{transform:translateY(4px) scale(.985);opacity:.75}100%{transform:translateY(0) scale(1);opacity:1}}
+@media(max-width:1000px){.app{padding:20px}main{grid-template-columns:220px minmax(260px,1fr);gap:16px}.center-stage{grid-column:2;grid-row:1 / span 2;min-height:650px}.right-panel{grid-column:1}.character{height:min(68vh,620px)}}
+@media(max-width:680px){.app{padding:16px}header{align-items:flex-start}.top-note{max-width:140px;text-align:right;font-size:10px}main{display:flex;flex-direction:column;align-items:stretch;gap:14px}.center-stage{order:0;min-height:530px;height:530px}.character{height:490px;max-width:100%}.left-panel{order:1}.right-panel{order:2}.panel{padding:17px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.field-grid .field:last-child{grid-column:1/-1}.plumbob{width:32px;height:54px}.floor-shadow{bottom:12px}footer{font-size:9px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<header><div class="brand">MUSE<small>YOUR PERSONAL STYLIST</small></div><nav class="nav"><button class="active" data-view="style">Style</button><button data-view="closet">My closet <span id="closetCount">0</span></button><button data-view="saved">Saved looks <span id="savedCount">0</span></button></nav></header>
+<div class="app">
+<header><div class="brand">MUSE <span>/ YOUR DIGITAL STYLIST</span></div><div class="top-note">Create a look that feels like you</div></header>
 <main>
-<section class="intro"><div><div class="eyebrow">GET DRESSED, SIMPLY</div><h1>A wardrobe that works for you.</h1><p>Choose how you feel, add what you own, and find an outfit without overthinking it.</p></div></section>
-<section id="styleView">
-<div class="layout">
-<article class="card"><div class="card-head"><div><h2>Create-a-Sim</h2><div class="sub">Build your character · customise your look</div></div></div>
-<div class="avatar-stage"><svg class="avatar" viewBox="0 0 180 300" role="img" aria-label="Full body stylized Sims inspired woman, long blonde hair, green eyes, athletic curvy build" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="skin" x2="1"><stop stop-color="#b66f4f"/><stop offset=".5" stop-color="#f0b18a"/><stop offset="1" stop-color="#b66f4f"/></linearGradient><linearGradient id="hair" x2="1"><stop stop-color="#bd8049"/><stop offset=".3" stop-color="#ffe1a0"/><stop offset=".6" stop-color="#dca45f"/><stop offset=".8" stop-color="#ffe5a9"/><stop offset="1" stop-color="#a86e43"/></linearGradient><linearGradient id="shirt" x2="1" y2="1"><stop stop-color="#fff9ef"/><stop offset="1" stop-color="var(--top,#f4f0e8)"/></linearGradient><linearGradient id="pants" x2="1" y2="1"><stop stop-color="#fff5e5"/><stop offset="1" stop-color="var(--bottom,#e8dfd0)"/></linearGradient></defs>
-<path d="M58 55Q34 24 62 8Q90-5 115 13Q142 34 126 76L135 130 117 154 61 151 44 132 51 81Z" fill="url(#hair)"/>
-<path d="M78 57V80H102V56Z" fill="url(#skin)"/><path d="M62 29Q65 9 90 10Q115 9 118 30L114 55Q108 73 90 78Q72 73 66 55Z" fill="url(#skin)"/>
-<path d="M68 38Q77 31 86 38M94 38Q103 31 112 37" fill="none" stroke="#55372c" stroke-width="3" stroke-linecap="round"/><path d="M67 44L61 39Q78 38 87 44Q78 51 70 47ZM93 44Q103 38 119 39L113 44 110 47Q101 51 93 44Z" fill="#292226"/><path d="M71 44Q78 41 85 44L78 48ZM96 44Q103 41 110 44L103 48Z" fill="#fdf6e9"/><circle cx="79" cy="44" r="3" fill="#7da56c"/><circle cx="103" cy="44" r="3" fill="#7da56c"/><circle cx="80" cy="43" r="1" fill="#fff"/><circle cx="104" cy="43" r="1" fill="#fff"/>
-<path d="M90 46L86 57Q90 60 94 56" fill="none" stroke="#b97859" stroke-width="1.5"/><g fill="#a9674b"><circle cx="74" cy="55" r="1"/><circle cx="80" cy="57" r="1"/><circle cx="86" cy="56" r=".8"/><circle cx="95" cy="56" r=".8"/><circle cx="101" cy="57" r="1"/><circle cx="107" cy="55" r="1"/></g><path d="M79 65Q90 70 101 64Q96 74 90 73Q83 72 79 65Z" fill="#a95f5b"/><path d="M82 66Q90 68 98 65" stroke="#fff" stroke-width="1.5" fill="none"/>
-<path d="M61 22Q43 40 49 73T50 130Q52 147 65 153Q58 126 66 104T67 63Q82 43 92 22Z" fill="url(#hair)"/><path d="M108 20Q136 39 128 69T131 126Q128 146 115 153Q121 124 113 104T114 63Q101 43 91 22Z" fill="url(#hair)"/><g fill="none" stroke="#ffe6ad" stroke-width="2" stroke-linecap="round"><path d="M63 27Q49 49 57 75T59 136"/><path d="M70 22Q57 48 66 70T68 137"/><path d="M109 25Q126 48 117 73T118 139"/><path d="M101 22Q118 46 108 70T110 136"/></g>
-<path d="M73 79Q62 77 55 87L43 123 38 159Q38 169 45 168L52 160 63 120 69 105Z" fill="url(#skin)"/><path d="M107 79Q118 77 125 87L137 123 142 159Q142 169 135 168L128 160 117 120 111 105Z" fill="url(#skin)"/><path d="M73 77Q90 86 107 77L117 89 111 122 108 144H72L69 122 63 89Z" fill="url(#skin)"/><path id="outfitTop" d="M73 82Q90 92 107 82L116 89 111 120Q90 130 69 120L64 89Z" fill="url(#shirt)" stroke="#d5c9b9" stroke-width="1.2"/><path d="M74 85Q90 94 106 85M72 120Q90 125 108 120" stroke="#fff" stroke-width="1.5" fill="none"/><path id="outfitBottom" d="M68 142Q90 148 112 142L116 172Q102 177 92 172L90 168 87 172Q76 177 64 172Z" fill="url(#pants)" stroke="#b7aa98" stroke-width="1.2"/><path d="M90 149V169M68 151Q90 157 113 151" stroke="#c3b5a2" fill="none"/>
-<path d="M66 172Q80 176 88 172L88 204 80 242 75 273 61 275 62 239 58 207 59 177Z" fill="url(#skin)"/><path d="M92 172Q103 176 115 172L121 178 119 211 115 239 116 274 102 275 96 240 91 204Z" fill="url(#skin)"/><path d="M62 264H75V283H61ZM103 264H116V283H102Z" fill="#fff8ee"/><path d="M61 280Q68 277 75 281L80 289Q80 294 74 295H52Q48 292 52 287ZM102 281Q109 277 116 281L125 287Q129 292 123 295H101Q97 293 98 289Z" fill="#eef2f1" stroke="#aab8c0"/><path d="M53 290H78M99 290H126" stroke="#aab8c0" stroke-width="1.5"/></svg><svg class="plumbob" viewBox="0 0 50 74" aria-hidden="true"><defs><linearGradient id="plumbobGlow" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#faffff"/><stop offset=".42" stop-color="#70e6c2"/><stop offset="1" stop-color="#24a6c8"/></linearGradient></defs><path d="M25 1 L47 37 L25 73 L3 37Z" fill="url(#plumbobGlow)" stroke="#fff" stroke-width="2.5"/><path d="M25 4 L25 70 L4 37Z" fill="#fff" opacity=".38"/><path d="M25 10 L38 37 L25 61 L12 37Z" fill="none" stroke="#fff" stroke-width="1.5" opacity=".9"/></svg><span class="label">MUSE / YOUR LOOK</span></div>
-<div class="outfit-picker" aria-label="Choose outfit category">
-<div class="picker-title">OUTFIT CATEGORIES <span id="outfitName">Everyday</span></div>
-<div class="category-rail">
-<button class="category active" data-outfit="everyday" aria-pressed="true"><span>◉</span>Everyday</button>
-<button class="category" data-outfit="top" aria-pressed="false"><span>♧</span>Tops</button>
-<button class="category" data-outfit="trousers" aria-pressed="false"><span>▥</span>Trousers</button>
-<button class="category" data-outfit="skirt" aria-pressed="false"><span>◒</span>Skirts</button>
-<button class="category" data-outfit="dress" aria-pressed="false"><span>♙</span>Dresses</button>
-<button class="category" data-outfit="outerwear" aria-pressed="false"><span>▤</span>Outerwear</button>
-<button class="category" data-outfit="shoes" aria-pressed="false"><span>⌁</span>Shoes</button>
-<button class="category" data-outfit="accessories" aria-pressed="false"><span>✧</span>Accessories</button>
+<section class="panel left-panel" aria-labelledby="filters-heading">
+<h2 id="filters-heading">Set the scene</h2>
+<div class="field-grid">
+<div class="field"><label for="event">Event type</label><select id="event"><option value="casual">Casual day</option><option value="party">Party</option><option value="date">Date night</option><option value="work">Work / study</option><option value="outdoors">Outdoor adventure</option></select></div>
+<div class="field"><label for="weather">Current weather</label><select id="weather"><option value="sunny">Sunny & warm</option><option value="cold">Cold</option><option value="rainy">Rainy</option><option value="mild">Mild / cloudy</option></select></div>
+<div class="field"><label for="mood">Current mood</label><select id="mood"><option value="relaxed">Relaxed</option><option value="bold">Bold</option><option value="cozy">Cozy</option><option value="romantic">Romantic</option></select></div>
 </div>
-<p class="outfit-hint">Choose a category to preview a clothing silhouette on the same character. Hair and garment colours stay available in the swatch panels.</p>
-</div><div class="avatar-controls"><div class="field"><label>TOP</label><div class="color-row"><button class="color active" style="background:#f5f1e9" data-top="#f5f1e9" aria-label="Ivory top"></button><button class="color" style="background:#242321" data-top="#242321" aria-label="Black top"></button><button class="color" style="background:#b8c1b5" data-top="#b8c1b5" aria-label="Sage top"></button><button class="color" style="background:#b58b83" data-top="#b58b83" aria-label="Rose top"></button></div></div><div class="field"><label>BOTTOM</label><div class="color-row"><button class="color active" style="background:#393a3b" data-bottom="#393a3b" aria-label="Charcoal bottoms"></button><button class="color" style="background:#b9a58b" data-bottom="#b9a58b" aria-label="Taupe bottoms"></button><button class="color" style="background:#d7d1c6" data-bottom="#d7d1c6" aria-label="Cream bottoms"></button><button class="color" style="background:#424f63" data-bottom="#424f63" aria-label="Navy bottoms"></button></div></div><div class="field"><label>HAIR</label><div class="color-row"><button class="color active" style="background:#d7ad68" data-hair="#d7ad68" aria-label="Blonde hair"></button><button class="color" style="background:#4b4037" data-hair="#4b4037" aria-label="Brown hair"></button><button class="color" style="background:#242321" data-hair="#242321" aria-label="Black hair"></button><button class="color" style="background:#8b5d50" data-hair="#8b5d50" aria-label="Auburn hair"></button></div></div></div></article>
-<article class="card"><div class="card-head"><div><h2>What do you need today?</h2><div class="sub">Just three choices, then let MUSE help.</div></div></div><div class="preferences">
-<div class="field"><label>OCCASION</label><div class="choices" data-group="occasion"><button class="choice active" data-value="Everyday">Everyday</button><button class="choice" data-value="Work">Work</button><button class="choice" data-value="Date">Date</button><button class="choice" data-value="Going out">Going out</button></div></div>
-<div class="field"><label>MOOD</label><div class="choices" data-group="mood"><button class="choice active" data-value="Comfortable">Comfortable</button><button class="choice" data-value="Confident">Confident</button><button class="choice" data-value="Relaxed">Relaxed</button><button class="choice" data-value="Elegant">Elegant</button></div></div>
-<div class="field"><label>WEATHER</label><select class="select" id="weather"><option value="Mild">Mild / changeable</option><option value="Warm">Warm</option><option value="Hot">Hot</option><option value="Cold">Cold</option><option value="Rainy">Rainy</option></select></div>
-<div class="field"><label>USE MY WARDROBE</label><div class="choices" data-group="source"><button class="choice active" data-value="own">Mostly clothes I own</button><button class="choice" data-value="ideas">Give me new ideas</button></div></div>
-<button class="primary" id="generate">CREATE MY OUTFIT</button><p class="note">MUSE is a styling prototype. Outfit categories change SVG clothing silhouettes on one persistent character; this is not a rigged 3D avatar and does not yet use real garment assets.</p></div></article>
-</div>
-<section class="section"><div class="section-head"><div><h2>Today's outfit ideas</h2><p>Simple combinations to get you moving.</p></div><button class="secondary" id="refresh">Refresh ideas ↻</button></div><div class="looks" id="looks"></div></section>
+<p class="hint">Change any filter to restyle your Sim instantly. Generate for another combination.</p>
 </section>
-<section id="closetView" class="hidden"><div class="section-head"><div><h2>My closet</h2><p>Add photos of clothes you already own.</p></div></div><div class="card" style="padding:20px;margin-bottom:16px"><div class="upload"><input id="photos" type="file" accept="image/*" multiple><select class="select" id="category" style="width:auto"><option>Top</option><option>Bottom</option><option>Dress</option><option>Outerwear</option><option>Shoes</option><option>Bag</option><option>Accessory</option></select><button class="primary" id="addClothes">ADD TO CLOSET</button></div><p class="note">Photos stay in this browser on this device. Add a few items to make outfit suggestions more personal.</p></div><div class="closet" id="closet"></div></section>
-<section id="savedView" class="hidden"><div class="section-head"><div><h2>Saved looks</h2><p>Your favourite combinations, all in one place.</p></div></div><div class="looks" id="savedLooks"></div></section>
-</main><div class="toast" id="toast"></div>
+<section class="center-stage" aria-label="Live character preview">
+<div class="stage-aura"></div>
+<div class="plumbob" aria-hidden="true"><svg viewBox="0 0 42 70"><path d="M21 0L39 29 21 70 3 29Z" fill="#80d923"/><path d="M21 0L21 70 3 29Z" fill="#baff48"/><path d="M21 0L39 29 21 37 3 29Z" fill="#d4ff55"/><path d="M21 37L39 29 21 70Z" fill="#45a81f"/></svg></div>
+<div class="floor-shadow"></div>
+<svg id="character" class="character" viewBox="0 0 240 620" role="img" aria-label="Full-body stylized 3D-game-inspired woman character wearing the current outfit" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="skin" x1="0" y1="0" x2="1" y2=".1"><stop stop-color="#9b573d"/><stop offset=".23" stop-color="#d88d67"/><stop offset=".52" stop-color="#f1b38e"/><stop offset=".78" stop-color="#d88d67"/><stop offset="1" stop-color="#a25e43"/></linearGradient>
+<linearGradient id="skinFace" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7c39e"/><stop offset=".55" stop-color="#dfa079"/><stop offset="1" stop-color="#bd7958"/></linearGradient>
+<linearGradient id="hair" x1="0" y1="0" x2="1" y2=".1"><stop stop-color="#a66c3f"/><stop offset=".2" stop-color="#f7d18a"/><stop offset=".43" stop-color="#d39a59"/><stop offset=".62" stop-color="#ffe2a1"/><stop offset=".83" stop-color="#c58a4c"/><stop offset="1" stop-color="#8f5938"/></linearGradient>
+<linearGradient id="cream" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf5"/><stop offset=".55" stop-color="var(--shirt,#f5f0e6)"/><stop offset="1" stop-color="#bdb5a9"/></linearGradient>
+<linearGradient id="denim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8db4d2"/><stop offset=".5" stop-color="var(--pants,#e9dfd0)"/><stop offset="1" stop-color="#4b748f"/></linearGradient>
+<linearGradient id="pink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffc5dc"/><stop offset="1" stop-color="#b84f87"/></linearGradient>
+<linearGradient id="black" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#55545b"/><stop offset="1" stop-color="#171c28"/></linearGradient>
+<linearGradient id="shoe" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#c9d7df"/></linearGradient>
+</defs>
+<!-- back hair and ears -->
+<path d="M76 103Q48 73 67 40Q83 11 119 16Q157 13 176 44Q194 72 170 122L177 191 154 250 78 247 58 187Z" fill="url(#hair)"/>
+<path d="M104 91L102 126 138 126 136 90Z" fill="url(#skinFace)"/>
+<ellipse cx="81" cy="83" rx="8" ry="13" fill="#d99670"/><ellipse cx="159" cy="83" rx="8" ry="13" fill="#d99670"/>
+<!-- face, shaped brows and eyes -->
+<path d="M79 56Q84 29 120 28Q156 29 161 56L155 91Q149 117 120 128Q91 117 85 91Z" fill="url(#skinFace)"/>
+<path d="M91 68Q103 58 113 66M127 66Q139 58 150 67" fill="none" stroke="#593a2c" stroke-width="4" stroke-linecap="round"/>
+<path d="M88 75L81 69Q99 67 115 74Q105 84 93 80Z M125 74Q141 67 159 69L152 75 147 80Q135 84 125 74Z" fill="#2a2224"/>
+<path d="M93 75Q103 71 112 75Q104 81 95 79ZM129 75Q139 71 148 75Q139 81 131 79Z" fill="#fff7e9"/>
+<ellipse cx="103" cy="76" rx="4.2" ry="4.8" fill="#739c68"/><ellipse cx="139" cy="76" rx="4.2" ry="4.8" fill="#739c68"/><circle cx="104" cy="75" r="1.5" fill="#fff"/><circle cx="140" cy="75" r="1.5" fill="#fff"/>
+<path d="M120 77L114 94Q120 98 126 94" fill="none" stroke="#bd7958" stroke-width="2" stroke-linecap="round"/>
+<g fill="#a9674b" opacity=".75"><circle cx="96" cy="93" r="1.2"/><circle cx="103" cy="96" r="1.3"/><circle cx="111" cy="94" r="1"/><circle cx="129" cy="94" r="1"/><circle cx="137" cy="96" r="1.3"/><circle cx="144" cy="93" r="1.2"/></g>
+<path d="M104 107Q120 113 136 106Q130 122 120 121Q110 120 104 107Z" fill="#a85d5d"/><path d="M109 108Q120 112 131 107" stroke="#fff3e9" stroke-width="2" fill="none" stroke-linecap="round"/>
+<!-- front curtain and long wavy blonde hair -->
+<path d="M78 58Q65 75 73 103Q68 134 79 162Q84 184 99 199Q88 158 99 133Q106 111 100 90Q112 65 121 47Q99 38 78 58Z" fill="url(#hair)"/>
+<path d="M162 57Q177 74 168 104Q178 135 165 163Q159 186 145 200Q154 159 142 132Q135 110 141 90Q129 65 120 47Q143 38 162 57Z" fill="url(#hair)"/>
+<g fill="none" stroke="#ffe5a8" stroke-width="2.4" stroke-linecap="round"><path d="M81 61Q70 88 81 112T84 159Q86 176 96 190"/><path d="M92 53Q81 79 94 105T96 149Q94 168 102 181"/><path d="M159 61Q170 88 159 112T156 159Q154 176 144 190"/><path d="M148 53Q159 79 146 105T144 149Q146 168 138 181"/></g>
+<!-- body behind clothes, muscular arms, legs -->
+<path d="M91 139Q78 137 70 151Q62 166 58 198L46 278Q44 293 53 296Q62 297 65 283L81 211 98 175Z" fill="url(#skin)"/>
+<path d="M149 139Q162 137 170 151Q178 166 182 198L194 278Q196 293 187 296Q178 297 175 283L159 211 142 175Z" fill="url(#skin)"/>
+<path d="M95 133Q106 142 120 142Q134 142 145 133L158 160 150 226 151 265 89 265 90 226 82 160Z" fill="url(#skin)"/>
+<path d="M91 256Q105 262 119 258L118 343Q114 371 105 404L95 479Q94 495 84 500L72 494Q75 467 72 436L65 370Q62 324 71 270Z" fill="url(#skin)"/>
+<path d="M121 258Q137 262 151 256L169 270Q178 324 175 370L168 436Q165 467 168 494L156 500Q146 495 145 479L135 404Q126 371 122 343Z" fill="url(#skin)"/>
+<!-- clothing layer A: casual top and shorts -->
+<g id="look-casual" class="clothing">
+<path d="M94 143Q106 151 120 151Q134 151 146 143L158 162 150 224Q136 237 120 237Q104 237 90 224L82 162Z" fill="url(#cream)" stroke="#d5c9b9" stroke-width="1.5"/>
+<path d="M95 146Q120 163 145 146M92 222Q120 230 148 222" fill="none" stroke="#fff" stroke-width="2" opacity=".9"/>
+<path d="M91 235Q120 244 149 235L160 294Q140 302 122 295L120 288 117 295Q99 302 80 294Z" fill="url(#cream)" stroke="#c8bba9" stroke-width="1.5"/>
+<path d="M120 245V289M92 250Q120 260 148 250M89 257L93 286M151 257L147 286" fill="none" stroke="#c6b9a7" stroke-width="1.5"/>
+</g>
+<!-- clothing layer B: party mini dress -->
+<g id="look-party" class="clothing hidden">
+<path d="M99 142Q110 150 120 150Q130 150 141 142L154 163 145 226Q141 248 157 286Q120 305 83 286Q99 248 95 226L86 163Z" fill="url(#pink)" stroke="#f9d6e6" stroke-width="1.5"/>
+<path d="M98 146Q120 158 142 146M120 158V280" fill="none" stroke="#ffe9f2" stroke-width="2" opacity=".8"/>
+<path d="M100 166Q120 178 140 166" fill="none" stroke="#a94579" stroke-width="1.2" opacity=".7"/>
+</g>
+<!-- clothing layer C: cozy sweater and joggers -->
+<g id="look-cozy" class="clothing hidden">
+<path d="M92 140Q105 147 120 147Q135 147 148 140L160 163 151 245Q137 257 120 255Q103 257 89 245L80 163Z" fill="#d8b7a7" stroke="#f0d5c9" stroke-width="1.5"/>
+<path d="M104 146Q120 163 136 146M95 177H145M94 185H146M94 193H146" fill="none" stroke="#f4d9ce" stroke-width="1.5" opacity=".8"/>
+<path d="M89 247Q120 255 151 247L166 337Q145 346 123 340L120 330 117 340Q95 346 74 337Z" fill="url(#denim)" stroke="#6f96b3" stroke-width="1.5"/>
+<path d="M120 258V331M91 265Q120 275 149 265" fill="none" stroke="#b6d1e3" stroke-width="1.5"/>
+</g>
+<!-- clothing layer D: rainy jacket and fitted trousers -->
+<g id="look-rain" class="clothing hidden">
+<path d="M91 139Q105 147 120 147Q135 147 149 139L161 162 151 255 120 269 89 255 79 162Z" fill="#4f7787" stroke="#b7dce2" stroke-width="1.5"/>
+<path d="M120 149V259M94 165L105 177M146 165L135 177" fill="none" stroke="#c9e4e6" stroke-width="2"/>
+<path d="M89 250Q120 258 151 250L165 361 146 370 123 363 120 352 117 363 94 370 75 361Z" fill="#354e64" stroke="#a6c6d4" stroke-width="1.5"/>
+<path d="M120 261V353M91 264Q120 273 149 264" fill="none" stroke="#8eafc3" stroke-width="1.5"/>
+</g>
+<!-- sneakers and socks -->
+<path d="M73 483L94 483 98 526Q98 538 86 541L57 541Q49 537 55 527Z" fill="#fff8ee" stroke="#c4d0d6" stroke-width="1.5"/>
+<path d="M146 483L167 483 185 527Q191 537 181 541L151 541Q140 538 142 526Z" fill="#fff8ee" stroke="#c4d0d6" stroke-width="1.5"/>
+<path d="M57 533H95M145 533H185M67 510L84 522M62 517L87 517M151 510L170 522M149 517L176 517" stroke="#b5c5ce" stroke-width="2" fill="none"/>
+<!-- hair crown in front for depth -->
+<path d="M78 63Q70 32 91 19Q119 3 145 20Q171 36 162 65Q146 45 130 43Q108 39 93 49Z" fill="url(#hair)"/>
+<path d="M93 25Q83 45 90 62M110 18Q101 39 108 51M137 19Q153 39 147 54" stroke="#ffe5a8" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+</svg>
+<div class="rotate" aria-label="Character controls"><button type="button" id="prevLook" aria-label="Previous outfit">↶</button><button type="button" id="nextLook" aria-label="Next outfit">↷</button></div>
+</section>
+<section class="panel right-panel" aria-live="polite">
+<h2>Today's look</h2><div class="mini-title">MUSE selection</div>
+<div id="tags"><span class="tag">Everyday</span><span class="tag">Sunny</span></div>
+<div id="outfitName" class="outfit-name">Soft essentials</div>
+<p id="outfitDesc" class="outfit-desc">A clean, easy outfit for moving through your day. Light layers and a relaxed silhouette keep it effortless.</p>
+<div class="swatches" aria-label="Outfit color options"><button class="swatch active" data-shirt="#f5f0e6" data-pants="#e9dfd0" style="background:#f5f0e6" aria-label="Cream outfit"></button><button class="swatch" data-shirt="#f2a9c7" data-pants="#9bb6cf" style="background:#f2a9c7" aria-label="Pink and blue outfit"></button><button class="swatch" data-shirt="#343b4b" data-pants="#354e64" style="background:#343b4b" aria-label="Dark outfit"></button><button class="swatch" data-shirt="#d8b7a7" data-pants="#8db4d2" style="background:#d8b7a7" aria-label="Cozy outfit"></button></div>
+<button class="generate" id="generate" type="button">✦ &nbsp; GENERATE OUTFIT</button><div id="status" class="status" role="status">Your Sim is ready to style.</div>
+</section>
+</main>
+<footer><span>Digital wardrobe · personal styling</span><span>Find your feeling. Wear your mood.</span></footer>
+</div>
 <script>
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const KEY='muse-simple-v1';
-const state={occasion:'Everyday',mood:'Comfortable',source:'own',weather:'Mild',closet:[],saved:[],looks:[]};
-try{Object.assign(state,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){}
-function persist(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){notify('Storage is full. Remove a few wardrobe photos and try again.')}}
-function notify(message){const t=$('#toast');t.textContent=message;t.classList.add('show');clearTimeout(notify.timer);notify.timer=setTimeout(()=>t.classList.remove('show'),2200)}
-function pick(group,value){state[group]=value;$$('[data-group="'+group+'"] .choice').forEach(b=>b.classList.toggle('active',b.dataset.value===value));persist()}
-$$('[data-group]').forEach(g=>g.addEventListener('click',e=>{const b=e.target.closest('[data-value]');if(b)pick(g.dataset.group,b.dataset.value)}));
-$('#weather').value=state.weather;
-$('#weather').addEventListener('change',e=>{state.weather=e.target.value;persist()});
-$$('[data-top]').forEach(b=>b.addEventListener('click',()=>{document.querySelector('.avatar').style.setProperty('--top',b.dataset.top);$$('[data-top]').forEach(x=>x.classList.toggle('active',x===b))}));
-$$('[data-bottom]').forEach(b=>b.addEventListener('click',()=>{document.querySelector('.avatar').style.setProperty('--bottom',b.dataset.bottom);$$('[data-bottom]').forEach(x=>x.classList.toggle('active',x===b))}));
-$$('[data-hair]').forEach(b=>b.addEventListener('click',()=>{document.querySelector('.avatar').style.setProperty('--hair',b.dataset.hair);$$('[data-hair]').forEach(x=>x.classList.toggle('active',x===b))}));
-function show(view){['style','closet','saved'].forEach(v=>$('#'+v+'View').classList.toggle('hidden',v!==view));$$('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===view));if(view==='closet')renderCloset();if(view==='saved')renderSaved()}
-$$('[data-view]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
-function fashionFigure(i){const sets=[['#f4f0e8','#333331','#c5a083'],['#b8c1b5','#343b38','#9f745f'],['#b58b83','#424f63','#c5a083']];const c=sets[i%sets.length];return '<svg viewBox="0 0 120 155" aria-hidden="true"><circle cx="60" cy="23" r="13" fill="'+c[2]+'"/><path d="M47 22 Q44 3 61 7 Q78 5 74 25 L69 16 L56 14Z" fill="#4b4037"/><path d="M49 40 L38 49 L44 83 L76 83 L82 49 L71 40 Q60 46 49 40Z" fill="'+c[0]+'"/><path d="M45 82 L75 82 L78 132 L65 132 L60 100 L55 132 L42 132Z" fill="'+c[1]+'"/><path d="M39 48 L29 77 L35 80 L46 58 M81 48 L91 77 L85 80 L74 58" stroke="'+c[2]+'" stroke-width="8" stroke-linecap="round" fill="none"/><path d="M42 132 L55 132 L56 140 L37 140Z M65 132 L78 132 L85 140 L65 140Z" fill="#f4f0e8"/></svg>'}
-function createLooks(){const closetNames=state.closet.map(x=>x.name);const basics=state.source==='own'&&closetNames.length?closetNames:['A simple top','Straight-leg trousers','Everyday shoes','A light layer','Your favourite bag','Clean sneakers'];const weatherNote=state.weather==='Hot'?'light, breathable pieces':state.weather==='Cold'?'warm layers and a coat':state.weather==='Rainy'?'a water-resistant layer and shoes with grip':state.weather==='Warm'?'light layers': 'easy layers for changing temperatures';const moodNote={Comfortable:'soft fabrics and relaxed shapes',Confident:'a strong silhouette and one standout detail',Relaxed:'easy proportions and simple layers',Elegant:'clean lines and considered details'}[state.mood];const names=['The Everyday Edit','The Easy Formula','The Polished Look'];state.looks=names.map((name,i)=>({id:'look-'+i,name,items:[basics[i%basics.length],basics[(i+1)%basics.length],basics[(i+2)%basics.length]],desc:'For '+state.occasion.toLowerCase()+': '+moodNote+', with '+weatherNote+'.'}));persist();renderLooks();notify('Three outfit ideas are ready.')}
-function renderLooks(){const el=$('#looks');el.innerHTML=state.looks.map((l,i)=>'<article class="look"><div class="look-visual">'+fashionFigure(i)+'</div><div class="look-body"><h3>'+l.name+'</h3><p>'+l.desc+'</p><div class="look-items">'+l.items.map(escapeText).join('<br>')+'</div><div class="look-actions"><button class="secondary" data-save="'+l.id+'">'+(state.saved.some(x=>x.id===l.id)?'Saved ✓':'Save look ♡')+'</button></div></div></article>').join('');$$('[data-save]').forEach(b=>b.addEventListener('click',()=>saveLook(b.dataset.save)))}
-function escapeText(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function saveLook(id){const look=state.looks.find(x=>x.id===id);if(!look)return;const i=state.saved.findIndex(x=>x.id===id);if(i>=0)state.saved.splice(i,1);else state.saved.push({...look});persist();renderLooks();renderSaved();counts();notify(i>=0?'Look removed':'Look saved')}
-function renderSaved(){const el=$('#savedLooks');el.innerHTML=state.saved.length?state.saved.map((l,i)=>'<article class="look"><div class="look-visual">'+fashionFigure(i)+'</div><div class="look-body"><h3>'+escapeText(l.name)+'</h3><p>'+escapeText(l.desc)+'</p><div class="look-items">'+l.items.map(escapeText).join('<br>')+'</div><div class="look-actions"><button class="secondary" data-unsave="'+l.id+'">Remove</button></div></div></article>').join(''):'<div class="empty">No saved looks yet. Save an outfit you like and it will appear here.</div>';$$('[data-unsave]').forEach(b=>b.addEventListener('click',()=>saveLook(b.dataset.unsave)))}
-function renderCloset(){const el=$('#closet');el.innerHTML=state.closet.length?state.closet.map((x,i)=>'<article class="garment"><img src="'+x.url+'" alt=""><strong>'+escapeText(x.name)+'</strong><p>'+escapeText(x.category)+'</p><button class="secondary" data-remove="'+i+'">Remove</button></article>').join(''):'<div class="empty">Your closet is empty. Add a few photos above to get started.</div>';$$('[data-remove]').forEach(b=>b.addEventListener('click',()=>{state.closet.splice(+b.dataset.remove,1);persist();renderCloset();counts()}))}
-$('#addClothes').addEventListener('click',async()=>{const files=[...$('#photos').files].filter(f=>f.type.startsWith('image/'));if(!files.length){notify('Choose one or more clothing photos first.');return}const category=$('#category').value;for(const file of files){const url=await resize(file);if(url)state.closet.push({name:file.name.replace(/\.[^.]+$/,''),category,url})}$('#photos').value='';persist();renderCloset();counts();notify('Clothes added to your closet')});
-function resize(file){return new Promise(resolve=>{const reader=new FileReader();reader.onload=()=>{const img=new Image();img.onload=()=>{const scale=Math.min(1,500/Math.max(img.width,img.height));const canvas=document.createElement('canvas');canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',.65))};img.onerror=()=>resolve('');img.src=reader.result};reader.onerror=()=>resolve('');reader.readAsDataURL(file)})}
-function counts(){$('#closetCount').textContent=state.closet.length;$('#savedCount').textContent=state.saved.length}
-function restoreChoices(){['occasion','mood','source'].forEach(g=>pick(g,state[g]));}
-restoreChoices();counts();if(!state.looks.length)createLooks();else renderLooks();renderCloset();renderSaved();
-
-$('#generate').addEventListener('click',createLooks);$('#refresh').addEventListener('click',createLooks);
-/* The main CTA now styles the persistent avatar as well as creating outfit idea cards. */
-let generatedAvatarLook = 0;
-const avatarLooks = [
- {kind:'dress',top:'#e8a8c0',bottom:'#343c58',hair:'#30252b'},
- {kind:'trousers',top:'#f2eee6',bottom:'#536e91',hair:'#30252b'},
- {kind:'skirt',top:'#7ecfc5',bottom:'#b96f87',hair:'#30252b'},
- {kind:'outerwear',top:'#d8b27e',bottom:'#394d60',hair:'#30252b'},
- {kind:'everyday',top:'#c7b5ed',bottom:'#39404c',hair:'#30252b'},
- {kind:'dress',top:'#e4d9b8',bottom:'#6c8f85',hair:'#30252b'}
-];
-$('#generate').addEventListener('click',()=>{
- const look=avatarLooks[generatedAvatarLook % avatarLooks.length];
- generatedAvatarLook++;
- const categoryButton=document.querySelector('[data-outfit="'+look.kind+'"]');
- if(categoryButton) categoryButton.click();
- avatar.style.setProperty('--top',look.top);
- avatar.style.setProperty('--bottom',look.bottom);
- avatar.style.setProperty('--hair',look.hair);
- document.querySelectorAll('[data-top]').forEach(b=>b.classList.toggle('active',b.dataset.top===look.top));
- document.querySelectorAll('[data-bottom]').forEach(b=>b.classList.toggle('active',b.dataset.bottom===look.bottom));
- document.querySelectorAll('[data-hair]').forEach(b=>b.classList.toggle('active',b.dataset.hair===look.hair));
- notify('New outfit applied to your character!');
-});
-
-
-const outfitLabels={everyday:'Everyday',top:'Tops',trousers:'Trousers',skirt:'Skirts',dress:'Dresses',outerwear:'Outerwear',shoes:'Shoes',accessories:'Accessories'};
-const avatar=document.querySelector('.avatar');
-const topShape=document.getElementById('outfitTop');
-const bottomShape=document.getElementById('outfitBottom');
-const shoes=document.getElementById('outfitShoes');
-const accessories=document.getElementById('outfitAccessories');
-const baseTop='M76 84 Q90 94 104 84 L117 92 Q124 96 121 110 L115 180 L65 180 L59 110 Q56 96 64 92Z';
-const baseBottom='M70 179 L110 179 L113 258 Q106 264 96 260 L89 211 L82 260 L67 260Z';
-const silhouettes={
- everyday:{top:baseTop,bottom:baseBottom},
- top:{top:baseTop,bottom:baseBottom},
- trousers:{top:baseTop,bottom:'M70 179 L89 179 L88 258 L70 260 L67 211Z M91 179 L110 179 L113 258 L96 260 L91 211Z'},
- skirt:{top:baseTop,bottom:'M70 179 L110 179 L126 258 L54 258Z'},
- dress:{top:'M76 84 Q90 94 104 84 L117 92 Q124 96 121 110 L131 226 L119 246 L61 246 L49 226 L59 110 Q56 96 64 92Z',bottom:'',hideBottom:true},
- outerwear:{top:'M76 84 Q90 94 104 84 L121 89 L130 118 L119 126 L115 180 L65 180 L61 126 L50 118 L59 89Z',bottom:baseBottom},
- shoes:{top:baseTop,bottom:baseBottom},
- accessories:{top:baseTop,bottom:baseBottom}
+(() => {
+const $ = id => document.getElementById(id);
+const eventEl=$('event'), weatherEl=$('weather'), moodEl=$('mood'), character=$('character');
+const looks={
+ casual:{id:'casual',name:'Soft essentials',desc:'An easy everyday look with a fitted cream top and tailored shorts. Simple, polished, and ready for the day.',tags:['Everyday','Easy layers'],shirt:'#f5f0e6',pants:'#e9dfd0'},
+ party:{id:'party',name:'Golden hour',desc:'A playful party mini with a warm blush finish. Made for a statement moment and a little extra confidence.',tags:['Party','Statement'],shirt:'#f2a9c7',pants:'#9bb6cf'},
+ cozy:{id:'cozy',name:'Cloud-soft comfort',desc:'A relaxed knit and soft joggers for a cozy mood, chilly weather, and maximum comfort.',tags:['Cozy','Comfort'],shirt:'#d8b7a7',pants:'#8db4d2'},
+ rain:{id:'rain',name:'City rain',desc:'A structured weather-ready jacket and deep-toned trousers for rainy days and an on-the-go schedule.',tags:['Weather-ready','Layered'],shirt:'#343b4b',pants:'#354e64'}
 };
-document.querySelectorAll('[data-outfit]').forEach(button=>button.addEventListener('click',()=>{
- const kind=button.dataset.outfit, shape=silhouettes[kind];
- document.querySelectorAll('[data-outfit]').forEach(b=>{const active=b===button;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
- avatar.dataset.outfit=kind;
- document.getElementById('outfitName').textContent=outfitLabels[kind];
- topShape.setAttribute('d',shape.top);
- if(shape.bottom) bottomShape.setAttribute('d',shape.bottom);
- bottomShape.style.opacity=shape.hideBottom?'0':'1';
- topShape.style.opacity='1';
- shoes.style.opacity=kind==='shoes'?'1':'.0';
- accessories.style.opacity=kind==='accessories'?'1':'0';
-}));
+let current='casual', colorOverride=null;
+function chooseLook(){
+ const e=eventEl.value,w=weatherEl.value,m=moodEl.value;
+ if(w==='rainy') return 'rain';
+ if(w==='cold'||m==='cozy') return 'cozy';
+ if(e==='party'||(m==='bold'&&e!=='work')) return 'party';
+ if(e==='date'&&m==='romantic') return 'party';
+ if(e==='outdoors'&&w!=='sunny') return 'rain';
+ return 'casual';
+}
+function render(animate=true){
+ current=chooseLook(); const look=looks[current];
+ document.querySelectorAll('.clothing').forEach(el=>el.classList.toggle('hidden',el.id!=='look-'+look.id));
+ $('outfitName').textContent=look.name; $('outfitDesc').textContent=look.desc;
+ const eventLabels={casual:'Casual',party:'Party',date:'Date night',work:'Work / study',outdoors:'Outdoors'};
+ const weatherLabels={sunny:'Sunny',cold:'Cold',rainy:'Rainy',mild:'Mild'};
+ const moodLabels={relaxed:'Relaxed',bold:'Bold',cozy:'Cozy',romantic:'Romantic'};
+ $('tags').innerHTML='<span class="tag">'+eventLabels[eventEl.value]+'</span><span class="tag">'+weatherLabels[weatherEl.value]+'</span><span class="tag">'+moodLabels[moodEl.value]+'</span>';
+ const colors=colorOverride||{shirt:look.shirt,pants:look.pants};
+ character.style.setProperty('--shirt',colors.shirt); character.style.setProperty('--pants',colors.pants);
+ document.querySelectorAll('.swatch').forEach(b=>b.classList.toggle('active',b.dataset.shirt===colors.shirt&&b.dataset.pants===colors.pants));
+ if(animate){character.classList.remove('outfit-change');void character.getBoundingClientRect();character.classList.add('outfit-change');}
+ $('status').textContent='Applied: '+look.name+'. Character outfit updated.';
+}
+[eventEl,weatherEl,moodEl].forEach(el=>el.addEventListener('change',()=>{colorOverride=null;render();}));
+$('generate').addEventListener('click',()=>{colorOverride=null;const order=['casual','party','cozy','rain'];const preferred=chooseLook();current=order[(order.indexOf(current)+1)%order.length];if(current===preferred)current=order[(order.indexOf(current)+1)%order.length];const l=looks[current];document.querySelectorAll('.clothing').forEach(el=>el.classList.toggle('hidden',el.id!=='look-'+l.id));$('outfitName').textContent=l.name;$('outfitDesc').textContent=l.desc;character.style.setProperty('--shirt',l.shirt);character.style.setProperty('--pants',l.pants);colorOverride=null;document.querySelectorAll('.swatch').forEach(b=>b.classList.toggle('active',b.dataset.shirt===l.shirt&&b.dataset.pants===l.pants));const labels={casual:'Casual',party:'Party',cozy:'Cozy',rain:'Rain-ready'};$('status').textContent='Generated: '+l.name+'. The character has changed outfits.';character.classList.remove('outfit-change');void character.getBoundingClientRect();character.classList.add('outfit-change');$('tags').innerHTML='<span class="tag">'+labels[current]+'</span><span class="tag">'+weatherEl.options[weatherEl.selectedIndex].text+'</span><span class="tag">'+moodEl.options[moodEl.selectedIndex].text+'</span>';});
+document.querySelectorAll('.swatch').forEach(b=>b.addEventListener('click',()=>{colorOverride={shirt:b.dataset.shirt,pants:b.dataset.pants};character.style.setProperty('--shirt',colorOverride.shirt);character.style.setProperty('--pants',colorOverride.pants);document.querySelectorAll('.swatch').forEach(x=>x.classList.toggle('active',x===b));$('status').textContent='Color palette applied to the visible outfit.';}));
+$('prevLook').addEventListener('click',()=>cycle(-1));$('nextLook').addEventListener('click',()=>cycle(1));
+function cycle(direction){const order=['casual','party','cozy','rain'];const next=(order.indexOf(current)+direction+order.length)%order.length;const l=looks[order[next]];eventEl.value=order[next]==='party'?'party':order[next]==='rain'?'outdoors':order[next]==='cozy'?'work':'casual';weatherEl.value=order[next]==='rain'?'rainy':order[next]==='cozy'?'cold':'sunny';moodEl.value=order[next]==='party'?'bold':order[next]==='cozy'?'cozy':'relaxed';colorOverride=null;render();}
+render(false);
+})();
 </script>
 </body>
 </html>
-<style>
-/* Character removed at the user's request */
-.avatar-placeholder { width: min(100%, 360px); min-height: 360px; display:flex; align-items:center; justify-content:center; margin:auto; color:rgba(255,255,255,.72); font:500 12px/1.4 inherit; letter-spacing:.14em; text-transform:uppercase; }
-</style>
