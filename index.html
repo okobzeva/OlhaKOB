@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MUSE — 3D Character Studio</title>
+<title>MUSE — AI Fashion Stylist</title>
 <style>
 :root{--line:#ffffff66;--glass:#ffffff22}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;color:white;font-family:Inter,"Segoe UI",Arial,sans-serif;background:radial-gradient(ellipse at 48% 45%,#75e7db 0%,#45bfd5 29%,transparent 63%),linear-gradient(115deg,#0754cb,#319de0 42%,#2bc5b6 74%,#17a77f)}
@@ -16,7 +16,7 @@ button,select{font:inherit;color:white}button{cursor:pointer}.app{max-width:1600
 </style>
 </head>
 <body><main class="app">
-<header><div class="logo">MUSE<small>3D CHARACTER STUDIO</small></div><div class="note">✧ Create your next look</div></header>
+<header><div class="logo">MUSE<small>AI FASHION STYLIST</small></div><div class="note">☀ &nbsp; Good morning, style seeker<br><small>Let’s find your perfect look.</small></div></header>
 <div class="layout">
 <nav class="categories" aria-label="Clothing categories">
 <button class="category active" data-category="Everyday"><i>♧</i>Everyday</button><button class="category" data-category="Tops"><i>♧</i>Tops</button><button class="category" data-category="Trousers"><i>♙</i>Trousers</button><button class="category" data-category="Skirts"><i>♜</i>Skirts</button><button class="category" data-category="Dresses"><i>♟</i>Dresses</button><button class="category" data-category="Outerwear"><i>♧</i>Outerwear</button><button class="category" data-category="Shoes"><i>⌁</i>Shoes</button><button class="category" data-category="Accessories"><i>◇</i>Accessories</button>
@@ -33,10 +33,10 @@ button,select{font:inherit;color:white}button{cursor:pointer}.app{max-width:1600
 <label><span>☀ Weather</span><select id="weather"><option>Sunny</option><option>Cloudy</option><option>Rainy</option><option>Cold</option><option>Hot</option></select></label>
 <label><span>☻ Mood</span><select id="mood"><option>Confident</option><option>Relaxed</option><option>Romantic</option><option>Playful</option><option>Bold</option></select></label>
 </div></section>
-<section class="panel"><h2>Change the outfit</h2><div class="outfit-grid">
+<section class="panel"><h2>Outfit preview</h2><div class="outfit-grid">
 <button class="outfit" data-outfit="casual" aria-pressed="true"><b>☼</b>Casual Outfit</button><button class="outfit" data-outfit="cozy" aria-pressed="false"><b>♧</b>Cozy Knitwear</button><button class="outfit" data-outfit="streetwear" aria-pressed="false"><b>✳</b>Streetwear Style</button><button class="outfit" data-outfit="formal" aria-pressed="false"><b>✧</b>Formal Event</button>
 </div></section>
-<section class="panel"><h2>Hair colour</h2><div class="swatches" id="hair-swatches"><button class="swatch" data-color="#d8a05e" style="background:#d8a05e" aria-label="Honey blonde" aria-pressed="true"></button><button class="swatch" data-color="#49302a" style="background:#49302a" aria-label="Brunette" aria-pressed="false"></button><button class="swatch" data-color="#25252d" style="background:#25252d" aria-label="Black" aria-pressed="false"></button><button class="swatch" data-color="#b85d49" style="background:#b85d49" aria-label="Copper" aria-pressed="false"></button><button class="swatch" data-color="#d9d4c8" style="background:#d9d4c8" aria-label="Platinum" aria-pressed="false"></button></div></section>
+<section class="panel"><h2>Hair colour</h2><div class="swatches" id="hair-swatches"><button class="swatch" data-color="#38231f" style="background:#38231f" aria-label="Espresso brunette" aria-pressed="true"></button><button class="swatch" data-color="#684136" style="background:#684136" aria-label="Chestnut" aria-pressed="false"></button><button class="swatch" data-color="#25252d" style="background:#25252d" aria-label="Black" aria-pressed="false"></button><button class="swatch" data-color="#b85d49" style="background:#b85d49" aria-label="Copper" aria-pressed="false"></button><button class="swatch" data-color="#d9d4c8" style="background:#d9d4c8" aria-label="Platinum" aria-pressed="false"></button></div></section>
 <button class="generate" id="generate">✦ Generate Outfit Suggestion →</button><p class="status" id="status" aria-live="polite">3D character ready · drag to rotate</p>
 </aside></div><div class="footer"><span>MUSE — YOUR DIGITAL WARDROBE</span><span>INTERACTIVE 3D CHARACTER</span></div>
 </main>
@@ -57,13 +57,13 @@ const fillLight=new THREE.DirectionalLight(0x80f4ff,2.2);fillLight.position.set(
 const rim=new THREE.DirectionalLight(0xffd3a0,2.4);rim.position.set(0,5,-5);scene.add(rim);
 const avatar=new THREE.Group();scene.add(avatar);
 const mat=(color,roughness=.75,metalness=0)=>new THREE.MeshStandardMaterial({color,roughness,metalness});
-const skin=mat('#c98260'), skinLight=mat('#df9b78'), blush=mat('#bb6e67'), hairMat=mat('#d8a05e',.42), hairHi=mat('#f1c780',.45), hairDark=mat('#9b663c',.52), white=mat('#f5eee0'), eyeWhite=mat('#fff9ec'), iris=mat('#668d72',.4), dark=mat('#392622'), lip=mat('#a95850'), gold=mat('#d5aa5e',.3,.65);
+const skin=mat('#b87959'), skinLight=mat('#ce906d'), blush=mat('#ad625e'), hairMat=mat('#38231f',.42), hairHi=mat('#684136',.45), hairDark=mat('#201719',.52), white=mat('#f5eee0'), eyeWhite=mat('#fff9ec'), iris=mat('#668d72',.4), dark=mat('#392622'), lip=mat('#a95850'), gold=mat('#d5aa5e',.3,.65);
 const fabrics={casual:mat('#f0e9df'),cozy:mat('#bd8b78'),streetwear:mat('#2b394e'),formal:mat('#762e56')};
 let current='casual';
 function ell(parent,name,position,scale,material,segments=32){const m=new THREE.Mesh(new THREE.SphereGeometry(1,segments,24),material);m.name=name;m.position.set(...position);m.scale.set(...scale);parent.add(m);return m;}
 function capsule(parent,a,b,r,material,radial=16){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),d=new THREE.Vector3().subVectors(B,A);const mesh=new THREE.Mesh(new THREE.CapsuleGeometry(r,Math.max(.01,d.length()-2*r),6,radial),material);mesh.position.copy(A).add(B).multiplyScalar(.5);mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize());parent.add(mesh);return mesh;}
 function cylinder(parent,a,b,r1,r2,material){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),d=new THREE.Vector3().subVectors(B,A);const mesh=new THREE.Mesh(new THREE.CylinderGeometry(r2,r1,d.length(),24),material);mesh.position.copy(A).add(B).multiplyScalar(.5);mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize());parent.add(mesh);return mesh;}
-// Body: stylized adult proportions, new warm medium skin tone, green eyes and long honey-blonde hair.
+// Body: stylized adult proportions, warm tan skin, green eyes and dark espresso-brown hair.
 ell(avatar,'neck',[0,3.68,0],[.19,.43,.19],skin);
 ell(avatar,'torso',[0,3.02,0],[.49,.83,.29],skin);
 ell(avatar,'hips',[0,2.37,0],[.48,.4,.3],skin);
