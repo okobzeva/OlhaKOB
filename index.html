@@ -3,145 +3,165 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MUSE — Create a Style</title>
+<title>MUSE — 3D Character Studio</title>
 <style>
-:root{--line:#ffffff66;--glass:#ffffff22;--white:#fff}
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;color:var(--white);font-family:Inter,"Segoe UI",Arial,sans-serif;background:radial-gradient(ellipse at 47% 48%,#73e6dc 0%,#48c5d7 27%,transparent 62%),linear-gradient(115deg,#0754cb 0%,#319de0 38%,#2bc5b6 72%,#17a77f 100%)}
-button,select{font:inherit}button{color:white;cursor:pointer}
-.app{max-width:1600px;margin:auto;padding:24px clamp(14px,3vw,44px)}
-header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:12px}
-.logo{font:46px Georgia,serif;letter-spacing:.2em}.logo small{display:block;font:10px Arial,sans-serif;letter-spacing:.35em;margin-top:4px}
-.topnote{padding:13px 18px;border:1px solid var(--line);border-radius:40px;background:var(--glass);font-size:12px}
-.layout{display:grid;grid-template-columns:100px minmax(280px,1fr) minmax(340px,440px);gap:22px;align-items:stretch}
-.categories{display:flex;flex-direction:column;justify-content:center;gap:10px}
-.category{display:flex;flex-direction:column;align-items:center;gap:7px;border:1px solid transparent;border-radius:18px;background:transparent;padding:8px 2px;font-size:11px}
-.category .icon{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#ffffff30;border:1px solid #ffffff55;font-size:22px}
-.category.active .icon,.category:hover .icon{box-shadow:0 0 0 3px white,0 0 22px #fff;background:#ffffff55}
-.stage{position:relative;min-height:730px;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.stage:before{content:"";position:absolute;inset:4% 0 5%;background:radial-gradient(ellipse at 50% 54%,#ffffff2b,transparent 62%);pointer-events:none}
-.plumbob{position:absolute;z-index:3;top:12px;left:50%;transform:translateX(-50%);width:36px;height:60px;clip-path:polygon(50% 0,100% 40%,50% 100%,0 40%);background:linear-gradient(90deg,#3bc82f,#d9ff69 48%,#49d832 51%,#087c46);filter:drop-shadow(0 0 12px #9aff75)}
-.character-wrap{position:absolute;inset:75px 0 94px;display:flex;align-items:flex-end;justify-content:center}
-#sims-character{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 15px 18px #17475b35);transition:opacity .15s}
-#sims-character.loading{opacity:.2}
-.ground{position:absolute;bottom:83px;width:42%;height:25px;left:50%;transform:translateX(-50%);border-radius:50%;background:#174c5540;filter:blur(15px);pointer-events:none}
-.stage-caption{position:absolute;bottom:49px;left:0;right:0;text-align:center;font:22px Georgia,serif}
-.stage-caption small{display:block;margin-top:5px;font:10px Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase}
-.zoom-controls{position:absolute;bottom:7px;left:0;right:0;display:flex;justify-content:center;gap:8px}
-.zoom-controls button{width:27px;height:27px;border:1px solid #ffffff99;border-radius:50%;background:#ffffff20}
-.panels{display:flex;flex-direction:column;gap:15px;min-width:0;padding-top:6px}
-.panel{padding:20px;border:1px solid var(--line);border-radius:23px;background:var(--glass);backdrop-filter:blur(12px)}
-h1,h2{font-weight:500;margin:0 0 16px}h1{font-size:23px}h2{font-size:19px}
-.eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.85;margin:0 0 8px}
-.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-label{font-size:11px;min-width:0}label span{display:block;margin-bottom:9px}
-select{width:100%;min-width:0;padding:11px 5px;border:1px solid var(--line);border-radius:12px;color:white;background:#087e9b55;font-size:11px}select option{color:#173b49}
-.outfit-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.outfit{min-width:0;padding:5px;border:1px solid #ffffff55;border-radius:14px;background:#ffffff18;transition:.2s}
-.outfit:hover{transform:translateY(-3px)}.outfit[aria-pressed=true]{border:2px solid white;box-shadow:0 0 15px #fff9}
-.outfit img{display:block;width:100%;height:150px;object-fit:cover;object-position:center top;border-radius:9px;background:#ffffff20}
-.outfit span{display:block;font-size:10px;line-height:1.3;padding:8px 1px 5px}
-.generate{width:90%;align-self:center;padding:15px;border:1px solid white;border-radius:40px;background:#078fa577;font-weight:600}
-.generate:hover{background:#08738caa}.status{text-align:center;min-height:18px;font-size:12px;margin:0;opacity:.9}
-@media(min-width:1400px){.layout{grid-template-columns:110px minmax(340px,1fr) minmax(380px,470px)}.outfit img{height:175px}}
-@media(max-width:950px){.layout{grid-template-columns:85px minmax(250px,1fr)}.panels{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.panels .greeting,.panels .generate,.panels .status{grid-column:1/-1}.stage{min-height:650px}}
-@media(max-width:560px){.app{padding:13px}.logo{font-size:34px}.topnote{font-size:10px;padding:10px}.layout{display:flex;flex-direction:column}.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.category .icon{width:40px;height:40px}.stage{min-height:560px}.character-wrap{inset:75px 0 100px}.panels{display:flex}.fields{grid-template-columns:repeat(3,minmax(0,1fr))}.panel{padding:15px}.outfit img{height:135px}.outfit span{font-size:9px}}
+:root{--line:#ffffff66;--glass:#ffffff22}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:white;font-family:Inter,"Segoe UI",Arial,sans-serif;background:radial-gradient(ellipse at 48% 45%,#75e7db 0%,#45bfd5 29%,transparent 63%),linear-gradient(115deg,#0754cb,#319de0 42%,#2bc5b6 74%,#17a77f)}
+button,select{font:inherit;color:white}button{cursor:pointer}.app{max-width:1600px;margin:auto;padding:22px clamp(12px,3vw,40px)}header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:12px}.logo{font:44px Georgia,serif;letter-spacing:.2em}.logo small{display:block;font:10px Arial;letter-spacing:.35em;margin-top:4px}.note{font-size:12px;border:1px solid var(--line);border-radius:40px;padding:12px 16px;background:var(--glass)}
+.layout{display:grid;grid-template-columns:100px minmax(280px,1fr) minmax(340px,440px);gap:20px}.categories{display:flex;flex-direction:column;justify-content:center;gap:8px}.category{display:flex;align-items:center;flex-direction:column;gap:6px;border:1px solid transparent;border-radius:17px;background:transparent;padding:7px 2px;font-size:11px}.category i{font-style:normal;width:46px;height:46px;display:grid;place-items:center;border-radius:50%;border:1px solid #ffffff55;background:#ffffff30;font-size:22px}.category.active i,.category:hover i{box-shadow:0 0 0 3px white,0 0 18px white;background:#ffffff55}
+.stage{position:relative;min-height:730px;overflow:hidden;display:flex;align-items:stretch;justify-content:center}.stage:before{content:"";position:absolute;inset:4% 0 3%;background:radial-gradient(ellipse at 50% 52%,#ffffff2c,transparent 64%);pointer-events:none}#character-canvas{display:block;width:100%;height:690px;outline:none;touch-action:pan-y}.plumbob{position:absolute;z-index:3;top:8px;left:50%;transform:translateX(-50%);width:30px;height:50px;clip-path:polygon(50% 0,100% 40%,50% 100%,0 40%);background:linear-gradient(90deg,#3bc82f,#d9ff69 48%,#49d832 51%,#087c46);filter:drop-shadow(0 0 12px #9aff75);pointer-events:none}.stage-caption{position:absolute;bottom:36px;left:0;right:0;text-align:center;font:22px Georgia,serif;pointer-events:none}.stage-caption small{display:block;margin-top:5px;font:10px Arial;letter-spacing:.18em;text-transform:uppercase}.drag-note{position:absolute;bottom:9px;left:0;right:0;text-align:center;font-size:10px;opacity:.8;pointer-events:none}
+.panels{display:flex;flex-direction:column;gap:14px;padding-top:5px;min-width:0}.panel{padding:19px;border:1px solid var(--line);border-radius:22px;background:var(--glass);backdrop-filter:blur(12px)}h1,h2{font-weight:500;margin:0 0 15px}h1{font-size:23px}h2{font-size:19px}.eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.85;margin:0 0 8px}.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}label{font-size:11px;min-width:0}label span{display:block;margin-bottom:8px}select{width:100%;min-width:0;padding:11px 5px;border:1px solid var(--line);border-radius:11px;background:#087e9b55;font-size:11px}select option{color:#173b49}.outfit-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.outfit{min-width:0;padding:12px 3px;border:1px solid #ffffff55;border-radius:13px;background:#ffffff18;font-size:10px;line-height:1.4}.outfit b{display:block;font-size:23px;margin-bottom:5px;font-weight:400}.outfit:hover,.outfit[aria-pressed=true]{border:2px solid white;box-shadow:0 0 13px #fff9;background:#ffffff30}.swatches{display:flex;gap:9px;flex-wrap:wrap}.swatch{width:25px;height:25px;border:2px solid #ffffffaa;border-radius:50%;padding:0}.swatch[aria-pressed=true]{outline:2px solid white;outline-offset:3px}.generate{width:90%;align-self:center;padding:15px;border:1px solid white;border-radius:40px;background:#078fa577;font-weight:600}.status{text-align:center;min-height:18px;font-size:12px;margin:0;opacity:.9}.footer{display:flex;justify-content:space-between;margin-top:15px;font-size:10px;letter-spacing:.13em;opacity:.8}
+@media(max-width:950px){.layout{grid-template-columns:80px minmax(250px,1fr)}.panels{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.panels .generate,.panels .status{grid-column:1/-1}.stage{min-height:650px}#character-canvas{height:630px}}
+@media(max-width:560px){.app{padding:12px}.logo{font-size:34px}.note{font-size:10px;padding:10px}.layout{display:flex;flex-direction:column}.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}.category i{width:39px;height:39px}.stage{min-height:550px}#character-canvas{height:535px}.panels{display:flex}.panel{padding:15px}.fields{gap:5px}.outfit{font-size:9px}}
 </style>
 </head>
-<body>
-<div class="app">
-<header><div class="logo">MUSE<small>AI FASHION STYLIST</small></div><div class="topnote">✧ Create your next look</div></header>
+<body><main class="app">
+<header><div class="logo">MUSE<small>3D CHARACTER STUDIO</small></div><div class="note">✧ Create your next look</div></header>
 <div class="layout">
 <nav class="categories" aria-label="Clothing categories">
-<button class="category active" data-category="Everyday"><span class="icon">♧</span>Everyday</button>
-<button class="category" data-category="Tops"><span class="icon">♧</span>Tops</button>
-<button class="category" data-category="Trousers"><span class="icon">♙</span>Trousers</button>
-<button class="category" data-category="Skirts"><span class="icon">♜</span>Skirts</button>
-<button class="category" data-category="Dresses"><span class="icon">♟</span>Dresses</button>
-<button class="category" data-category="Outerwear"><span class="icon">♧</span>Outerwear</button>
-<button class="category" data-category="Shoes"><span class="icon">⌁</span>Shoes</button>
-<button class="category" data-category="Accessories"><span class="icon">◇</span>Accessories</button>
+<button class="category active" data-category="Everyday"><i>♧</i>Everyday</button><button class="category" data-category="Tops"><i>♧</i>Tops</button><button class="category" data-category="Trousers"><i>♙</i>Trousers</button><button class="category" data-category="Skirts"><i>♜</i>Skirts</button><button class="category" data-category="Dresses"><i>♟</i>Dresses</button><button class="category" data-category="Outerwear"><i>♧</i>Outerwear</button><button class="category" data-category="Shoes"><i>⌁</i>Shoes</button><button class="category" data-category="Accessories"><i>◇</i>Accessories</button>
 </nav>
-<section class="stage" aria-label="Full-body character preview">
-<div class="plumbob" aria-hidden="true"></div>
-<div class="character-wrap">
-<img id="sims-character" src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1100&q=90" alt="Full-body character wearing casual outfit">
-</div>
-<div class="ground"></div>
+<section class="stage" aria-label="Interactive 3D character">
+<div class="plumbob"></div>
+<canvas id="character-canvas" aria-label="Interactive 3D stylized female character. Drag to rotate."></canvas>
 <div class="stage-caption">Your Muse<small id="outfit-title">Casual Outfit</small></div>
-<div class="zoom-controls"><button id="zoom-out" aria-label="Zoom out">−</button><button id="zoom-in" aria-label="Zoom in">+</button></div>
+<div class="drag-note">DRAG TO ROTATE · SCROLL TO ZOOM</div>
 </section>
 <aside class="panels">
-<section class="panel greeting"><p class="eyebrow">Personal styling studio</p><h1>Choose your vibe</h1><div class="fields">
+<section class="panel"><p class="eyebrow">Personal styling studio</p><h1>Choose your vibe</h1><div class="fields">
 <label><span>▦ Event</span><select id="event"><option>Everyday</option><option>Work</option><option>Date Night</option><option>Party</option><option>Wedding</option><option>Travel</option></select></label>
 <label><span>☀ Weather</span><select id="weather"><option>Sunny</option><option>Cloudy</option><option>Rainy</option><option>Cold</option><option>Hot</option></select></label>
 <label><span>☻ Mood</span><select id="mood"><option>Confident</option><option>Relaxed</option><option>Romantic</option><option>Playful</option><option>Bold</option></select></label>
 </div></section>
-<section class="panel"><h2>Outfit preview</h2><div class="outfit-grid">
-<button class="outfit" data-outfit="casual" aria-pressed="true"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=400&q=85" alt="Casual outfit preview"><span>Casual Outfit</span></button>
-<button class="outfit" data-outfit="cozy" aria-pressed="false"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=400&q=85" alt="Cozy knitwear preview"><span>Cozy Knitwear</span></button>
-<button class="outfit" data-outfit="streetwear" aria-pressed="false"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=400&q=85" alt="Streetwear preview"><span>Streetwear Style</span></button>
-<button class="outfit" data-outfit="formal" aria-pressed="false"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=400&q=85" alt="Formal outfit preview"><span>Formal Event</span></button>
+<section class="panel"><h2>Change the outfit</h2><div class="outfit-grid">
+<button class="outfit" data-outfit="casual" aria-pressed="true"><b>☼</b>Casual Outfit</button><button class="outfit" data-outfit="cozy" aria-pressed="false"><b>♧</b>Cozy Knitwear</button><button class="outfit" data-outfit="streetwear" aria-pressed="false"><b>✳</b>Streetwear Style</button><button class="outfit" data-outfit="formal" aria-pressed="false"><b>✧</b>Formal Event</button>
 </div></section>
-<button class="generate" id="generate">✦ Generate Outfit Suggestion →</button>
-<p class="status" id="status" aria-live="polite"></p>
-</aside>
-</div>
-</div>
+<section class="panel"><h2>Hair colour</h2><div class="swatches" id="hair-swatches"><button class="swatch" data-color="#d8a05e" style="background:#d8a05e" aria-label="Honey blonde" aria-pressed="true"></button><button class="swatch" data-color="#49302a" style="background:#49302a" aria-label="Brunette" aria-pressed="false"></button><button class="swatch" data-color="#25252d" style="background:#25252d" aria-label="Black" aria-pressed="false"></button><button class="swatch" data-color="#b85d49" style="background:#b85d49" aria-label="Copper" aria-pressed="false"></button><button class="swatch" data-color="#d9d4c8" style="background:#d9d4c8" aria-label="Platinum" aria-pressed="false"></button></div></section>
+<button class="generate" id="generate">✦ Generate Outfit Suggestion →</button><p class="status" id="status" aria-live="polite">3D character ready · drag to rotate</p>
+</aside></div><div class="footer"><span>MUSE — YOUR DIGITAL WARDROBE</span><span>INTERACTIVE 3D CHARACTER</span></div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 <script>
-/*
- * Replace these four URLs with hosted, matching Sims-style character renders
- * to keep the exact same face and hair in every outfit. Current URLs are
- * fashion photography examples, not genuine Sims 4 renders.
- */
-const outfits={
- casual:{image:"https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1100&q=90",title:"Casual Outfit"},
- cozy:{image:"https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1100&q=90",title:"Cozy Knitwear"},
- streetwear:{image:"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1100&q=90",title:"Streetwear Style"},
- formal:{image:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1100&q=90",title:"Formal Event"}
-};
-const character=document.getElementById("sims-character");
-const title=document.getElementById("outfit-title");
-const status=document.getElementById("status");
-let selectedOutfit="casual", zoom=1;
-
-/* The central image src is changed immediately on every outfit click. */
-function changeOutfit(imageUrl,outfitTitle,outfitKey){
- character.src=imageUrl;
- character.alt="Full-body character wearing "+outfitTitle;
- title.textContent=outfitTitle;
- selectedOutfit=outfitKey;
- document.querySelectorAll(".outfit").forEach(button=>{
-  button.setAttribute("aria-pressed",String(button.dataset.outfit===outfitKey));
- });
- character.classList.add("loading");
- character.onload=()=>character.classList.remove("loading");
- character.onerror=()=>{character.classList.remove("loading");status.textContent="Image could not load. Check this image URL.";};
- status.textContent=outfitTitle+" selected.";
+(() => {
+const canvas=document.getElementById('character-canvas');
+const status=document.getElementById('status');
+const title=document.getElementById('outfit-title');
+if(!window.THREE){status.textContent='3D library did not load. Check your internet connection.';return;}
+const THREE=window.THREE;
+const scene=new THREE.Scene(); scene.background=null;
+const camera=new THREE.PerspectiveCamera(32,1,.1,100); camera.position.set(0,2.45,10.7);
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.18;
+scene.add(new THREE.HemisphereLight(0xe7ffff,0x63819a,2.1));
+const keyLight=new THREE.DirectionalLight(0xffe4c7,3.1);keyLight.position.set(-3,7,6);scene.add(keyLight);
+const fillLight=new THREE.DirectionalLight(0x80f4ff,2.2);fillLight.position.set(4,4,-2);scene.add(fillLight);
+const rim=new THREE.DirectionalLight(0xffd3a0,2.4);rim.position.set(0,5,-5);scene.add(rim);
+const avatar=new THREE.Group();scene.add(avatar);
+const mat=(color,roughness=.75,metalness=0)=>new THREE.MeshStandardMaterial({color,roughness,metalness});
+const skin=mat('#c98260'), skinLight=mat('#df9b78'), blush=mat('#bb6e67'), hairMat=mat('#d8a05e',.42), hairHi=mat('#f1c780',.45), hairDark=mat('#9b663c',.52), white=mat('#f5eee0'), eyeWhite=mat('#fff9ec'), iris=mat('#668d72',.4), dark=mat('#392622'), lip=mat('#a95850'), gold=mat('#d5aa5e',.3,.65);
+const fabrics={casual:mat('#f0e9df'),cozy:mat('#bd8b78'),streetwear:mat('#2b394e'),formal:mat('#762e56')};
+let current='casual';
+function ell(parent,name,position,scale,material,segments=32){const m=new THREE.Mesh(new THREE.SphereGeometry(1,segments,24),material);m.name=name;m.position.set(...position);m.scale.set(...scale);parent.add(m);return m;}
+function capsule(parent,a,b,r,material,radial=16){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),d=new THREE.Vector3().subVectors(B,A);const mesh=new THREE.Mesh(new THREE.CapsuleGeometry(r,Math.max(.01,d.length()-2*r),6,radial),material);mesh.position.copy(A).add(B).multiplyScalar(.5);mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize());parent.add(mesh);return mesh;}
+function cylinder(parent,a,b,r1,r2,material){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),d=new THREE.Vector3().subVectors(B,A);const mesh=new THREE.Mesh(new THREE.CylinderGeometry(r2,r1,d.length(),24),material);mesh.position.copy(A).add(B).multiplyScalar(.5);mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize());parent.add(mesh);return mesh;}
+// Body: stylized adult proportions, new warm medium skin tone, green eyes and long honey-blonde hair.
+ell(avatar,'neck',[0,3.68,0],[.19,.43,.19],skin);
+ell(avatar,'torso',[0,3.02,0],[.49,.83,.29],skin);
+ell(avatar,'hips',[0,2.37,0],[.48,.4,.3],skin);
+ell(avatar,'head',[0,4.42,.025],[.43,.57,.38],skinLight,40);
+ell(avatar,'jaw',[0,4.18,.075],[.34,.32,.33],skinLight);
+ell(avatar,'earL',[-.43,4.35,0],[.085,.14,.07],skin);ell(avatar,'earR',[.43,4.35,0],[.085,.14,.07],skin);
+ell(avatar,'nose',[0,4.39,.385],[.075,.14,.085],skin);
+ell(avatar,'noseTip',[0,4.32,.405],[.08,.055,.07],skinLight);
+ell(avatar,'eyeL',[-.17,4.48,.34],[.12,.075,.055],eyeWhite);ell(avatar,'eyeR',[.17,4.48,.34],[.12,.075,.055],eyeWhite);
+ell(avatar,'irisL',[-.165,4.48,.389],[.052,.054,.025],iris);ell(avatar,'irisR',[.165,4.48,.389],[.052,.054,.025],iris);
+ell(avatar,'pupilL',[-.165,4.48,.409],[.025,.033,.014],dark);ell(avatar,'pupilR',[.165,4.48,.409],[.025,.033,.014],dark);
+ell(avatar,'glintL',[-.18,4.502,.423],[.014,.014,.009],eyeWhite);ell(avatar,'glintR',[.15,4.502,.423],[.014,.014,.009],eyeWhite);
+capsule(avatar,[-.29,4.59,.34],[-.08,4.62,.34],.035,dark);capsule(avatar,[.08,4.62,.34],[.29,4.59,.34],.035,dark);
+ell(avatar,'upperLip',[0,4.16,.355],[.14,.035,.035],lip);ell(avatar,'smile',[0,4.135,.36],[.13,.023,.027],dark);ell(avatar,'lowerLip',[0,4.115,.355],[.105,.025,.025],lip);
+ell(avatar,'cheekL',[-.27,4.29,.29],[.09,.05,.025],blush);ell(avatar,'cheekR',[.27,4.29,.29],[.09,.05,.025],blush);
+// Long hair cap, back volume, side locks and curved strand details.
+ell(avatar,'hairBack',[0,4.53,-.13],[.49,.67,.34],hairMat,36);
+ell(avatar,'hairCap',[0,4.78,.015],[.45,.32,.39],hairMat,36);
+ell(avatar,'fringeL',[-.22,4.72,.28],[.20,.28,.16],hairHi);
+ell(avatar,'fringeR',[.15,4.75,.29],[.20,.28,.16],hairMat);
+capsule(avatar,[-.31,4.69,.12],[-.4,4.15,.04],.14,hairMat);
+capsule(avatar,[-.4,4.15,.04],[-.34,3.52,.09],.14,hairMat);
+capsule(avatar,[-.34,3.52,.09],[-.23,3.27,.12],.12,hairHi);
+capsule(avatar,[.29,4.7,.12],[.4,4.17,.04],.14,hairMat);
+capsule(avatar,[.4,4.17,.04],[.34,3.56,.09],.14,hairMat);
+capsule(avatar,[.34,3.56,.09],[.23,3.3,.12],.12,hairHi);
+for(let i=0;i<5;i++){const x=-.28+i*.14;capsule(avatar,[x,4.94,.20],[x*.85,4.80,.32],.018,hairHi,8);}
+ell(avatar,'hairTailL',[-.35,3.8,-.08],[.15,.55,.17],hairDark);ell(avatar,'hairTailR',[.35,3.82,-.08],[.15,.55,.17],hairDark);
+// Arms, hands, legs and simple shoes.
+capsule(avatar,[-.42,3.55,0],[-.63,2.85,.04],.13,skin);
+capsule(avatar,[-.63,2.85,.04],[-.68,2.28,.13],.105,skin);
+ell(avatar,'handL',[-.68,2.16,.15],[.105,.16,.09],skin);
+capsule(avatar,[.42,3.55,0],[.63,2.85,.04],.13,skin);
+capsule(avatar,[.63,2.85,.04],[.68,2.28,.13],.105,skin);
+ell(avatar,'handR',[.68,2.16,.15],[.105,.16,.09],skin);
+capsule(avatar,[-.23,2.28,0],[-.25,1.35,.015],.17,skin);
+capsule(avatar,[-.25,1.35,.015],[-.28,.35,.07],.105,skin);
+capsule(avatar,[.23,2.28,0],[.25,1.35,.015],.17,skin);
+capsule(avatar,[.25,1.35,.015],[.28,.35,.07],.105,skin);
+ell(avatar,'shoeL',[-.28,.19,.18],[.17,.12,.28],white);ell(avatar,'shoeR',[.28,.19,.18],[.17,.12,.28],white);
+// Outfit meshes are real 3D geometry and recolour/change silhouette by outfit.
+const clothing=new THREE.Group();avatar.add(clothing);
+function buildClothes(type){
+ while(clothing.children.length){const obj=clothing.children.pop();obj.geometry?.dispose();}
+ const fabric=fabrics[type];
+ // fitted top / knit / street jacket / formal bodice
+ ell(clothing,'top',[0,3.04,.015],[type==='formal'?.46:.48,.63,.305],fabric,36);
+ if(type==='cozy'){
+  capsule(clothing,[-.40,3.46,.01],[-.48,2.91,.02],.14,fabric);
+  capsule(clothing,[.40,3.46,.01],[.48,2.91,.02],.14,fabric);
+  for(let y=2.72;y<3.56;y+=.11) capsule(clothing,[-.34,y,.29],[.34,y,.29],.008,hairHi,6);
+ }else if(type==='streetwear'){
+  capsule(clothing,[-.40,3.48,.01],[-.50,2.90,.03],.15,fabric);
+  capsule(clothing,[.40,3.48,.01],[.50,2.90,.03],.15,fabric);
+  ell(clothing,'jacketL',[-.25,3.14,.29],[.18,.50,.055],mat('#43536a'));
+  ell(clothing,'jacketR',[.25,3.14,.29],[.18,.50,.055],mat('#43536a'));
+ }else if(type==='formal'){
+  capsule(clothing,[-.39,3.45,0],[-.48,2.95,.02],.105,fabric);
+  capsule(clothing,[.39,3.45,0],[.48,2.95,.02],.105,fabric);
+  ell(clothing,'neckline',[0,3.55,.27],[.29,.12,.05],mat('#f5c9d5'));
+ }
+ // bottom silhouettes: pants, shorts, skirt or gown.
+ if(type==='formal'){
+  ell(clothing,'gown',[0,2.25,0],[.52,.62,.34],fabric,36);
+ }else if(type==='streetwear'){
+  capsule(clothing,[-.23,2.38,0],[-.24,1.38,.01],.18,mat('#34445a'));
+  capsule(clothing,[.23,2.38,0],[.24,1.38,.01],.18,mat('#34445a'));
+  ell(clothing,'waist',[0,2.39,0],[.48,.18,.31],fabric);
+ }else if(type==='cozy'){
+  ell(clothing,'skirt',[0,2.25,0],[.52,.35,.34],mat('#a96f63'));
+ }else{
+  ell(clothing,'shorts',[0,2.35,.005],[.49,.30,.32],fabric);
+  capsule(clothing,[-.22,2.26,.01],[-.23,1.82,.01],.12,fabric);
+  capsule(clothing,[.22,2.26,.01],[.23,1.82,.01],.12,fabric);
+ }
+ // sneakers remain visible for casual, knitwear and streetwear; formal shoes are darker.
+ const shoeMaterial=type==='formal'?mat('#4c263c',.3,.2):white;
+ ell(clothing,'shoeL',[-.28,.19,.20],[.17,.12,.28],shoeMaterial);
+ ell(clothing,'shoeR',[.28,.19,.20],[.17,.12,.28],shoeMaterial);
 }
-document.querySelectorAll(".outfit").forEach(button=>button.addEventListener("click",()=>{
- const look=outfits[button.dataset.outfit];
- if(look)changeOutfit(look.image,look.title,button.dataset.outfit);
-}));
-document.querySelectorAll(".category").forEach(button=>button.addEventListener("click",()=>{
- document.querySelectorAll(".category").forEach(item=>item.classList.remove("active"));
- button.classList.add("active");
- status.textContent=button.dataset.category+" category selected.";
-}));
-document.getElementById("generate").addEventListener("click",()=>{
- const event=document.getElementById("event").value;
- const weather=document.getElementById("weather").value;
- const mood=document.getElementById("mood").value;
- let key="casual";
- if(["Wedding","Party","Date Night"].includes(event))key="formal";
- else if(["Cold","Rainy"].includes(weather))key="cozy";
- else if(["Bold","Playful"].includes(mood))key="streetwear";
- const look=outfits[key];
- changeOutfit(look.image,look.title,key);
- status.textContent=look.title+" suggested for "+event+", "+weather.toLowerCase()+" weather, and a "+mood.toLowerCase()+" mood.";
-});
-document.getElementById("zoom-in").addEventListener("click",()=>{zoom=Math.min(1.2,zoom+.05);character.style.transform="scale("+zoom+")";});
-document.getElementById("zoom-out").addEventListener("click",()=>{zoom=Math.max(.8,zoom-.05);character.style.transform="scale("+zoom+")";});
+buildClothes('casual');
+// earrings
+ell(avatar,'earringL',[-.45,4.20,.04],[.035,.075,.035],gold);ell(avatar,'earringR',[.45,4.20,.04],[.035,.075,.035],gold);
+const floor=new THREE.Mesh(new THREE.CircleGeometry(1.2,48),new THREE.MeshBasicMaterial({color:0x16516b,transparent:true,opacity:.12}));floor.rotation.x=-Math.PI/2;floor.position.y=.055;floor.scale.set(1.6,.55,1);scene.add(floor);
+let targetRotation=0,targetY=0,zoom=1,isDragging=false,lastX=0,lastY=0;
+canvas.addEventListener('pointerdown',e=>{isDragging=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId);});
+canvas.addEventListener('pointermove',e=>{if(!isDragging)return;targetRotation+=(e.clientX-lastX)*.01;targetY=Math.max(-.25,Math.min(.25,targetY+(e.clientY-lastY)*.003));lastX=e.clientX;lastY=e.clientY;});
+canvas.addEventListener('pointerup',()=>isDragging=false);canvas.addEventListener('pointercancel',()=>isDragging=false);
+canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(.82,Math.min(1.22,zoom+(e.deltaY<0?.04:-.04)));},{passive:false});
+function resize(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
+window.addEventListener('resize',resize);resize();
+function animate(){requestAnimationFrame(animate);avatar.rotation.y+=(targetRotation-avatar.rotation.y)*.12;avatar.position.y+=(targetY-avatar.position.y)*.12;avatar.scale.setScalar(zoom);renderer.render(scene,camera);}animate();
+function changeOutfit(key){if(!fabrics[key])return;current=key;buildClothes(key);title.textContent=({casual:'Casual Outfit',cozy:'Cozy Knitwear',streetwear:'Streetwear Style',formal:'Formal Event'})[key];document.querySelectorAll('.outfit').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.outfit===key)));status.textContent=title.textContent+' applied to the 3D character.';}
+document.querySelectorAll('.outfit').forEach(b=>b.addEventListener('click',()=>changeOutfit(b.dataset.outfit)));
+document.querySelectorAll('.category').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.category').forEach(x=>x.classList.remove('active'));b.classList.add('active');status.textContent=b.dataset.category+' category selected.';}));
+document.querySelectorAll('.swatch').forEach(b=>b.addEventListener('click',()=>{hairMat.color.set(b.dataset.color);hairHi.color.set(b.dataset.color);hairDark.color.set(b.dataset.color);document.querySelectorAll('.swatch').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));status.textContent='Hair colour updated on the 3D character.';}));
+document.getElementById('generate').addEventListener('click',()=>{const event=document.getElementById('event').value,weather=document.getElementById('weather').value,mood=document.getElementById('mood').value;let key='casual';if(['Wedding','Party','Date Night'].includes(event))key='formal';else if(['Cold','Rainy'].includes(weather))key='cozy';else if(['Bold','Playful'].includes(mood))key='streetwear';changeOutfit(key);status.textContent=title.textContent+' suggested for '+event+', '+weather.toLowerCase()+' weather and a '+mood.toLowerCase()+' mood.';});
+})();
 </script>
 </body>
 </html>
