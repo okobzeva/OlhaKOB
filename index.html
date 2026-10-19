@@ -38,74 +38,77 @@ main{display:grid;grid-template-columns:minmax(220px,260px) minmax(320px,1fr) mi
 <div class="stage-aura"></div>
 <div class="plumbob" aria-hidden="true"><svg viewBox="0 0 42 70"><path d="M21 0L39 29 21 70 3 29Z" fill="#80d923"/><path d="M21 0L21 70 3 29Z" fill="#baff48"/><path d="M21 0L39 29 21 37 3 29Z" fill="#d4ff55"/><path d="M21 37L39 29 21 70Z" fill="#45a81f"/></svg></div>
 <div class="floor-shadow"></div>
-<svg id="character" class="character" viewBox="0 0 240 620" role="img" aria-label="Full-body stylized 3D-game-inspired woman character wearing the current outfit" xmlns="http://www.w3.org/2000/svg">
+<svg id="character" class="character" viewBox="0 0 240 620" role="img" aria-label="Full-body stylized brunette woman wearing the current outfit" xmlns="http://www.w3.org/2000/svg">
 <defs>
-<linearGradient id="skin" x1="0" y1="0" x2="1" y2=".1"><stop stop-color="#9b573d"/><stop offset=".23" stop-color="#d88d67"/><stop offset=".52" stop-color="#f1b38e"/><stop offset=".78" stop-color="#d88d67"/><stop offset="1" stop-color="#a25e43"/></linearGradient>
-<linearGradient id="skinFace" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7c39e"/><stop offset=".55" stop-color="#dfa079"/><stop offset="1" stop-color="#bd7958"/></linearGradient>
-<linearGradient id="hair" x1="0" y1="0" x2="1" y2=".1"><stop stop-color="#a66c3f"/><stop offset=".2" stop-color="#f7d18a"/><stop offset=".43" stop-color="#d39a59"/><stop offset=".62" stop-color="#ffe2a1"/><stop offset=".83" stop-color="#c58a4c"/><stop offset="1" stop-color="#8f5938"/></linearGradient>
+<linearGradient id="skin" x1="0" y1="0" x2="1" y2=".1"><stop stop-color="#75452f"/><stop offset=".24" stop-color="#b97852"/><stop offset=".52" stop-color="#d99b70"/><stop offset=".78" stop-color="#b97852"/><stop offset="1" stop-color="#74432e"/></linearGradient>
+<linearGradient id="skinFace" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e8b18a"/><stop offset=".55" stop-color="#c98b64"/><stop offset="1" stop-color="#9d6046"/></linearGradient>
+<linearGradient id="hair" x1="0" y1="0" x2="1" y2=".1"><stop stop-color="#201719"/><stop offset=".2" stop-color="#56352d"/><stop offset=".43" stop-color="#2b1d20"/><stop offset=".62" stop-color="#704536"/><stop offset=".83" stop-color="#302023"/><stop offset="1" stop-color="#171316"/></linearGradient>
 <linearGradient id="cream" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf5"/><stop offset=".55" stop-color="var(--shirt,#f5f0e6)"/><stop offset="1" stop-color="#bdb5a9"/></linearGradient>
 <linearGradient id="denim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8db4d2"/><stop offset=".5" stop-color="var(--pants,#e9dfd0)"/><stop offset="1" stop-color="#4b748f"/></linearGradient>
 <linearGradient id="pink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffc5dc"/><stop offset="1" stop-color="#b84f87"/></linearGradient>
 <linearGradient id="black" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#55545b"/><stop offset="1" stop-color="#171c28"/></linearGradient>
 <linearGradient id="shoe" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#c9d7df"/></linearGradient>
 </defs>
-<!-- back hair and ears -->
-<path d="M76 103Q48 73 67 40Q83 11 119 16Q157 13 176 44Q194 72 170 122L177 191 154 250 78 247 58 187Z" fill="url(#hair)"/>
-<path d="M104 91L102 126 138 126 136 90Z" fill="url(#skinFace)"/>
-<ellipse cx="81" cy="83" rx="8" ry="13" fill="#d99670"/><ellipse cx="159" cy="83" rx="8" ry="13" fill="#d99670"/>
-<!-- face, shaped brows and eyes -->
-<path d="M79 56Q84 29 120 28Q156 29 161 56L155 91Q149 117 120 128Q91 117 85 91Z" fill="url(#skinFace)"/>
-<path d="M91 68Q103 58 113 66M127 66Q139 58 150 67" fill="none" stroke="#593a2c" stroke-width="4" stroke-linecap="round"/>
-<path d="M88 75L81 69Q99 67 115 74Q105 84 93 80Z M125 74Q141 67 159 69L152 75 147 80Q135 84 125 74Z" fill="#2a2224"/>
-<path d="M93 75Q103 71 112 75Q104 81 95 79ZM129 75Q139 71 148 75Q139 81 131 79Z" fill="#fff7e9"/>
-<ellipse cx="103" cy="76" rx="4.2" ry="4.8" fill="#739c68"/><ellipse cx="139" cy="76" rx="4.2" ry="4.8" fill="#739c68"/><circle cx="104" cy="75" r="1.5" fill="#fff"/><circle cx="140" cy="75" r="1.5" fill="#fff"/>
-<path d="M120 77L114 94Q120 98 126 94" fill="none" stroke="#bd7958" stroke-width="2" stroke-linecap="round"/>
-<g fill="#a9674b" opacity=".75"><circle cx="96" cy="93" r="1.2"/><circle cx="103" cy="96" r="1.3"/><circle cx="111" cy="94" r="1"/><circle cx="129" cy="94" r="1"/><circle cx="137" cy="96" r="1.3"/><circle cx="144" cy="93" r="1.2"/></g>
-<path d="M104 107Q120 113 136 106Q130 122 120 121Q110 120 104 107Z" fill="#a85d5d"/><path d="M109 108Q120 112 131 107" stroke="#fff3e9" stroke-width="2" fill="none" stroke-linecap="round"/>
-<!-- front curtain and long wavy blonde hair -->
-<path d="M78 58Q65 75 73 103Q68 134 79 162Q84 184 99 199Q88 158 99 133Q106 111 100 90Q112 65 121 47Q99 38 78 58Z" fill="url(#hair)"/>
-<path d="M162 57Q177 74 168 104Q178 135 165 163Q159 186 145 200Q154 159 142 132Q135 110 141 90Q129 65 120 47Q143 38 162 57Z" fill="url(#hair)"/>
-<g fill="none" stroke="#ffe5a8" stroke-width="2.4" stroke-linecap="round"><path d="M81 61Q70 88 81 112T84 159Q86 176 96 190"/><path d="M92 53Q81 79 94 105T96 149Q94 168 102 181"/><path d="M159 61Q170 88 159 112T156 159Q154 176 144 190"/><path d="M148 53Q159 79 146 105T144 149Q146 168 138 181"/></g>
-<!-- body behind clothes, muscular arms, legs -->
+<!-- New character: dark wavy bob silhouette, distinct olive-brown complexion and facial structure -->
+<path d="M76 104Q48 78 57 47Q62 22 91 14Q121 4 150 17Q181 29 181 62Q186 83 165 115L170 161 150 196 83 193 63 155Z" fill="url(#hair)"/>
+<path d="M104 98L103 129 137 129 136 96Z" fill="url(#skinFace)"/>
+<ellipse cx="81" cy="85" rx="8" ry="12" fill="#bb7d57"/><ellipse cx="159" cy="85" rx="8" ry="12" fill="#bb7d57"/>
+<path d="M79 56Q88 31 119 30Q151 31 161 56L155 94Q148 121 120 132Q92 121 85 94Z" fill="url(#skinFace)"/>
+<!-- arched brows, almond dark-brown eyes, wider nose and confident smile -->
+<path d="M89 69Q101 59 114 67M127 67Q140 58 151 69" fill="none" stroke="#35201d" stroke-width="4.2" stroke-linecap="round"/>
+<path d="M87 76L81 70Q99 66 115 75Q104 86 92 81Z M125 75Q141 66 159 70L153 76 147 81Q136 86 125 75Z" fill="#251b1b"/>
+<path d="M92 76Q103 71 112 76Q104 82 94 80ZM129 76Q139 71 148 76Q139 82 131 80Z" fill="#f7eee0"/>
+<ellipse cx="103" cy="77" rx="4.3" ry="4.7" fill="#513b2b"/><ellipse cx="139" cy="77" rx="4.3" ry="4.7" fill="#513b2b"/><circle cx="104" cy="76" r="1.4" fill="#fff"/><circle cx="140" cy="76" r="1.4" fill="#fff"/>
+<path d="M120 78L112 96Q120 101 128 95" fill="none" stroke="#9d6046" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M102 108Q120 116 138 107Q131 123 120 123Q109 122 102 108Z" fill="#87434a"/><path d="M108 109Q120 113 132 108" stroke="#fbe7d9" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M91 96Q99 100 106 97M134 97Q141 100 149 96" stroke="#d99877" stroke-width="2" fill="none" opacity=".7"/>
+<!-- short, layered brunette waves frame the face instead of the old long blonde hair -->
+<path d="M77 58Q66 76 73 99Q68 124 79 148Q84 163 97 174Q88 142 98 119Q106 95 100 78Q111 57 120 43Q99 37 77 58Z" fill="url(#hair)"/>
+<path d="M163 58Q174 76 167 99Q172 124 161 148Q156 163 143 174Q152 142 142 119Q134 95 140 78Q129 57 120 43Q141 37 163 58Z" fill="url(#hair)"/>
+<g fill="none" stroke="#8b5a43" stroke-width="2.8" stroke-linecap="round"><path d="M78 59Q70 85 81 106T84 146Q86 158 94 166"/><path d="M91 50Q82 75 94 100T96 137Q94 151 101 160"/><path d="M162 59Q170 85 159 106T156 146Q154 158 146 166"/><path d="M149 50Q158 75 146 100T144 137Q146 151 139 160"/></g>
+<!-- athletic adult body, warm brown skin -->
 <path d="M91 139Q78 137 70 151Q62 166 58 198L46 278Q44 293 53 296Q62 297 65 283L81 211 98 175Z" fill="url(#skin)"/>
 <path d="M149 139Q162 137 170 151Q178 166 182 198L194 278Q196 293 187 296Q178 297 175 283L159 211 142 175Z" fill="url(#skin)"/>
 <path d="M95 133Q106 142 120 142Q134 142 145 133L158 160 150 226 151 265 89 265 90 226 82 160Z" fill="url(#skin)"/>
 <path d="M91 256Q105 262 119 258L118 343Q114 371 105 404L95 479Q94 495 84 500L72 494Q75 467 72 436L65 370Q62 324 71 270Z" fill="url(#skin)"/>
 <path d="M121 258Q137 262 151 256L169 270Q178 324 175 370L168 436Q165 467 168 494L156 500Q146 495 145 479L135 404Q126 371 122 343Z" fill="url(#skin)"/>
-<!-- clothing layer A: casual top and shorts -->
+<!-- Outfit 1: cream casual top and tailored shorts -->
 <g id="look-casual" class="clothing">
 <path d="M94 143Q106 151 120 151Q134 151 146 143L158 162 150 224Q136 237 120 237Q104 237 90 224L82 162Z" fill="url(#cream)" stroke="#d5c9b9" stroke-width="1.5"/>
 <path d="M95 146Q120 163 145 146M92 222Q120 230 148 222" fill="none" stroke="#fff" stroke-width="2" opacity=".9"/>
 <path d="M91 235Q120 244 149 235L160 294Q140 302 122 295L120 288 117 295Q99 302 80 294Z" fill="url(#cream)" stroke="#c8bba9" stroke-width="1.5"/>
 <path d="M120 245V289M92 250Q120 260 148 250M89 257L93 286M151 257L147 286" fill="none" stroke="#c6b9a7" stroke-width="1.5"/>
 </g>
-<!-- clothing layer B: party mini dress -->
+<!-- Outfit 2: knit cardigan and skirt -->
 <g id="look-party" class="clothing hidden">
-<path d="M99 142Q110 150 120 150Q130 150 141 142L154 163 145 226Q141 248 157 286Q120 305 83 286Q99 248 95 226L86 163Z" fill="url(#pink)" stroke="#f9d6e6" stroke-width="1.5"/>
-<path d="M98 146Q120 158 142 146M120 158V280" fill="none" stroke="#ffe9f2" stroke-width="2" opacity=".8"/>
-<path d="M100 166Q120 178 140 166" fill="none" stroke="#a94579" stroke-width="1.2" opacity=".7"/>
+<path d="M96 141Q108 150 120 150Q132 150 144 141L158 163 150 226 120 238 90 226 82 163Z" fill="#d9b7a6" stroke="#f1d9cf" stroke-width="1.5"/>
+<path d="M105 150L111 229M135 150L129 229M96 177H144M94 185H146M94 193H146" fill="none" stroke="#f5e2d8" stroke-width="2"/>
+<path d="M89 235Q120 245 151 235L164 300Q120 316 76 300Z" fill="#8c596b" stroke="#d7aab7" stroke-width="1.5"/>
+<path d="M82 254Q120 264 158 254M79 271Q120 281 161 271M77 288Q120 298 163 288" fill="none" stroke="#c88fa0" stroke-width="1.6"/>
 </g>
-<!-- clothing layer C: cozy sweater and joggers -->
+<!-- Outfit 3: white tee and blue denim -->
 <g id="look-cozy" class="clothing hidden">
-<path d="M92 140Q105 147 120 147Q135 147 148 140L160 163 151 245Q137 257 120 255Q103 257 89 245L80 163Z" fill="#d8b7a7" stroke="#f0d5c9" stroke-width="1.5"/>
-<path d="M104 146Q120 163 136 146M95 177H145M94 185H146M94 193H146" fill="none" stroke="#f4d9ce" stroke-width="1.5" opacity=".8"/>
-<path d="M89 247Q120 255 151 247L166 337Q145 346 123 340L120 330 117 340Q95 346 74 337Z" fill="url(#denim)" stroke="#6f96b3" stroke-width="1.5"/>
-<path d="M120 258V331M91 265Q120 275 149 265" fill="none" stroke="#b6d1e3" stroke-width="1.5"/>
+<path d="M94 143Q106 151 120 151Q134 151 146 143L158 162 150 224Q136 237 120 237Q104 237 90 224L82 162Z" fill="#f8f6ef" stroke="#d4dce0" stroke-width="1.5"/>
+<path d="M120 158V230M95 146Q120 160 145 146" fill="none" stroke="#d9dfe0" stroke-width="1.5"/>
+<path d="M88 235Q120 245 152 235L166 351 146 361 123 355 120 343 117 355 94 361 74 351Z" fill="#345b83" stroke="#91b2d0" stroke-width="1.5"/>
+<path d="M120 249V343M91 252Q120 263 149 252M91 265L98 345M149 265L142 345" fill="none" stroke="#9dbbd4" stroke-width="1.5"/>
+<circle cx="120" cy="250" r="2.5" fill="#dce7ee"/>
 </g>
-<!-- clothing layer D: rainy jacket and fitted trousers -->
+<!-- Outfit 4: dark streetwear jacket and relaxed trousers -->
 <g id="look-rain" class="clothing hidden">
-<path d="M91 139Q105 147 120 147Q135 147 149 139L161 162 151 255 120 269 89 255 79 162Z" fill="#4f7787" stroke="#b7dce2" stroke-width="1.5"/>
-<path d="M120 149V259M94 165L105 177M146 165L135 177" fill="none" stroke="#c9e4e6" stroke-width="2"/>
-<path d="M89 250Q120 258 151 250L165 361 146 370 123 363 120 352 117 363 94 370 75 361Z" fill="#354e64" stroke="#a6c6d4" stroke-width="1.5"/>
-<path d="M120 261V353M91 264Q120 273 149 264" fill="none" stroke="#8eafc3" stroke-width="1.5"/>
+<path d="M94 143Q106 151 120 151Q134 151 146 143L158 162 150 224Q136 237 120 237Q104 237 90 224L82 162Z" fill="#e7dfd5" stroke="#fff" stroke-width="1.5"/>
+<path d="M95 145L82 162 90 231 113 240 120 158 127 240 150 231 158 162 145 145 133 156 120 151 107 156Z" fill="#30333d" stroke="#9c9ca7" stroke-width="1.5"/>
+<path d="M120 159V233M98 170L110 185M142 170L130 185" fill="none" stroke="#c7c8d0" stroke-width="2"/>
+<path d="M88 235Q120 245 152 235L166 351 146 361 123 355 120 343 117 355 94 361 74 351Z" fill="#343847" stroke="#8d93a2" stroke-width="1.5"/>
+<path d="M120 249V343M91 252Q120 263 149 252" fill="none" stroke="#777d8c" stroke-width="1.5"/>
 </g>
-<!-- sneakers and socks -->
-<path d="M73 483L94 483 98 526Q98 538 86 541L57 541Q49 537 55 527Z" fill="#fff8ee" stroke="#c4d0d6" stroke-width="1.5"/>
-<path d="M146 483L167 483 185 527Q191 537 181 541L151 541Q140 538 142 526Z" fill="#fff8ee" stroke="#c4d0d6" stroke-width="1.5"/>
+<!-- socks and trainers -->
+<path d="M73 483L94 483 98 526Q98 538 86 541L57 541Q49 537 55 527Z" fill="#f7f0e6" stroke="#c4d0d6" stroke-width="1.5"/>
+<path d="M146 483L167 483 185 527Q191 537 181 541L151 541Q140 538 142 526Z" fill="#f7f0e6" stroke="#c4d0d6" stroke-width="1.5"/>
 <path d="M57 533H95M145 533H185M67 510L84 522M62 517L87 517M151 510L170 522M149 517L176 517" stroke="#b5c5ce" stroke-width="2" fill="none"/>
-<!-- hair crown in front for depth -->
-<path d="M78 63Q70 32 91 19Q119 3 145 20Q171 36 162 65Q146 45 130 43Q108 39 93 49Z" fill="url(#hair)"/>
-<path d="M93 25Q83 45 90 62M110 18Q101 39 108 51M137 19Q153 39 147 54" stroke="#ffe5a8" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<!-- sculpted bob crown -->
+<path d="M77 61Q67 31 91 17Q119 2 146 18Q171 34 163 63Q145 44 130 43Q107 39 92 49Z" fill="url(#hair)"/>
+<path d="M93 24Q82 44 90 60M111 17Q101 38 108 51M137 19Q153 39 147 54" stroke="#8b5a43" stroke-width="2.4" fill="none" stroke-linecap="round"/>
 </svg>
 <div class="rotate" aria-label="Character controls"><button type="button" id="prevLook" aria-label="Previous outfit">↶</button><button type="button" id="nextLook" aria-label="Next outfit">↷</button></div>
 </section>
