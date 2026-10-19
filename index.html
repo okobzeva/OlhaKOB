@@ -160,16 +160,16 @@ body:has(#styleView.active) .intro{display:none}
 <section id="styleView">
 <div class="layout">
 <article class="card"><div class="card-head"><div><h2>Create-a-Sim</h2><div class="sub">Build your character · customise your look</div></div></div>
-<div class="avatar-stage"><svg class="avatar" viewBox="0 0 180 300" role="img" aria-label="Woman character with natural adult feminine proportions, medium warm skin, long wavy dark hair and brown eyes, with selectable outfits">
+<div class="avatar-stage"><svg class="avatar" viewBox="0 0 180 300" role="img" aria-label="Woman character with natural adult feminine proportions, warm tan skin, long blonde waves, green eyes and a freckled face, with selectable outfits">
 <defs>
  <linearGradient id="skinShade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e8bd98"/><stop offset=".52" stop-color="#c9916b"/><stop offset="1" stop-color="#9d6449"/></linearGradient>
- <linearGradient id="hairShade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#76503b"/><stop offset=".38" stop-color="var(--hair,#4b2b20)"/><stop offset="1" stop-color="var(--hair,#4b2b20)"/></linearGradient>
+ <linearGradient id="hairShade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0b7"/><stop offset=".22" stop-color="#e9c17b"/><stop offset=".42" stop-color="var(--hair,#d7ad68)"/><stop offset=".72" stop-color="#f4d99a"/><stop offset="1" stop-color="var(--hair,#d7ad68)"/></linearGradient>
  <linearGradient id="fabricShade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff" stop-opacity=".55"/><stop offset=".55" stop-color="var(--top,#f5f1e9)"/><stop offset="1" stop-color="var(--top,#f5f1e9)"/></linearGradient>
 </defs>
 <ellipse cx="90" cy="285" rx="42" ry="7" fill="#527b8c" opacity=".17"/>
 <!-- new woman character: long flowing dark-brown waves -->
 <path d="M60 53 Q48 19 74 7 Q97 -4 116 15 Q134 34 119 69 L125 122 Q120 145 108 151 L109 99 L71 99 L69 148 Q54 137 53 112 L58 73Z" fill="url(#hairShade)"/>
-<path d="M61 35 Q53 51 63 68 Q69 82 59 100 M70 15 Q83 6 96 14 M112 23 Q126 40 113 58 Q105 72 117 88 M112 91 Q125 112 112 133" stroke="#c49a75" stroke-opacity=".42" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M61 35 Q53 51 63 68 Q69 82 59 100 M70 15 Q83 6 96 14 M112 23 Q126 40 113 58 Q105 72 117 88 M112 91 Q125 112 112 133" stroke="#fff0bf" stroke-opacity=".72" stroke-width="3" fill="none" stroke-linecap="round"/>
 <path d="M61 41 Q55 15 79 9 Q102 2 117 23 Q124 36 115 52 L107 39 Q96 25 79 34 L67 51Z" fill="url(#hairShade)"/>
 <path d="M74 15 Q91 5 107 20 M65 28 Q63 40 68 48" stroke="#ffffff" stroke-opacity=".2" stroke-width="2" fill="none" stroke-linecap="round"/>
 <!-- legs and shoes -->
@@ -187,20 +187,22 @@ body:has(#styleView.active) .intro{display:none}
 <path d="M90 105 L90 177" stroke="#ffffff" stroke-opacity=".52" stroke-width="1.5"/>
 <path d="M68 124 Q90 132 112 124" stroke="#ffffff" stroke-opacity=".45" fill="none" stroke-width="1.5"/>
 <path d="M64 145 L75 148 M105 148 L116 145" stroke="#8eb7c7" stroke-opacity=".5" stroke-width="1.5" stroke-linecap="round"/>
-<!-- distinct feminine face: tapered oval jaw, almond green eyes, freckles and a fuller smile -->
-<path d="M64 29 Q69 11 90 12 Q111 11 116 30 L113 54 Q110 69 99 77 Q90 83 81 77 Q70 70 67 54Z" fill="url(#skinShade)"/>
-<ellipse cx="63" cy="49" rx="4" ry="6" fill="#c9916b"/><ellipse cx="117" cy="49" rx="4" ry="6" fill="#c9916b"/>
-<ellipse cx="74" cy="58" rx="8" ry="4.5" fill="#d97878" opacity=".24"/><ellipse cx="106" cy="58" rx="8" ry="4.5" fill="#d97878" opacity=".24"/>
-<path d="M70 39 Q77 33 85 38 M95 38 Q104 32 110 38" stroke="#493027" stroke-width="2.7" fill="none" stroke-linecap="round"/>
-<path d="M70 46 Q77 40 85 46 Q78 53 70 46Z M95 46 Q103 40 111 46 Q103 53 95 46Z" fill="#fff8ee"/>
-<ellipse cx="78" cy="46" rx="3.4" ry="4" fill="#5e8c68"/><ellipse cx="103" cy="46" rx="3.4" ry="4" fill="#5e8c68"/>
-<circle cx="79" cy="45" r="1.25" fill="#fff"/><circle cx="104" cy="45" r="1.25" fill="#fff"/>
-<path d="M90 47 L86 58 Q90 61 94 57" stroke="#a97155" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-<g fill="#a76d50" opacity=".72"><circle cx="75" cy="57" r="1"/><circle cx="80" cy="59" r=".8"/><circle cx="85" cy="58" r=".75"/><circle cx="96" cy="58" r=".75"/><circle cx="101" cy="59" r=".8"/><circle cx="106" cy="57" r="1"/></g>
-<path d="M80 67 Q90 72 100 66 Q96 77 89 76 Q83 75 80 67Z" fill="#a95761"/><path d="M83 68 Q90 70 97 67" stroke="#fff1eb" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+<!-- face inspired by the reference: lifted almond eyes, winged liner, freckles, softly sculpted nose and smile -->
+<path d="M64 29 Q68 10 90 12 Q112 10 116 30 L113 53 Q110 69 99 77 Q90 82 81 77 Q70 69 67 53Z" fill="url(#skinShade)"/>
+<ellipse cx="63" cy="49" rx="4" ry="6" fill="#bd8766"/><ellipse cx="117" cy="49" rx="4" ry="6" fill="#bd8766"/>
+<ellipse cx="74" cy="57" rx="9" ry="5" fill="#e58c83" opacity=".22"/><ellipse cx="106" cy="57" rx="9" ry="5" fill="#e58c83" opacity=".22"/>
+<path d="M68 41 Q77 33 86 39 M94 39 Q104 32 112 39" stroke="#493027" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M69 45 L64 41 Q73 42 77 41 Q82 41 87 45 Q79 52 71 48Z M93 45 Q99 41 104 41 Q109 42 116 40 L111 45 Q109 51 101 49Z" fill="#211d20"/>
+<path d="M71 45 Q78 42 85 45 Q79 50 72 47Z M95 45 Q102 42 109 45 Q102 50 96 47Z" fill="#f9f5e9"/>
+<ellipse cx="79" cy="46" rx="3.4" ry="3.5" fill="#78a66f"/><ellipse cx="102" cy="46" rx="3.4" ry="3.5" fill="#78a66f"/>
+<circle cx="80" cy="45" r="1.2" fill="#fff"/><circle cx="103" cy="45" r="1.2" fill="#fff"/>
+<path d="M90 46 L85 58 Q90 61 95 57 Q91 58 89 56" stroke="#a97155" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+<ellipse cx="90" cy="59" rx="5" ry="2" fill="#b67b5d" opacity=".16"/>
+<g fill="#a76d50" opacity=".75"><circle cx="73" cy="56" r=".9"/><circle cx="77" cy="58" r="1.1"/><circle cx="82" cy="59" r=".8"/><circle cx="86" cy="57" r=".7"/><circle cx="95" cy="57" r=".7"/><circle cx="99" cy="59" r=".8"/><circle cx="104" cy="58" r="1.1"/><circle cx="108" cy="56" r=".9"/><circle cx="89" cy="61" r=".7"/><circle cx="92" cy="61" r=".7"/></g>
+<path d="M79 67 Q90 71 101 66 Q96 74 90 74 Q83 73 79 67Z" fill="#b86d68"/><path d="M82 67 Q90 70 98 66" stroke="#fff6ee" stroke-width="1.7" fill="none" stroke-linecap="round"/>
 <!-- front hairline and soft face-framing waves -->
 <path d="M61 43 Q55 17 79 10 Q102 3 117 23 L117 48 L109 38 Q98 26 79 33 L66 51Z" fill="url(#hairShade)"/>
-<path d="M72 18 Q90 6 107 20 M64 30 Q63 43 68 52 M115 40 Q120 61 113 78" stroke="#c49a75" stroke-opacity=".36" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M72 18 Q90 6 107 20 M64 30 Q63 43 68 52 M115 40 Q120 61 113 78" stroke="#fff0bf" stroke-opacity=".78" stroke-width="2" fill="none" stroke-linecap="round"/>
 <!-- collar and little styling detail -->
 <path d="M76 85 L90 104 L104 85" fill="none" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
 <circle cx="90" cy="114" r="2.2" fill="#ffffff" opacity=".9"/><g id="outfitAccessories" opacity="0"><path d="M120 115 Q136 115 136 132 L136 163 Q136 168 131 168 L119 168 Q115 168 115 163 L115 132 Q115 119 120 115Z" fill="#e5a8c6" stroke="#fff" stroke-width="2"/><path d="M120 117 Q120 106 127 106 Q134 106 134 117" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="126" cy="139" r="3" fill="#fff" opacity=".8"/></g>
@@ -218,7 +220,7 @@ body:has(#styleView.active) .intro{display:none}
 <button class="category" data-outfit="accessories" aria-pressed="false"><span>✧</span>Accessories</button>
 </div>
 <p class="outfit-hint">Choose a category to preview a clothing silhouette on the same character. Hair and garment colours stay available in the swatch panels.</p>
-</div><div class="avatar-controls"><div class="field"><label>TOP</label><div class="color-row"><button class="color active" style="background:#f5f1e9" data-top="#f5f1e9" aria-label="Ivory top"></button><button class="color" style="background:#242321" data-top="#242321" aria-label="Black top"></button><button class="color" style="background:#b8c1b5" data-top="#b8c1b5" aria-label="Sage top"></button><button class="color" style="background:#b58b83" data-top="#b58b83" aria-label="Rose top"></button></div></div><div class="field"><label>BOTTOM</label><div class="color-row"><button class="color active" style="background:#393a3b" data-bottom="#393a3b" aria-label="Charcoal bottoms"></button><button class="color" style="background:#b9a58b" data-bottom="#b9a58b" aria-label="Taupe bottoms"></button><button class="color" style="background:#d7d1c6" data-bottom="#d7d1c6" aria-label="Cream bottoms"></button><button class="color" style="background:#424f63" data-bottom="#424f63" aria-label="Navy bottoms"></button></div></div><div class="field"><label>HAIR</label><div class="color-row"><button class="color active" style="background:#4b4037" data-hair="#4b4037" aria-label="Brown hair"></button><button class="color" style="background:#b99762" data-hair="#b99762" aria-label="Blonde hair"></button><button class="color" style="background:#242321" data-hair="#242321" aria-label="Black hair"></button><button class="color" style="background:#8b5d50" data-hair="#8b5d50" aria-label="Auburn hair"></button></div></div></div></article>
+</div><div class="avatar-controls"><div class="field"><label>TOP</label><div class="color-row"><button class="color active" style="background:#f5f1e9" data-top="#f5f1e9" aria-label="Ivory top"></button><button class="color" style="background:#242321" data-top="#242321" aria-label="Black top"></button><button class="color" style="background:#b8c1b5" data-top="#b8c1b5" aria-label="Sage top"></button><button class="color" style="background:#b58b83" data-top="#b58b83" aria-label="Rose top"></button></div></div><div class="field"><label>BOTTOM</label><div class="color-row"><button class="color active" style="background:#393a3b" data-bottom="#393a3b" aria-label="Charcoal bottoms"></button><button class="color" style="background:#b9a58b" data-bottom="#b9a58b" aria-label="Taupe bottoms"></button><button class="color" style="background:#d7d1c6" data-bottom="#d7d1c6" aria-label="Cream bottoms"></button><button class="color" style="background:#424f63" data-bottom="#424f63" aria-label="Navy bottoms"></button></div></div><div class="field"><label>HAIR</label><div class="color-row"><button class="color active" style="background:#d7ad68" data-hair="#d7ad68" aria-label="Blonde hair"></button><button class="color" style="background:#4b4037" data-hair="#4b4037" aria-label="Brown hair"></button><button class="color" style="background:#242321" data-hair="#242321" aria-label="Black hair"></button><button class="color" style="background:#8b5d50" data-hair="#8b5d50" aria-label="Auburn hair"></button></div></div></div></article>
 <article class="card"><div class="card-head"><div><h2>What do you need today?</h2><div class="sub">Just three choices, then let MUSE help.</div></div></div><div class="preferences">
 <div class="field"><label>OCCASION</label><div class="choices" data-group="occasion"><button class="choice active" data-value="Everyday">Everyday</button><button class="choice" data-value="Work">Work</button><button class="choice" data-value="Date">Date</button><button class="choice" data-value="Going out">Going out</button></div></div>
 <div class="field"><label>MOOD</label><div class="choices" data-group="mood"><button class="choice active" data-value="Comfortable">Comfortable</button><button class="choice" data-value="Confident">Confident</button><button class="choice" data-value="Relaxed">Relaxed</button><button class="choice" data-value="Elegant">Elegant</button></div></div>
